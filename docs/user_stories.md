@@ -82,3 +82,23 @@ Tasks are typically tracked as checkboxes under each User Story or as smaller Gi
 | **Distinction** | Advanced refinement and professional polish phase. |
 
 ---
+
+## Example of Agile User Stories Across All Tiers
+
+All stories across Epics, Merit, and Distinction follow the same Agile format:
+
+> *As a [user type], I want [goal], so that [benefit].*
+
+Each story includes measurable **Acceptance Criteria** to confirm when it is complete.
+
+---
+
+### Epic Example (LO2 – Data Model & Features)
+> *As a developer, I want to automatically fetch and display my GitHub repositories, so that visitors can easily view my public projects.*
+
+**Acceptance Criteria:**
+- [ ] GitHub API integrated successfully.  
+- [ ] Repository data stored and displayed dynamically on the portfolio page.  
+- [ ] Repositories include name, description, and link to GitHub.  
+
+---
