@@ -71,6 +71,21 @@ Tasks are typically tracked as checkboxes under each User Story or as smaller Gi
 
 ---
 
+## Labels & Prioritisation
+
+Each issue and user story in this project is assigned a label based on its priority and Code Institute grading criteria.  
+This follows the standard **MoSCoW prioritisation method**, where features are grouped as **Must Have (Pass)**, **Should Have (Merit)**, and **Could Have (Distinction)**.
+
+| Label | Purpose | Colour | Priority |
+|--------|----------|---------|-----------|
+| **Pass (Must Have)** | Core functionality required to meet all Code Institute learning outcomes (LO1–LO7). These are essential features for project completion. | 🔴 `#b60205` | **High** |
+| **Merit (Should Have)** | Refinement and improvement features that enhance usability, efficiency, and documentation beyond the base requirements. | 🟠 `#f9d73a` | **Medium** |
+| **Distinction (Could Have)** | Advanced, professional-grade enhancements focusing on accessibility, performance, and real-world polish. Optional but desirable. | 🟢 `#28a745` | **Low** |
+
+Each label clearly indicates the feature’s purpose and grading level, ensuring transparent prioritisation and progress tracking within the Agile workflow.
+
+---
+
 ## Project Board Columns
 
 | Column | Purpose |
