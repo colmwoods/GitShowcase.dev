@@ -102,3 +102,13 @@ Each story includes measurable **Acceptance Criteria** to confirm when it is com
 - [ ] Repositories include name, description, and link to GitHub.  
 
 ---
+
+### Merit Example
+> *As a user, I want visual feedback when I perform an action (e.g., submit a comment or sync GitHub), so that I know it was completed successfully.*
+
+**Acceptance Criteria:**
+- [ ] Django messages framework implemented for success/error states.  
+- [ ] Notification banner visible across all pages.  
+- [ ] Banner uses consistent color coding (info, success, warning, danger).  
+
+---
