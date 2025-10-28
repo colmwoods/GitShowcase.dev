@@ -70,3 +70,15 @@ They cover specific technical actions such as:
 Tasks are typically tracked as checkboxes under each User Story or as smaller GitHub Issues linked to the story.
 
 ---
+
+## Project Board Columns
+
+| Column | Purpose |
+|--------|----------|
+| **Todo** | All planned Epics, Merit, and Distinction stories awaiting development. |
+| **In Progress** | User stories or tasks actively being worked on. |
+| **Done** | Completed Epics or stories that meet all acceptance criteria. |
+| **Merit** | Medium-level refinement and enhancement phase. |
+| **Distinction** | Advanced refinement and professional polish phase. |
+
+---
