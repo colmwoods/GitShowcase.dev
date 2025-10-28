@@ -112,3 +112,19 @@ Each story includes measurable **Acceptance Criteria** to confirm when it is com
 - [ ] Banner uses consistent color coding (info, success, warning, danger).  
 
 ---
+
+
+### Distinction Example
+> *As a visitor, I want the entire site to be accessible via keyboard navigation and screen readers, so that all users can interact with it regardless of ability.*
+
+**Acceptance Criteria:**
+- [ ] All navigation elements are keyboard-accessible.  
+- [ ] ARIA labels implemented for key interactive elements.  
+- [ ] Lighthouse accessibility score ≥ 90%.  
+
+---
+
+## Overview
+
+This document contains all user stories and acceptance criteria for **Epics (LO1–LO7)**, **Merit**, and **Distinction**.  
+Each `[ ]` checkbox is ticked `[x]` upon completion to demonstrate progress and adherence to Agile principles.
