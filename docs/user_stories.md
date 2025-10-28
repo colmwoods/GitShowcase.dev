@@ -1,6 +1,6 @@
 # User Stories & Agile Planning
 
-This project was planned and managed using an **Agile development methodology**, with all work organised into **Epics**, **User Stories**, and **Tasks**.  
+This project was planned and managed using an **Agile development methodology**, with all work organised into **Pass**, **Merit**, **Distinction**, **User Stories**, and **Tasks**.  
 The complete Agile workflow, including progress tracking and issue management, is available on the GitHub Project Board:  
 👉 [View GitHub Project Board](https://github.com/users/colmwoods/projects/10)
 
@@ -9,7 +9,7 @@ The complete Agile workflow, including progress tracking and issue management, i
 ## Agile Structure
 
 All project functionality was planned and delivered using an **iterative Agile approach**, broken down into three top-level tiers:  
-**Epics (LO1–LO7)**, **Merit**, and **Distinction** — each containing detailed **User Stories** and technical **Tasks**.
+**Pass (LO1–LO7)**, **Merit**, and **Distinction** — each containing detailed **User Stories** and technical **Tasks**.
 
 Every story across all tiers follows the standard Agile format:
 
@@ -19,15 +19,15 @@ This ensures all deliverables — from initial features to refinement and polish
 
 ---
 
-### **1. Epics (LO1–LO7)**
-Each Code Institute Learning Outcome (LO1–LO7) was treated as an **Epic**, representing a major area of functionality — such as planning, data models, authentication, testing, deployment, and object-based concepts.  
-Each Epic was divided into smaller **User Stories**, each describing a specific user-focused feature written in the Agile format above.
+### **1. Pass (LO1–LO7)**
+Each Code Institute Learning Outcome (LO1–LO7) was treated as a **Pass** category, representing a major area of functionality — such as planning, data models, authentication, testing, deployment, and object-based concepts.  
+Each Pass section was divided into smaller **User Stories**, each describing a specific user-focused feature written in the Agile format above.
 
 ---
 
 ### **2. Merit**
 The **Merit** tier represents refinement work that goes beyond the pass-level criteria.  
-Merit stories build upon the core features established in the Epics, focusing on:
+Merit stories build upon the core features established in the Pass criteria, focusing on:
 - Usability improvements  
 - Documentation and testing enhancements  
 - Code quality and efficiency refinements  
@@ -75,9 +75,9 @@ Tasks are typically tracked as checkboxes under each User Story or as smaller Gi
 
 | Column | Purpose |
 |--------|----------|
-| **Todo** | All planned Epics, Merit, and Distinction stories awaiting development. |
+| **Todo** | All planned Pass, Merit, and Distinction stories awaiting development. |
 | **In Progress** | User stories or tasks actively being worked on. |
-| **Done** | Completed Epics or stories that meet all acceptance criteria. |
+| **Done** | Completed Pass stories or tasks that meet all acceptance criteria. |
 | **Merit** | Medium-level refinement and enhancement phase. |
 | **Distinction** | Advanced refinement and professional polish phase. |
 
@@ -85,7 +85,7 @@ Tasks are typically tracked as checkboxes under each User Story or as smaller Gi
 
 ## Example of Agile User Stories Across All Tiers
 
-All stories across Epics, Merit, and Distinction follow the same Agile format:
+All stories across Pass, Merit, and Distinction follow the same Agile format:
 
 > *As a [user type], I want [goal], so that [benefit].*
 
@@ -93,7 +93,7 @@ Each story includes measurable **Acceptance Criteria** to confirm when it is com
 
 ---
 
-### Epic Example (LO2 – Data Model & Features)
+### Pass Example (LO2 – Data Model & Features)
 > *As a developer, I want to automatically fetch and display my GitHub repositories, so that visitors can easily view my public projects.*
 
 **Acceptance Criteria:**
@@ -113,7 +113,6 @@ Each story includes measurable **Acceptance Criteria** to confirm when it is com
 
 ---
 
-
 ### Distinction Example
 > *As a visitor, I want the entire site to be accessible via keyboard navigation and screen readers, so that all users can interact with it regardless of ability.*
 
@@ -126,5 +125,5 @@ Each story includes measurable **Acceptance Criteria** to confirm when it is com
 
 ## Overview
 
-This document contains all user stories and acceptance criteria for **Epics (LO1–LO7)**, **Merit**, and **Distinction**.  
+This document contains all user stories and acceptance criteria for **Pass (LO1–LO7)**, **Merit**, and **Distinction**.  
 Each `[ ]` checkbox is ticked `[x]` upon completion to demonstrate progress and adherence to Agile principles.
