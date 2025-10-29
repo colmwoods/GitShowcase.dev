@@ -1,0 +1,79 @@
+{% load i18n %}
+{% load allauth account %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GitShowcase | {% trans "Login" %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="allauth bg-zinc-100 text-black">
+
+    <header class="bg-gray-800 text-white py-4 px-6 flex justify-between items-center">
+        <a href="/" class="flex items-center gap-2">
+            <img class="w-6" src="/static/images/fireheart_white.svg" alt="Logo" />
+            <span class="font-bold text-lg">GitShowcase</span>
+        </a>
+    </header>
+
+    <main class="max-w-md mx-auto my-12 bg-white shadow-md rounded-lg p-8">
+
+        <h1 class="text-2xl font-bold mb-4">{% trans "Log In" %}</h1>
+
+        <p class="mb-4">
+            {% trans "If you have not created an account yet, then please" %}
+            <a href="{% url 'account_signup' %}?next=/" class="text-blue-600 hover:underline">{% trans "sign up" %}</a>
+            {% trans "first." %}
+        </p>
+
+        <form method="post" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {% element fields form=form unlabeled=True %}
+            {% endelement %}
+
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+
+            <button type="submit" class="w-full bg-gray-800 text-white py-2 rounded mt-4">
+                {% trans "Sign In" %}
+            </button>
+        </form>
+
+        <div class="flex items-center my-6">
+            <div class="flex-grow border-t border-gray-300"></div>
+            <span class="px-3 text-gray-500 text-sm">OR</span>
+            <div class="flex-grow border-t border-gray-300"></div>
+        </div>
+
+        <a class="flex items-center justify-center p-4 border rounded-full hover:bg-gray-100 w-full font-semibold"
+            href="/accounts/github/login/">
+            <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.18 6.84 9.5.5.09.66-.22.66-.48 
+                     0-.24-.01-1.04-.01-1.9-2.78.58-3.37-1.18-3.37-1.18-.45-1.15-1.1-1.46-1.1-1.46
+                     -.9-.62.07-.6.07-.6 1 .07 1.52 1.03 1.52 1.03.9 1.51 2.36 1.07 2.94.82.09-.66.35-1.07.63-1.31
+                     -2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.26-.45-1.29.1-2.69 
+                     0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02
+                     .55 1.4.2 2.43.1 2.69.64.7 1.03 1.6 1.03 2.69 
+                     0 3.85-2.34 4.7-4.57 4.95.36.31.68.91.68 1.84 
+                     0 1.33-.01 2.41-.01 2.74 0 .26.16.58.67.48A10.012 10.012 0 0 0 22 12
+                     c0-5.52-4.48-10-10-10z" />
+            </svg>
+            <span>{% trans "Sign in with GitHub" %}</span>
+        </a>
+
+    </main>
+
+</body>
+
+</html>
