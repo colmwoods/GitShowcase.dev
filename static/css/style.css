@@ -6,15 +6,25 @@
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-page,
+.home-hero {
     background: linear-gradient(135deg, #141e30, #243b55);
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
-    overflow: hidden;
-    font-family: 'Inter', sans-serif;
+    flex: 1;
 }
+
 
 .login-container {
     width: 100%;
@@ -198,4 +208,16 @@ h2 {
 
 footer {
     background: #f8f9fa;
+}
+
+footer.footer {
+    width: 100%;
+    position: relative;
+    left: 0;
+}
+
+.content-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

@@ -1,34 +1,31 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>GitShowcase.dev</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% block title %}Home | GitShowcase.dev{% endblock %}
 
-<body>
-    <div class="login-container">
-        <div class="login-card">
-            {% if user.is_authenticated %}
-            <h2>Welcome back, {{ user.username }} 👋</h2>
-            {% if user.socialaccount_set.exists %}
-            {% with github=user.socialaccount_set.first %}
-            <img src="{{ github.extra_data.avatar_url }}" alt="Avatar"
-                style="border-radius:50%;width:80px;margin:1rem;">
-            <p>GitHub: {{ github.extra_data.login }}</p>
-            <p>Name: {{ github.extra_data.name }}</p>
-            {% endwith %}
-            {% endif %}
-            <a href="{% url 'account_logout' %}" class="btn">Log Out</a>
-            {% else %}
-            <h2>Welcome to GitShowcase.dev</h2>
-            <p class="subtitle">Show off your GitHub projects beautifully.</p>
-            <a href="{% url 'account_login' %}" class="btn">Log In or Sign Up</a>
-            {% endif %}
-        </div>
-    </div>
-</body>
+{% block content %}
+<div class="d-flex justify-content-center align-items-center flex-column text-center py-5">
 
-</html>
+    {% if user.is_authenticated %}
+    <h2 class="fw-bold mb-3">Welcome back, {{ user.username }} 👋</h2>
+
+    {% if user.socialaccount_set.exists %}
+    {% with github=user.socialaccount_set.first %}
+    <img src="{{ github.extra_data.avatar_url }}" alt="Avatar" class="rounded-circle my-3 shadow-sm" width="100"
+        height="100">
+    <p class="text-muted mb-1"><strong>GitHub:</strong> {{ github.extra_data.login }}</p>
+    <p class="text-muted mb-3"><strong>Name:</strong> {{ github.extra_data.name }}</p>
+    {% endwith %}
+    {% endif %}
+
+    <a href="{% url 'account_logout' %}" class="btn btn-danger mt-3">Log Out</a>
+
+    {% else %}
+    <h2 class="fw-bold mb-3">Welcome to GitShowcase.dev</h2>
+    <p class="text-muted mb-4">Show off your GitHub projects beautifully.</p>
+    <a href="{% url 'account_login' %}" class="btn btn-dark">
+        <i class="fab fa-github me-2"></i> Log In or Sign Up with GitHub
+    </a>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,35 +1,27 @@
+{% extends "base.html" %}
 {% load static %}
 {% load socialaccount %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}Login | GitShowcase.dev{% endblock %}
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GitShowcase.dev</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="login-card bg-white shadow-lg rounded-4 p-4 text-center" style="max-width: 400px; width: 100%;">
+        <img src="{% static 'images/gitshowcase.dev-favicon.png' %}" alt="GitShowcase Logo" width="60" height="60"
+            class="mb-3">
+        <h2 class="fw-bold mb-2">Welcome Back</h2>
+        <p class="text-muted mb-4">Sign in to your account using GitHub</p>
 
-<body>
-    <div class="login-container">
-        <div class="login-card">
-            <h2>Welcome Back</h2>
-            <p class="subtitle">Sign in to your account using GitHub</p>
+        <!-- 🧩 GitHub OAuth Button -->
+        <a class="btn btn-dark w-100 py-2 mb-3 d-flex align-items-center justify-content-center"
+            href="{% provider_login_url 'github' %}">
+            <i class="fab fa-github me-2"></i> Continue with GitHub
+        </a>
 
-            <!-- 🧩 GitHub OAuth Button -->
-            <a class="btn-github" href="{% provider_login_url 'github' %}">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                    alt="GitHub Logo" class="github-logo">
-                Continue with GitHub
-            </a>
-
-            <div class="links">
-                <p>Having trouble? <a href="https://github.com/logout" target="_blank">Log out of GitHub</a> to switch
-                    accounts.</p>
-            </div>
-        </div>
+        <p class="text-muted mt-3 mb-0">
+            Having trouble? <a href="https://github.com/logout" target="_blank" class="text-decoration-none">Log out of
+                GitHub</a> to switch accounts.
+        </p>
     </div>
-</body>
-
-</html>
+</div>
+{% endblock %}
