@@ -5,15 +5,17 @@
     font-family: "Poppins", sans-serif;
 }
 
+
 body {
     min-height: 100vh;
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: #f8f9fa;
-    color: #000;
+    background: linear-gradient(135deg, #0a0f1a, #1c2835);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
 }
+
 
 .login-page,
 .home-hero {
@@ -208,16 +210,4 @@ h2 {
 
 footer {
     background: #f8f9fa;
-}
-
-footer.footer {
-    width: 100%;
-    position: relative;
-    left: 0;
-}
-
-.content-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
 }

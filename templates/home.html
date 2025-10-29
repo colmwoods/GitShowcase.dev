@@ -4,28 +4,26 @@
 {% block title %}Home | GitShowcase.dev{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center align-items-center flex-column text-center py-5">
-
-    {% if user.is_authenticated %}
-    <h2 class="fw-bold mb-3">Welcome back, {{ user.username }} 👋</h2>
-
-    {% if user.socialaccount_set.exists %}
-    {% with github=user.socialaccount_set.first %}
-    <img src="{{ github.extra_data.avatar_url }}" alt="Avatar" class="rounded-circle my-3 shadow-sm" width="100"
-        height="100">
-    <p class="text-muted mb-1"><strong>GitHub:</strong> {{ github.extra_data.login }}</p>
-    <p class="text-muted mb-3"><strong>Name:</strong> {{ github.extra_data.name }}</p>
-    {% endwith %}
-    {% endif %}
-
-    <a href="{% url 'account_logout' %}" class="btn btn-danger mt-3">Log Out</a>
-
-    {% else %}
-    <h2 class="fw-bold mb-3">Welcome to GitShowcase.dev</h2>
-    <p class="text-muted mb-4">Show off your GitHub projects beautifully.</p>
-    <a href="{% url 'account_login' %}" class="btn btn-dark">
-        <i class="fab fa-github me-2"></i> Log In or Sign Up with GitHub
-    </a>
-    {% endif %}
+<div class="home-hero text-center d-flex justify-content-center align-items-center flex-column">
+    <div class="login-card">
+        {% if user.is_authenticated %}
+        <h2 class="fw-bold mb-3">Welcome back, {{ user.username }} 👋</h2>
+        {% if user.socialaccount_set.exists %}
+        {% with github=user.socialaccount_set.first %}
+        <img src="{{ github.extra_data.avatar_url }}" alt="Avatar" class="rounded-circle my-3 shadow-sm" width="100"
+            height="100">
+        <p><strong>GitHub:</strong> {{ github.extra_data.login }}</p>
+        <p><strong>Name:</strong> {{ github.extra_data.name }}</p>
+        {% endwith %}
+        {% endif %}
+        <a href="{% url 'account_logout' %}" class="btn btn-danger mt-3">Log Out</a>
+        {% else %}
+        <h2 class="fw-bold mb-3">Welcome to GitShowcase.dev</h2>
+        <p class="subtitle text-dark">Show off your GitHub projects beautifully.</p>
+        <a href="{% url 'account_login' %}" class="btn-github">
+            <i class="fab fa-github me-2"></i> Log In or Sign Up with GitHub
+        </a>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
