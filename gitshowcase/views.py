@@ -1,5 +1,5 @@
-from django.shortcuts import redirect
-from allauth.socialaccount.providers.github.views import oauth2_login
+from django.shortcuts import render
 
-def github_redirect(request):
-    return oauth2_login(request)
+def home(request):
+    context = {'user': request.user}
+    return render(request, 'home.html', context)
