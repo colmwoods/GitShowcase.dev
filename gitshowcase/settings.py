@@ -58,6 +58,11 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
