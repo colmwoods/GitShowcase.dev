@@ -53,8 +53,15 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-ACCOUNT_LOGIN_METHODS = {"username", "email"}
-ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# Keep a valid value — doesn't matter since we’re using GitHub OAuth
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+
+# Optional: auto-redirect users straight to GitHub when visiting /accounts/login/
+SOCIALACCOUNT_LOGIN_ON_GET = False
 
 
 AUTHENTICATION_BACKENDS = [
