@@ -13,6 +13,7 @@ body {
     align-items: center;
     color: #fff;
     overflow: hidden;
+    font-family: 'Inter', sans-serif;
 }
 
 .login-container {
@@ -179,4 +180,22 @@ h2 {
     width: 20px;
     height: 20px;
     filter: brightness(0) invert(1);
+}
+
+.navbar-brand span {
+    font-size: 1.3rem;
+    color: #000;
+}
+
+.navbar .nav-link {
+    color: #333;
+    font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+    color: #007bff;
+}
+
+footer {
+    background: #f8f9fa;
 }
