@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', home, name='home'),
-    path('about/', views.about, name='about')
+    path('about/', views.about, name='about'),
+    path("api/star/", views.star_repo, name="star_repo"),
 ]
