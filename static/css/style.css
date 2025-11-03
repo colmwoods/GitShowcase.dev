@@ -211,3 +211,36 @@ h2 {
 footer {
     background: #f8f9fa;
 }
+
+.about-container {
+    background: linear-gradient(135deg, #141e30, #243b55);
+    /* same as login-page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    min-height: 100vh;
+    color: #fff;
+}
+
+.about-card {
+    background: #ffffff;
+    padding: 3rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    width: 700px;
+    animation: fadeIn 1s ease forwards;
+    color: #333;
+    line-height: 1.7;
+}
+
+.about-card h1 {
+    text-align: center;
+    color: #141e30;
+    margin-bottom: 1.5rem;
+}
+
+.about-card p {
+    margin-bottom: 1rem;
+}
