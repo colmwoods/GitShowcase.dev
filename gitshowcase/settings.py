@@ -187,3 +187,6 @@ SOCIALACCOUNT_PROVIDERS = {
 
 
 SOCIALACCOUNT_LOGIN_ON_GET = True
+
+# Make Django Allauth save OAuth tokens (GitHub access tokens)
+SOCIALACCOUNT_STORE_TOKENS = True
