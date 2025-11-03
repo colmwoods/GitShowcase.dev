@@ -13,6 +13,33 @@
         <p>Name: {{ github.extra_data.name }}</p>
         {% endwith %}
         {% endif %}
+
+        <hr style="margin: 2rem 0;">
+
+        <h3>Your Repositories</h3>
+
+        {% if repos %}
+        <ul style="text-align:left; list-style:none; padding:0;">
+            {% for repo in repos %}
+            <li style="margin-bottom: 1rem;">
+                <a href="{{ repo.html_url }}" target="_blank"
+                    style="color:#007bff; text-decoration:none; font-weight:500;">
+                    {{ repo.name }}
+                </a><br>
+                <small style="color:#555;">
+                    ⭐ {{ repo.stargazers_count }} | 🍴 {{ repo.forks_count }}
+                    {% if repo.description %}
+                    — {{ repo.description }}
+                    {% endif %}
+                </small>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>You have no repositories yet.</p>
+        {% endif %}
+
+
         <a href="{% url 'account_logout' %}" class="btn btn-logout">Log Out</a>
         {% else %}
         <h2>Welcome to <strong>GitShowcase.dev</strong></h2>
