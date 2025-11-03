@@ -1,33 +1,43 @@
+function getCookie(name) {
+    const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return match ? match.pop() : '';
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    const token = document.body.dataset.githubToken;
-
-    if (!token) {
-        console.warn("⚠️ No GitHub token found — star feature disabled.");
-        return;
-    }
-
+    // Add click listener to all "Star" buttons
     document.querySelectorAll(".btn-action.star").forEach(button => {
         button.addEventListener("click", async () => {
             const repoFullName = button.dataset.repo;
+            if (!repoFullName) return;
+
+            button.disabled = true;
+            button.textContent = "⭐ Starring...";
 
             try {
-                const response = await fetch(`https://api.github.com/user/starred/${repoFullName}`, {
-                    method: "PUT",
+                const response = await fetch("/api/star/", {
+                    method: "POST",
                     headers: {
-                        "Authorization": `token ${token}`,
-                        "Accept": "application/vnd.github+json"
-                    }
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": getCookie("csrftoken"),
+                    },
+                    body: JSON.stringify({ repo: repoFullName }),
                 });
 
-                if (response.status === 204) {
+                const data = await response.json();
+
+                if (response.ok && data.ok) {
                     button.textContent = "⭐ Starred!";
-                    button.style.background = "linear-gradient(135deg, #28a745, #20c997)";
+                    button.classList.add("starred");
                 } else {
-                    console.error("❌ Failed to star repo:", response.status);
-                    alert("Could not star the repository. Check permissions.");
+                    console.error("❌ Failed to star repo:", data);
+                    button.textContent = "⭐ Star";
+                    alert("Could not star repository. Try again or check permissions.");
+                    button.disabled = false;
                 }
             } catch (err) {
-                console.error("💥 Error starring repo:", err);
+                console.error("💥 Network error:", err);
+                alert("Network error — could not star repository.");
+                button.disabled = false;
             }
         });
     });
