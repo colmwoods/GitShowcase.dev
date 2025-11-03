@@ -1,3 +1,4 @@
+/* -------------------- GLOBAL RESET -------------------- */
 * {
     margin: 0;
     padding: 0;
@@ -5,10 +6,11 @@
     font-family: "Poppins", sans-serif;
 }
 
-
+/* -------------------- GLOBAL PAGE BACKGROUND -------------------- */
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #0a0f1a, #1c2835);
+    background: linear-gradient(135deg, #0a1a2f, #122b45);
+    /* unified dark blue gradient */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -16,10 +18,13 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-
+/* -------------------- COMMON PAGE STYLES -------------------- */
 .login-page,
-.home-hero {
-    background: linear-gradient(135deg, #141e30, #243b55);
+.home-hero,
+.about-container,
+.repo-section {
+    background: none;
+    /* background now handled by body */
     color: #fff;
     display: flex;
     justify-content: center;
@@ -27,17 +32,17 @@ body {
     flex: 1;
 }
 
-
+/* -------------------- LOGIN / USER CARD -------------------- */
 .login-container {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 2rem 0;
 }
 
 .login-card {
     background: #ffffff;
-    /* solid white background */
     padding: 3rem 2.5rem;
     border-radius: 16px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
@@ -45,7 +50,6 @@ body {
     width: 350px;
     animation: fadeIn 1s ease forwards;
     color: #333;
-    /* darker text for readability */
 }
 
 h2 {
@@ -60,6 +64,7 @@ h2 {
     margin-bottom: 2rem;
 }
 
+/* -------------------- INPUT GROUPS -------------------- */
 .input-group {
     margin-bottom: 1.2rem;
 }
@@ -70,16 +75,13 @@ h2 {
     border: none;
     border-radius: 10px;
     background: #f3f3f3;
-    /* light gray input background */
     color: #333;
-    /* dark text */
     font-size: 15px;
     transition: all 0.3s ease;
 }
 
 .input-group input::placeholder {
     color: #777;
-    /* subtle placeholder */
 }
 
 .input-group input:focus {
@@ -88,6 +90,7 @@ h2 {
     box-shadow: 0 0 8px #00bfff;
 }
 
+/* -------------------- CHECKBOX + BUTTONS -------------------- */
 .remember {
     display: flex;
     align-items: center;
@@ -121,49 +124,16 @@ h2 {
     box-shadow: 0 5px 20px rgba(0, 191, 255, 0.3);
 }
 
-.links {
-    margin-top: 1.8rem;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #333;
+.btn-logout {
+    background: linear-gradient(135deg, #ff4d4d, #cc0000);
+    color: #fff;
 }
 
-.links a {
-    color: #0077ff;
-    text-decoration: none;
-    transition: color 0.3s ease;
+.btn-logout:hover {
+    background: linear-gradient(135deg, #ff6666, #ff1a1a);
 }
 
-.links a:hover {
-    color: #00bfff;
-    text-decoration: underline;
-}
-
-.signup {
-    margin-top: 0.8rem;
-    display: block;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 480px) {
-    .login-card {
-        width: 85%;
-        padding: 2rem 1.5rem;
-    }
-}
-
-/* --- GitHub Login Button --- */
+/* -------------------- GITHUB LOGIN BUTTON -------------------- */
 .btn-github {
     margin-top: 1.5rem;
     width: 100%;
@@ -194,6 +164,7 @@ h2 {
     filter: brightness(0) invert(1);
 }
 
+/* -------------------- NAVBAR -------------------- */
 .navbar-brand span {
     font-size: 1.3rem;
     color: #000;
@@ -208,21 +179,13 @@ h2 {
     color: #007bff;
 }
 
+/* -------------------- FOOTER -------------------- */
 footer {
-    background: #f8f9fa;
-}
-
-.about-container {
-    background: linear-gradient(135deg, #141e30, #243b55);
-    /* same as login-page */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
     color: #fff;
 }
 
+/* -------------------- ABOUT PAGE -------------------- */
 .about-card {
     background: #ffffff;
     padding: 3rem 2.5rem;
@@ -245,12 +208,24 @@ footer {
     margin-bottom: 1rem;
 }
 
+/* -------------------- REPOSITORY GRID -------------------- */
+.repo-section {
+    padding: 3rem 2rem;
+    width: 100%;
+}
+
+.repo-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #00bfff;
+}
+
 .repo-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-    margin-top: 2rem;
-    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .repo-card {
@@ -307,4 +282,25 @@ footer {
     padding: 4px 10px;
     border-radius: 8px;
     font-size: 0.8rem;
+}
+
+/* -------------------- ANIMATIONS -------------------- */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 480px) {
+    .login-card {
+        width: 85%;
+        padding: 2rem 1.5rem;
+    }
 }
