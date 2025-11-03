@@ -50,12 +50,20 @@
                 <small>🕒 Updated: {{ repo.updated_at|date:"M d, Y" }}</small>
                 {% endif %}
             </div>
+            <div class="repo-actions">
+                <a href="{{ repo.html_url }}" target="_blank" class="btn-action view">🔗 View</a>
+                <a href="{{ repo.html_url }}/archive/refs/heads/{{ repo.default_branch }}.zip"
+                    class="btn-action download">⬇️ Download</a>
+                <a href="{{ repo.html_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
+                <button class="btn-action star" data-repo="{{ repo.full_name }}">⭐ Star</button>
+            </div>
         </div>
-        {% endfor %}
-        {% else %}
-        <p class="text-muted">You have no repositories yet.</p>
-        {% endif %}
     </div>
+    {% endfor %}
+    {% else %}
+    <p class="text-muted">You have no repositories yet.</p>
+    {% endif %}
+</div>
 </div>
 {% endif %}
 {% endblock %}
