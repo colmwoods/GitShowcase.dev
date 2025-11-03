@@ -15,11 +15,14 @@ def home(request):
             social_account = SocialAccount.objects.get(user=request.user, provider='github')
             token = SocialToken.objects.get(account=social_account, account__user=request.user)
             url = (
-                "https://api.github.com/user/repos"
-                "?visibility=all"
-                "&affiliation=owner,collaborator,organization_member"
-                "&per_page=100"
-            )
+    "https://api.github.com/user/repos"
+    "?visibility=all"
+    "&affiliation=owner,collaborator,organization_member"
+    "&sort=updated"
+    "&direction=desc"
+    "&per_page=100"
+)
+
 
             headers = {
                 "Authorization": f"token {token.token}",
