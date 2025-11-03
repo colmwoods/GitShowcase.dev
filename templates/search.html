@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="search-container">
+    <h2>🔍 Search</h2>
+    <form method="get" action="{% url 'search' %}">
+        <input type="text" name="q" placeholder="Type something..." value="{{ query }}">
+        <button type="submit" class="btn">Search</button>
+    </form>
+
+    {% if query %}
+    <h3>Results for "{{ query }}":</h3>
+    <ul>
+        {% for item in results %}
+        <li>{{ item }}</li>
+        {% empty %}
+        <li>No results found.</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
