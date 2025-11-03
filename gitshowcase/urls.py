@@ -25,4 +25,5 @@ urlpatterns = [
     path('', home, name='home'),
     path('about/', views.about, name='about'),
     path("api/star/", views.star_repo, name="star_repo"),
+    path("search/", views.search_user, name="search"), 
 ]
