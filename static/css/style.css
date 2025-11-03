@@ -211,24 +211,46 @@ footer {
 /* -------------------- REPOSITORY GRID -------------------- */
 .repo-section {
     width: 100%;
-    padding: 3rem 2rem 5rem;
+    padding: 4rem 2rem 6rem;
     color: #fff;
     text-align: center;
 }
 
 .repo-title {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     color: #00bfff;
-    font-size: 2rem;
+    font-size: 2.2rem;
+    font-weight: 600;
     text-align: center;
+    position: relative;
+}
+
+.repo-title::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #00bfff, #0077ff);
+    margin: 10px auto 0;
+    border-radius: 10px;
+    animation: glowBar 3s ease-in-out infinite alternate;
+}
+
+@keyframes glowBar {
+    from {
+        box-shadow: 0 0 5px #00bfff;
+    }
+
+    to {
+        box-shadow: 0 0 20px #00bfff, 0 0 40px #0077ff;
+    }
 }
 
 .repo-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.8rem;
-    max-width: 1400px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1300px;
     margin: 0 auto;
     justify-items: center;
 }
@@ -239,14 +261,14 @@ footer {
     border-radius: 16px;
     padding: 1.5rem;
     width: 100%;
-    max-width: 260px;
+    max-width: 300px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .repo-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 191, 255, 0.3);
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 191, 255, 0.3);
 }
 
 .repo-header {
@@ -276,6 +298,13 @@ footer {
     color: #666;
 }
 
+.repo-card p {
+    font-size: 0.9rem;
+    color: #444;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+
 .repo-footer {
     display: flex;
     justify-content: space-between;
@@ -291,6 +320,7 @@ footer {
     border-radius: 8px;
     font-size: 0.8rem;
 }
+
 
 /* -------------------- ANIMATIONS -------------------- */
 @keyframes fadeIn {
