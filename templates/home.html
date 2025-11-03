@@ -13,31 +13,35 @@
         <p>Name: {{ github.extra_data.name }}</p>
         {% endwith %}
         {% endif %}
+        <h2 class="mt-4">Your Repositories</h2>
 
-        <hr style="margin: 2rem 0;">
-
-        <h3>Your Repositories</h3>
-
-        {% if repos %}
-        <ul style="text-align:left; list-style:none; padding:0;">
+        <div class="repo-container">
+            {% if repos %}
             {% for repo in repos %}
-            <li style="margin-bottom: 1rem;">
-                <a href="{{ repo.html_url }}" target="_blank"
-                    style="color:#007bff; text-decoration:none; font-weight:500;">
-                    {{ repo.name }}
-                </a><br>
-                <small style="color:#555;">
-                    ⭐ {{ repo.stargazers_count }} | 🍴 {{ repo.forks_count }}
-                    {% if repo.description %}
-                    — {{ repo.description }}
+            <div class="repo-card">
+                <div class="repo-header">
+                    <h3>
+                        <a href="{{ repo.html_url }}" target="_blank">{{ repo.name }}</a>
+                    </h3>
+                    <div class="repo-stats">
+                        ⭐ {{ repo.stargazers_count }} | 🍴 {{ repo.forks_count }}
+                    </div>
+                </div>
+                {% if repo.description %}
+                <p>{{ repo.description }}</p>
+                {% endif %}
+                <div class="repo-footer">
+                    <span class="badge">{{ repo.language|default:"Unknown" }}</span>
+                    {% if repo.updated_at %}
+                    <small>Updated: {{ repo.updated_at|date:"M d, Y" }}</small>
                     {% endif %}
-                </small>
-            </li>
+                </div>
+            </div>
             {% endfor %}
-        </ul>
-        {% else %}
-        <p>You have no repositories yet.</p>
-        {% endif %}
+            {% else %}
+            <p class="text-muted">You have no repositories yet.</p>
+            {% endif %}
+        </div>
 
 
         <a href="{% url 'account_logout' %}" class="btn btn-logout">Log Out</a>
