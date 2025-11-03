@@ -2,16 +2,11 @@
 {% load static %}
 
 {% block content %}
-
-<!-- PAGE WRAPPER -->
 <div class="home-hero">
-
-    <!-- LOGIN CARD / USER INFO -->
     <div class="login-container">
         <div class="login-card">
             {% if user.is_authenticated %}
             <h2>Welcome back, {{ user.username }} 👋</h2>
-
             {% if user.socialaccount_set.exists %}
             {% with github=user.socialaccount_set.first %}
             <img src="{{ github.extra_data.avatar_url }}" alt="Avatar"
@@ -20,18 +15,16 @@
             <p>Name: {{ github.extra_data.name }}</p>
             {% endwith %}
             {% endif %}
-
             <a href="{% url 'account_logout' %}" class="btn btn-logout">Log Out</a>
             {% else %}
             <h2>Welcome to <strong>GitShowcase.dev</strong></h2>
             <p class="subtitle">Show off your GitHub projects beautifully.</p>
-            <a href="{% url 'account_login' %}" class="btn">Log In with GitHub</a>
+            <p><a href="{% url 'account_login' %}" class="btn">Log In</a></p>
             {% endif %}
         </div>
     </div>
 </div>
 
-<!-- REPO SECTION (Only when logged in) -->
 {% if user.is_authenticated %}
 <div class="repo-section">
     <h2 class="repo-title">Your Repositories</h2>
@@ -65,5 +58,4 @@
     </div>
 </div>
 {% endif %}
-
 {% endblock %}
