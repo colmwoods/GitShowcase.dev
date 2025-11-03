@@ -1,48 +1,46 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}About Me{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% block head %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description"
+    content="Learn more about GitShowcase — a platform for developers to connect their GitHub, showcase projects, and explore others' work.">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
 
-<body>
-    <div class="container">
-        <h1>About GitShowcase</h1>
-        <p>
-            <strong>GitShowcase</strong> is a dynamic online portfolio platform designed for developers who want to
-            showcase their GitHub projects in a clean, interactive, and professional way. Instead of manually designing
-            a portfolio, GitShowcase automatically connects to your GitHub account, imports your repositories, and
-            displays them with project titles, descriptions, technologies, and live links.
-        </p>
+{% block content %}
+<div class="container">
+    <h1>About GitShowcase</h1>
 
-        <p>
-            Once you log in with GitHub, the system instantly builds a personalized developer profile that highlights
-            your coding work and contributions. You can also explore other developers’ profiles by entering their
-            GitHub usernames, allowing you to discover new projects, ideas, and collaborators within the community.
-        </p>
+    <p>
+        <strong>GitShowcase</strong> is a dynamic online portfolio platform designed for developers who want to
+        showcase their GitHub projects in a clean, interactive, and professional way. Instead of manually designing
+        a portfolio, GitShowcase automatically connects to your GitHub account, imports your repositories, and
+        displays them with project titles, descriptions, technologies, and live links.
+    </p>
 
-        <p>
-            Beyond simply viewing projects, GitShowcase encourages engagement. Users can comment on other developers’
-            repositories, leave feedback, and discuss ideas — making it not just a portfolio tool, but a growing hub for
-            collaboration and inspiration among programmers.
-        </p>
+    <p>
+        Once you log in with GitHub, the system instantly builds a personalized developer profile that highlights
+        your coding work and contributions. You can also explore other developers’ profiles by entering their
+        GitHub usernames, allowing you to discover new projects, ideas, and collaborators within the community.
+    </p>
 
-        <p>
-            Whether you’re a student showcasing your learning journey, a professional highlighting your technical
-            skills, or a hobbyist who loves to build and share, GitShowcase provides a streamlined way to present your
-            GitHub work beautifully — all in one place.
-        </p>
+    <p>
+        Beyond simply viewing projects, GitShowcase encourages engagement. Users can comment on other developers’
+        repositories, leave feedback, and discuss ideas — making it not just a portfolio tool, but a growing hub for
+        collaboration and inspiration among programmers.
+    </p>
 
-        <p>
-            <em>Connect your GitHub account today, explore amazing projects from others, and share your own journey
-                with the world through GitShowcase.</em>
-        </p>
-    </div>
-</body>
+    <p>
+        Whether you’re a student showcasing your learning journey, a professional highlighting your technical
+        skills, or a hobbyist who loves to build and share, GitShowcase provides a streamlined way to present your
+        GitHub work beautifully — all in one place.
+    </p>
 
-</html>
+    <p>
+        <em>Connect your GitHub account today, explore amazing projects from others, and share your own journey
+            with the world through GitShowcase.</em>
+    </p>
+</div>
+{% endblock %}
