@@ -89,3 +89,12 @@ def star_repo(request):
 
     except Exception as e:
         return JsonResponse({"ok": False, "error": str(e)}, status=500)
+
+def search(request):
+    query = request.GET.get("q", "").strip()
+    results = []
+
+    if query:
+        results = [f"Result 1 for '{query}'", f"Result 2 for '{query}'", f"Result 3 for '{query}'"]
+
+    return render(request, "search.html", {"query": query, "results": results})
