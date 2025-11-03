@@ -2,55 +2,68 @@
 {% load static %}
 
 {% block content %}
-<div class="login-container">
-    <div class="login-card">
-        {% if user.is_authenticated %}
-        <h2>Welcome back, {{ user.username }} 👋</h2>
-        {% if user.socialaccount_set.exists %}
-        {% with github=user.socialaccount_set.first %}
-        <img src="{{ github.extra_data.avatar_url }}" alt="Avatar" style="border-radius:50%;width:80px;margin:1rem;">
-        <p>GitHub: {{ github.extra_data.login }}</p>
-        <p>Name: {{ github.extra_data.name }}</p>
-        {% endwith %}
-        {% endif %}
-        <h2 class="mt-4">Your Repositories</h2>
 
-        <div class="repo-container">
-            {% if repos %}
-            {% for repo in repos %}
-            <div class="repo-card">
-                <div class="repo-header">
-                    <h3>
-                        <a href="{{ repo.html_url }}" target="_blank">{{ repo.name }}</a>
-                    </h3>
-                    <div class="repo-stats">
-                        ⭐ {{ repo.stargazers_count }} | 🍴 {{ repo.forks_count }}
-                    </div>
-                </div>
-                {% if repo.description %}
-                <p>{{ repo.description }}</p>
-                {% endif %}
-                <div class="repo-footer">
-                    <span class="badge">{{ repo.language|default:"Unknown" }}</span>
-                    {% if repo.updated_at %}
-                    <small>Updated: {{ repo.updated_at|date:"M d, Y" }}</small>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
+<!-- PAGE WRAPPER -->
+<div class="home-hero">
+
+    <!-- LOGIN CARD / USER INFO -->
+    <div class="login-container">
+        <div class="login-card">
+            {% if user.is_authenticated %}
+            <h2>Welcome back, {{ user.username }} 👋</h2>
+
+            {% if user.socialaccount_set.exists %}
+            {% with github=user.socialaccount_set.first %}
+            <img src="{{ github.extra_data.avatar_url }}" alt="Avatar"
+                style="border-radius:50%;width:80px;margin:1rem;">
+            <p>GitHub: {{ github.extra_data.login }}</p>
+            <p>Name: {{ github.extra_data.name }}</p>
+            {% endwith %}
+            {% endif %}
+
+            <a href="{% url 'account_logout' %}" class="btn btn-logout">Log Out</a>
             {% else %}
-            <p class="text-muted">You have no repositories yet.</p>
+            <h2>Welcome to <strong>GitShowcase.dev</strong></h2>
+            <p class="subtitle">Show off your GitHub projects beautifully.</p>
+            <a href="{% url 'account_login' %}" class="btn">Log In with GitHub</a>
             {% endif %}
         </div>
+    </div>
+</div>
 
+<!-- REPO SECTION (Only when logged in) -->
+{% if user.is_authenticated %}
+<div class="repo-section">
+    <h2 class="repo-title">Your Repositories</h2>
 
+    <div class="repo-container">
+        {% if repos %}
+        {% for repo in repos %}
+        <div class="repo-card">
+            <div class="repo-header">
+                <h3><a href="{{ repo.html_url }}" target="_blank">{{ repo.name }}</a></h3>
+                <div class="repo-stats">
+                    ⭐ {{ repo.stargazers_count }} | 🍴 {{ repo.forks_count }}
+                </div>
+            </div>
 
-        <a href="{% url 'account_logout' %}" class="btn btn-logout">Log Out</a>
+            {% if repo.description %}
+            <p>{{ repo.description }}</p>
+            {% endif %}
+
+            <div class="repo-footer">
+                <span class="badge">{{ repo.language|default:"Unknown" }}</span>
+                {% if repo.updated_at %}
+                <small>Updated: {{ repo.updated_at|date:"M d, Y" }}</small>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
         {% else %}
-        <h2>Welcome to <strong>GitShowcase.dev</strong></h2>
-        <p class="subtitle">Show off your GitHub projects beautifully.</p>
-        <p><a href="{% url 'account_login' %}" class="btn">Log In</a></p>
+        <p class="text-muted">You have no repositories yet.</p>
         {% endif %}
     </div>
 </div>
+{% endif %}
+
 {% endblock %}
