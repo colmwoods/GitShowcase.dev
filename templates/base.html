@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body data-github-token="{{ github_token|default:'' }}" class="d-flex flex-column min-vh-100">
 
     <!-- ✅ Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 fixed-top">
