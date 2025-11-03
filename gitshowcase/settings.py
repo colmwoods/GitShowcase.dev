@@ -172,13 +172,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SOCIALACCOUNT_PROVIDERS = {
     'github': {
+        'SCOPE': [
+            'read:user',
+            'user:email',
+            'repo',
+        ],
         'APP': {
             'client_id': os.environ.get('GITHUB_CLIENT_ID'),
             'secret': os.environ.get('GITHUB_CLIENT_SECRET'),
             'key': ''
-        },
-        'SCOPE': ['read:user', 'repo'],
+        }
     }
 }
+
 
 SOCIALACCOUNT_LOGIN_ON_GET = True
