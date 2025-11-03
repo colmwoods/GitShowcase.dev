@@ -214,15 +214,18 @@ footer {
     padding: 4rem 2rem 6rem;
     color: #fff;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .repo-title {
-    margin-bottom: 2.5rem;
     color: #00bfff;
     font-size: 2.2rem;
     font-weight: 600;
     text-align: center;
     position: relative;
+    margin-bottom: 2.5rem;
 }
 
 .repo-title::after {
@@ -245,6 +248,7 @@ footer {
         box-shadow: 0 0 20px #00bfff, 0 0 40px #0077ff;
     }
 }
+
 
 .repo-container {
     display: grid;
