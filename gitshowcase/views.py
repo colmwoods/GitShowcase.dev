@@ -14,25 +14,30 @@ def home(request):
             print("🔍 Fetching repos for:", request.user.username)
             print("✅ Token in use:", token.token[:6] + "...")
 
-            # GitHub API endpoint for all user repositories
-            url = 'https://api.github.com/user/repos?visibility=all&affiliation=owner'
+            # Fetch all repositories (owned, collaborator, organization)
+            url = (
+                "https://api.github.com/user/repos"
+                "?visibility=all"
+                "&affiliation=owner,collaborator,organization_member"
+                "&per_page=100"
+            )
 
             headers = {
                 'Authorization': f'token {token.token}',
                 'Accept': 'application/vnd.github+json',
             }
-
-            # Make request
             response = requests.get(url, headers=headers)
             print("📡 GitHub API status:", response.status_code)
 
             if response.status_code == 200:
                 repos = response.json()
                 print(f"📁 Repos fetched: {len(repos)}")
+
                 if not repos:
-                    print("⚠️ GitHub returned an empty list (no repos or permission issue)")
+                    print("⚠️ GitHub returned an empty list — possible visibility or scope issue.")
+                    print("🔍 Partial response:", response.text[:500])
             else:
-                print("❌ GitHub API error:", response.text[:300])
+                print("❌ GitHub API error:", response.text[:500])
 
         except Exception as e:
             print("💥 GitHub API exception:", e)
