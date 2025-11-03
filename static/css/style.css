@@ -244,3 +244,69 @@ footer {
 .about-card p {
     margin-bottom: 1rem;
 }
+
+.repo-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.repo-card {
+    background: #fff;
+    color: #333;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.repo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 191, 255, 0.3);
+}
+
+.repo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.repo-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.repo-header a {
+    color: #0077ff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.repo-header a:hover {
+    color: #00bfff;
+}
+
+.repo-stats {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.repo-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+}
+
+.badge {
+    background: linear-gradient(135deg, #00bfff, #0077ff);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
