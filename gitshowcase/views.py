@@ -119,7 +119,7 @@ def add_bookmark(request):
 @login_required(login_url='/accounts/login/')
 def bookmark_list(request):
     bookmarks = Bookmark.objects.filter(user=request.user).order_by('-created_at')
-    return render(request, 'bookmark.html', {'bookmarks': bookmarks})
+    return render(request, 'bookmarks.html', {'bookmarks': bookmarks})
 
 @login_required(login_url='/accounts/login/')
 def delete_bookmark(request, bookmark_id):
