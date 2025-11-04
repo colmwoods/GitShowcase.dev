@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="login-container">
+        <div class="login-card">
+            {% if user.is_authenticated %}
+            <h2>Your Bookmarked Repositories 📑</h2>
+            <p class="subtitle">Here are the repositories you've saved to check out later.</p>
+            {% else %}
+            <h2>Welcome to <strong>GitShowcase.dev</strong></h2>
+            <p class="subtitle">Show off your GitHub projects beautifully.</p>
+            <p><a href="{% url 'account_login' %}" class="btn">Log In</a></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% if user.is_authenticated %}
+<div class="repo-section">
+    <h2 class="repo-title">Bookmarked Repositories</h2>
+
+    <div class="repo-container">
+        {% if bookmarks %}
+        {% for bookmark in bookmarks %}
+        <div class="repo-card">
+            <div class="repo-header">
+                <h3><a href="{{ bookmark.repo_url }}" target="_blank">{{ bookmark.repo_name }}</a></h3>
+            </div>
+
+            {% if bookmark.notes %}
+            <p>{{ bookmark.notes }}</p>
+            {% else %}
+            <p><em>No notes added.</em></p>
+            {% endif %}
+
+            <div class="repo-footer">
+                <small>Bookmarked on: {{ bookmark.created_at|date:"M d, Y" }}</small>
+            </div>
+            <form method="post" action="{% url 'delete_bookmark' bookmark.id %}" style="margin-top: 10px;">
+                {% csrf_token %}
+                <button type="submit" class="btn-action delete">🗑️ Remove</button>
+            </form>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="text-muted">You haven't bookmarked any repositories yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
