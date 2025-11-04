@@ -435,7 +435,7 @@ footer {
     box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
 }
 
-.btn-remove {
+.btn-action.delete {
     background: linear-gradient(135deg, #6f42c1, #9b59b6);
     color: #ffffff;
     border: none;
@@ -449,9 +449,9 @@ footer {
     gap: 6px;
 }
 
-.btn-remove:hover {
+.btn-action.delete:hover {
     background: linear-gradient(135deg, #8e44ad, #a569bd);
+    color: #ffffff;
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
-    color: #fff;
 }
