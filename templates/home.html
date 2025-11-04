@@ -56,7 +56,7 @@
                     class="btn-action download">⬇️ Download</a>
                 <a href="{{ repo.html_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
                 <button class="btn-action star" data-repo="{{ repo.full_name }}">⭐ Star</button>
-                <form method="post" action="{% url 'add_bookmarks' %}" style="display:inline;">
+                <form method="post" action="{% url 'add_bookmark' %}" style="display:inline;">
                     {% csrf_token %}
                     <input type="hidden" name="repo_name" value="{{ repo.name }}">
                     <input type="hidden" name="repo_url" value="{{ repo.html_url }}">
