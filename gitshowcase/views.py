@@ -13,6 +13,7 @@ from .forms import CommentForm
 # ---------------- HOME PAGE ----------------
 def home(request):
     repos = []
+    comments_by_repo = {}
 
     if request.user.is_authenticated:
         try:
@@ -47,10 +48,19 @@ def home(request):
             else:
                 print("❌ GitHub API error:", response.status_code, response.text[:300])
 
+            # ✅ Build comment dictionary for each repo
+            repo_names = [r["name"] for r in repos]
+            comments = Comment.objects.filter(repo_name__in=repo_names)
+            for c in comments:
+                comments_by_repo.setdefault(c.repo_name, []).append(c)
+
         except Exception as e:
             print("💥 GitHub API exception:", e)
 
-    return render(request, "home.html", {"repos": repos})
+    return render(request, "home.html", {
+        "repos": repos,
+        "comments_by_repo": comments_by_repo,
+    })
 
 
 # ---------------- ABOUT PAGE ----------------
@@ -97,6 +107,7 @@ def search(request):
     repos = []
     user_data = None
     query = request.GET.get("q", "").strip()
+    comments_by_repo = {}
 
     if query:
         user_url = f"https://api.github.com/users/{query}"
@@ -120,8 +131,17 @@ def search(request):
                         repo["updated_at"] = datetime.strptime(updated, "%Y-%m-%dT%H:%M:%SZ")
                     except ValueError:
                         repo["updated_at"] = None
+            repo_names = [r["name"] for r in repos]
+            comments = Comment.objects.filter(repo_name__in=repo_names)
+            for c in comments:
+                comments_by_repo.setdefault(c.repo_name, []).append(c)
 
-    return render(request, "search.html", {"repos": repos, "query": query, "user_data": user_data})
+    return render(request, "search.html", {
+        "repos": repos,
+        "query": query,
+        "user_data": user_data,
+        "comments_by_repo": comments_by_repo,
+    })
 
 # ---------------- BOOKMARKS ----------------
 @login_required(login_url='/accounts/login/')

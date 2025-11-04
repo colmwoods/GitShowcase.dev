@@ -3,6 +3,8 @@ from django import template
 register = template.Library()
 
 @register.filter
-def get_item(dictionary, key):
+def get_item(value, key):
     """Allow access to a dictionary item by key inside templates."""
-    return dictionary.get(key)
+    if isinstance(value, dict):
+        return value.get(key)
+    return None
