@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
@@ -6,7 +6,7 @@ from allauth.socialaccount.models import SocialAccount, SocialToken
 import requests
 import json
 from datetime import datetime
-
+from .models import Bookmark
 
 # ---------------- HOME PAGE ----------------
 def home(request):
@@ -98,3 +98,20 @@ def search(request):
         results = [f"Result 1 for '{query}'", f"Result 2 for '{query}'", f"Result 3 for '{query}'"]
 
     return render(request, "search.html", {"query": query, "results": results})
+
+@login_required(login_url='/accounts/login/')
+def add_bookmark(request):
+    if request.method == 'POST':
+        repo_name = request.POST.get('repo_name')
+        repo_url = request.POST.get('repo_url')
+
+        # Avoid duplicates
+        if not Bookmark.objects.filter(user=request.user, repo_url=repo_url).exists():
+            Bookmark.objects.create(
+                user=request.user,
+                repo_name=repo_name,
+                repo_url=repo_url
+            )
+        return redirect('bookmarks')
+
+    return redirect('home')
