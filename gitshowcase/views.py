@@ -19,6 +19,7 @@ def home(request):
         try:
             social_account = SocialAccount.objects.get(user=request.user, provider='github')
             token = SocialToken.objects.get(account=social_account, account__user=request.user)
+
             url = (
                 "https://api.github.com/user/repos"
                 "?visibility=all"
@@ -48,19 +49,25 @@ def home(request):
             else:
                 print("❌ GitHub API error:", response.status_code, response.text[:300])
 
-            # ✅ Build comment dictionary for each repo
-            repo_names = [r["name"] for r in repos]
-            comments = Comment.objects.filter(repo_name__in=repo_names)
-            for c in comments:
-                comments_by_repo.setdefault(c.repo_name, []).append(c)
+            # ✅ Collect comments for displayed repos
+            repo_names = [r.get("name") for r in repos if "name" in r]
+            if repo_names:
+                comments = Comment.objects.filter(repo_name__in=repo_names)
+                for comment in comments:
+                    comments_by_repo.setdefault(comment.repo_name, []).append(comment)
 
         except Exception as e:
             print("💥 GitHub API exception:", e)
 
-    return render(request, "home.html", {
-        "repos": repos,
-        "comments_by_repo": comments_by_repo,
-    })
+    return render(
+        request,
+        "home.html",
+        {
+            "repos": repos,
+            "comments_by_repo": comments_by_repo,
+        },
+    )
+
 
 
 # ---------------- ABOUT PAGE ----------------
@@ -106,21 +113,22 @@ def star_repo(request):
 def search(request):
     repos = []
     user_data = None
-    query = request.GET.get("q", "").strip()
     comments_by_repo = {}
+    query = request.GET.get("q", "").strip()
 
     if query:
         user_url = f"https://api.github.com/users/{query}"
         repos_url = f"https://api.github.com/users/{query}/repos?per_page=100&sort=updated&direction=desc"
-
         headers = {"Accept": "application/vnd.github+json"}
 
         user_response = requests.get(user_url, headers=headers)
         repos_response = requests.get(repos_url, headers=headers)
 
+        # ✅ Fetch GitHub user info
         if user_response.status_code == 200:
             user_data = user_response.json()
 
+        # ✅ Fetch repositories
         if repos_response.status_code == 200:
             repos = repos_response.json()
 
@@ -131,17 +139,25 @@ def search(request):
                         repo["updated_at"] = datetime.strptime(updated, "%Y-%m-%dT%H:%M:%SZ")
                     except ValueError:
                         repo["updated_at"] = None
-            repo_names = [r["name"] for r in repos]
-            comments = Comment.objects.filter(repo_name__in=repo_names)
-            for c in comments:
-                comments_by_repo.setdefault(c.repo_name, []).append(c)
 
-    return render(request, "search.html", {
-        "repos": repos,
-        "query": query,
-        "user_data": user_data,
-        "comments_by_repo": comments_by_repo,
-    })
+            # ✅ Collect comments for repos found
+            repo_names = [r.get("name") for r in repos if "name" in r]
+            if repo_names:
+                comments = Comment.objects.filter(repo_name__in=repo_names)
+                for comment in comments:
+                    comments_by_repo.setdefault(comment.repo_name, []).append(comment)
+
+    return render(
+        request,
+        "search.html",
+        {
+            "repos": repos,
+            "query": query,
+            "user_data": user_data,
+            "comments_by_repo": comments_by_repo,
+        },
+    )
+
 
 # ---------------- BOOKMARKS ----------------
 @login_required(login_url='/accounts/login/')
