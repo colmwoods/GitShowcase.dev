@@ -456,6 +456,7 @@ footer {
     box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
 }
 
-.text-muted {
-    color: #fff
+.repo-section .text-muted {
+    color: #ffffff !important;
+    opacity: 1 !important;
 }
