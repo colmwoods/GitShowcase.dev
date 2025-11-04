@@ -97,7 +97,7 @@ def search(request):
 
     if query:
         user_url = f"https://api.github.com/users/{query}"
-        repos_url = f"https://api.github.com/users/{query}/repos?per_page=100"
+        repos_url = f"https://api.github.com/users/{query}/repos?per_page=100&sort=updated&direction=desc"
 
         headers = {"Accept": "application/vnd.github+json"}
 
