@@ -221,22 +221,19 @@ def edit_comment(request, comment_id):
 
     if comment.user != request.user:
         messages.error(request, "You can only edit your own comments.")
-        return redirect("bookmarks")
+        return HttpResponseRedirect(request.META.get("HTTP_REFERER", "/"))
 
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
-            comment = form.save(commit=False)
-            comment.approved = False  # Re-approve if needed
-            comment.save()
+            form.save()  # ✅ simplified — no extra logic
             messages.success(request, "✏️ Comment updated successfully!")
         else:
             messages.error(request, "❌ Failed to update comment.")
+    else:
+        messages.error(request, "❌ Invalid request.")
 
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-
-    form = CommentForm(instance=comment)
-    return render(request, "edit_comment.html", {"form": form, "comment": comment})
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER", "/"))
 
 
 @login_required
@@ -248,7 +245,7 @@ def delete_comment(request, comment_id):
 
     if comment.user != request.user:
         messages.error(request, "You can only delete your own comments.")
-        return redirect("bookmarks")
+        return HttpResponseRedirect(request.META.get("HTTP_REFERER", "/"))
 
     comment.delete()
     messages.success(request, "🗑️ Comment deleted successfully.")
