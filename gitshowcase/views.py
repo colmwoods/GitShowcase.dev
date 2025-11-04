@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse
+from django.contrib import messages
+from django.http import JsonResponse, HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from allauth.socialaccount.models import SocialAccount, SocialToken
 import requests
 import json
 from datetime import datetime
-from .models import Bookmark
+from .models import Bookmark, Comment
+from .forms import CommentForm
 
 # ---------------- HOME PAGE ----------------
 def home(request):
@@ -89,7 +91,8 @@ def star_repo(request):
 
     except Exception as e:
         return JsonResponse({"ok": False, "error": str(e)}, status=500)
-
+    
+# ---------------- SEARCH PAGE ----------------
 def search(request):
     repos = []
     user_data = None
@@ -120,7 +123,7 @@ def search(request):
 
     return render(request, "search.html", {"repos": repos, "query": query, "user_data": user_data})
 
-
+# ---------------- BOOKMARKS ----------------
 @login_required(login_url='/accounts/login/')
 def add_bookmark(request):
     if request.method == 'POST':
@@ -148,3 +151,69 @@ def delete_bookmark(request, bookmark_id):
     bookmark = get_object_or_404(Bookmark, id=bookmark_id, user=request.user)
     bookmark.delete()
     return redirect('bookmarks')
+
+# ---------------- COMMENTS ----------------
+@login_required
+def add_comment(request):
+    """
+    Create a new comment for a repository.
+    """
+    if request.method == "POST":
+        repo_name = request.POST.get("repo_name")
+        repo_url = request.POST.get("repo_url")
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.repo_name = repo_name
+            comment.repo_url = repo_url
+            comment.save()
+            messages.success(request, "💬 Comment added successfully!")
+        else:
+            messages.error(request, "❌ Failed to add comment.")
+
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
+def edit_comment(request, comment_id):
+    """
+    Edit an existing comment.
+    """
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if comment.user != request.user:
+        messages.error(request, "You can only edit your own comments.")
+        return redirect("bookmarks")
+
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.approved = False  # Re-approve if needed
+            comment.save()
+            messages.success(request, "✏️ Comment updated successfully!")
+        else:
+            messages.error(request, "❌ Failed to update comment.")
+
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+    form = CommentForm(instance=comment)
+    return render(request, "edit_comment.html", {"form": form, "comment": comment})
+
+
+@login_required
+def delete_comment(request, comment_id):
+    """
+    Delete a comment.
+    """
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if comment.user != request.user:
+        messages.error(request, "You can only delete your own comments.")
+        return redirect("bookmarks")
+
+    comment.delete()
+    messages.success(request, "🗑️ Comment deleted successfully.")
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
