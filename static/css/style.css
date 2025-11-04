@@ -414,3 +414,26 @@ footer {
         padding: 2rem 1.5rem;
     }
 }
+
+.btn-action.bookmark,
+.btn-action.remove {
+    background: linear-gradient(135deg, #6f42c1, #9b59b6);
+    /* Purple gradient */
+    color: #ffffff;
+    /* White text */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-action.bookmark:hover,
+.btn-action.remove:hover {
+    background: linear-gradient(135deg, #8e44ad, #a569bd);
+    color: #ffffff;
+    /* Ensure stays white on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
+}
