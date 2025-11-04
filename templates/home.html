@@ -87,6 +87,19 @@
                                 — {{ comment.created_at|date:"M d, Y H:i" }}
                             </small>
                             <div style="margin-top: 0.25rem;">{{ comment.body }}</div>
+
+                            {% if user == comment.user %}
+                            <div class="mt-1">
+                                <a href="{% url 'edit_comment' comment.id %}"
+                                    class="btn btn-sm btn-outline-info btn-edit" data-comment_id="{{ comment.id }}">
+                                    ✏️ Edit
+                                </a>
+                                <button class="btn btn-sm btn-outline-danger btn-delete"
+                                    data-comment_id="{{ comment.id }}">
+                                    🗑️ Delete
+                                </button>
+                            </div>
+                            {% endif %}
                         </li>
                         {% endfor %}
                     </ul>
