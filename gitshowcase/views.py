@@ -92,19 +92,26 @@ def star_repo(request):
 
 def search(request):
     repos = []
+    user_data = None
     query = request.GET.get("q", "").strip()
 
     if query:
-        url = f"https://api.github.com/users/{query}/repos?per_page=100"
+        user_url = f"https://api.github.com/users/{query}"
+        repos_url = f"https://api.github.com/users/{query}/repos?per_page=100"
+
         headers = {"Accept": "application/vnd.github+json"}
-        response = requests.get(url, headers=headers)
 
-        if response.status_code == 200:
-            repos = response.json()
-        else:
-            repos = None
+        user_response = requests.get(user_url, headers=headers)
+        repos_response = requests.get(repos_url, headers=headers)
 
-    return render(request, "search.html", {"repos": repos, "query": query})
+        if user_response.status_code == 200:
+            user_data = user_response.json()
+
+        if repos_response.status_code == 200:
+            repos = repos_response.json()
+
+    return render(request, "search.html", {"repos": repos, "query": query, "user_data": user_data})
+
 
 @login_required(login_url='/accounts/login/')
 def add_bookmark(request):
