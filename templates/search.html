@@ -1,21 +1,57 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block content %}
-<div class="search-container">
-    <h2>🔍 Search</h2>
-    <form method="get" action="{% url 'search' %}">
-        <input type="text" name="q" placeholder="Type something..." value="{{ query }}">
-        <button type="submit" class="btn">Search</button>
-    </form>
+<div class="repo-section">
+
+    {% if user_data %}
+    <div class="login-card text-center" style="margin-bottom: 2rem;">
+        <img src="{{ user_data.avatar_url }}" alt="Avatar" style="border-radius:50%;width:100px;margin-bottom:1rem;">
+        <h2>{{ user_data.name|default:user_data.login }}</h2>
+        {% if user_data.bio %}
+        <p>{{ user_data.bio }}</p>
+        {% endif %}
+        <p><a href="{{ user_data.html_url }}" target="_blank" class="btn-action view">🌐 View GitHub Profile</a></p>
+    </div>
+    {% endif %}
 
     {% if query %}
-    <h3>Results for "{{ query }}":</h3>
-    <ul>
-        {% for item in results %}
-        <li>{{ item }}</li>
-        {% empty %}
-        <li>No results found.</li>
+    <h2 class="repo-title">Repositories for <span style="color:#00bfff;">{{ query }}</span></h2>
+
+    {% if repos %}
+    <div class="repo-container">
+        {% for repo in repos %}
+        <div class="repo-card">
+            <div class="repo-header">
+                <h3><a href="{{ repo.html_url }}" target="_blank">{{ repo.name }}</a></h3>
+                <div class="repo-stats">
+                    ⭐ {{ repo.stargazers_count }} | 🍴 {{ repo.forks_count }}
+                </div>
+            </div>
+
+            {% if repo.description %}
+            <p>{{ repo.description }}</p>
+            {% endif %}
+
+            <div class="repo-footer">
+                <span class="badge">{{ repo.language|default:"Unknown" }}</span>
+                {% if repo.updated_at %}
+                <small>🕒 Updated: {{ repo.updated_at|date:"M d, Y" }}</small>
+                {% endif %}
+            </div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
+    {% else %}
+    <p class="text-muted text-center mt-4">No repositories found for "{{ query }}".</p>
+    {% endif %}
+    {% else %}
+    <div class="login-container">
+        <div class="login-card">
+            <h2>Search for GitHub Users 🔍</h2>
+            <p>Use the search bar at the top to find repositories by username.</p>
+        </div>
+    </div>
     {% endif %}
 </div>
 {% endblock %}

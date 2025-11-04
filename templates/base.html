@@ -55,8 +55,12 @@
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="/accounts/login/">Log In</a></li>
                     {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'search' %}">🔍 Search</a>
+                    <li class="nav-item ms-3">
+                        <form class="d-flex" action="{% url 'search' %}" method="get">
+                            <input class="form-control me-2" type="search" name="q" placeholder="Search GitHub..."
+                                aria-label="Search">
+                            <button class="btn btn-outline-primary" type="submit">🔍</button>
+                        </form>
                     </li>
                 </ul>
             </div>
