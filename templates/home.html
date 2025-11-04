@@ -50,6 +50,7 @@
                 <small>🕒 Updated: {{ repo.updated_at|date:"M d, Y" }}</small>
                 {% endif %}
             </div>
+
             <div class="repo-actions">
                 <a href="{{ repo.html_url }}" target="_blank" class="btn-action view">🔗 View</a>
                 <a href="{{ repo.html_url }}/archive/refs/heads/{{ repo.default_branch }}.zip"
@@ -66,42 +67,39 @@
                     data-repo="{{ repo.name }}" data-url="{{ repo.html_url }}">
                     💬 Comment
                 </button>
-                <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form method="post" action="{% url 'add_comment' %}">
-                                {% csrf_token %}
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="commentModalLabel">Leave a Comment</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <input type="hidden" name="repo_name" id="modalRepoName">
-                                    <input type="hidden" name="repo_url" id="modalRepoUrl">
-                                    <textarea name="body" class="form-control" placeholder="Write your comment..."
-                                        required></textarea>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-primary">Post Comment</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+        {% endfor %}
+        {% else %}
+        <p class="text-muted">You have no repositories yet.</p>
+        {% endif %}
     </div>
-    {% endfor %}
-    {% else %}
-    <p class="text-muted">You have no repositories yet.</p>
-    {% endif %}
-</div>
 </div>
 {% endif %}
+
+<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="{% url 'add_comment' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="commentModalLabel">Leave a Comment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="repo_name" id="modalRepoName">
+                    <input type="hidden" name="repo_url" id="modalRepoUrl">
+                    <textarea name="body" class="form-control" placeholder="Write your comment..." required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Post Comment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% load static %}
 <script src="{% static 'js/star.js' %}"></script>
 <script src="{% static 'js/comment.js' %}"></script>
