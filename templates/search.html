@@ -68,17 +68,21 @@
             {% with repo_comments=comments_by_repo|get_item:repo.name %}
             {% if repo_comments %}
             <div class="repo-comments-container">
-                <button class="toggle-comments-btn" data-target="comments-{{ forloop.counter }}">
+                <button class="toggle-comments-btn btn btn-sm btn-outline-secondary"
+                    data-target="comments-{{ forloop.counter }}">
                     💬 {{ repo_comments|length }} Comment{{ repo_comments|pluralize }}
                 </button>
 
                 <div class="repo-comments" id="comments-{{ forloop.counter }}" style="display: none;">
-                    <ul>
+                    <ul class="list-unstyled repo-comment-list" style="margin-top: 0.5rem;">
                         {% for comment in repo_comments %}
-                        <li>
-                            <small><strong>{{ comment.user.username }}</strong> — {{ comment.created_at|date:"M d, Y
-                                H:i" }}</small><br>
-                            {{ comment.body }}
+                        <li class="comment-item"
+                            style="margin-bottom: 0.6rem; border-bottom: 1px solid #222; padding-bottom: 0.4rem;">
+                            <small>
+                                <strong style="color:#00bfff;">{{ comment.user.username }}</strong>
+                                — {{ comment.created_at|date:"M d, Y H:i" }}
+                            </small>
+                            <div style="margin-top: 0.25rem;">{{ comment.body }}</div>
                         </li>
                         {% endfor %}
                     </ul>
