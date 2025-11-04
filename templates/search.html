@@ -41,17 +41,44 @@
             </div>
         </div>
         {% endfor %}
-    </div>
-    {% else %}
-    <p class="text-muted text-center mt-4">No repositories found for "{{ query }}".</p>
-    {% endif %}
-    {% else %}
-    <div class="login-container">
-        <div class="login-card">
-            <h2>Search for GitHub Users 🔍</h2>
-            <p>Use the search bar at the top to find repositories by username.</p>
+        <div class="repo-footer">
+            <span class="badge">{{ repo.language|default:"Unknown" }}</span>
+            {% if repo.updated_at %}
+            <small>🕒 Updated: {{ repo.updated_at|date:"M d, Y" }}</small>
+            {% endif %}
+        </div>
+
+        <div class="repo-actions">
+            <a href="{{ repo.html_url }}" target="_blank" class="btn-action view">🔗 View</a>
+            <a href="{{ repo.html_url }}/archive/refs/heads/{{ repo.default_branch }}.zip"
+                class="btn-action download">⬇️ Download</a>
+            <a href="{{ repo.html_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
+            <button class="btn-action star" data-repo="{{ repo.full_name }}">⭐ Star</button>
+
+            {% if user.is_authenticated %}
+            <form method="post" action="{% url 'add_bookmark' %}" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="repo_name" value="{{ repo.name }}">
+                <input type="hidden" name="repo_url" value="{{ repo.html_url }}">
+                <button type="submit" class="btn-action bookmark">🔖 Bookmark</button>
+            </form>
+            {% else %}
+            <a href="{% url 'account_login' %}" class="btn-action bookmark">🔒 Log in to Bookmark</a>
+            {% endif %}
         </div>
     </div>
-    {% endif %}
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-muted text-center mt-4">No repositories found for "{{ query }}".</p>
+{% endif %}
+{% else %}
+<div class="login-container">
+    <div class="login-card">
+        <h2>Search for GitHub Users 🔍</h2>
+        <p>Use the search bar at the top to find repositories by username.</p>
+    </div>
+</div>
+{% endif %}
 </div>
 {% endblock %}
