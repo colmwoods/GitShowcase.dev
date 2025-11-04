@@ -29,4 +29,7 @@ urlpatterns = [
     path("add_bookmark/", views.add_bookmark, name="add_bookmark"),
     path('bookmarks/', views.bookmark_list, name='bookmarks'),
     path('delete_bookmark/<int:bookmark_id>/', views.delete_bookmark, name='delete_bookmark'),
+    path("comment/add/", views.add_comment, name="add_comment"),
+    path("comment/edit/<int:comment_id>/", views.edit_comment, name="edit_comment"),
+    path("comment/delete/<int:comment_id>/", views.delete_comment, name="delete_comment"),
 ]
