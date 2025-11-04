@@ -91,13 +91,20 @@ def star_repo(request):
         return JsonResponse({"ok": False, "error": str(e)}, status=500)
 
 def search(request):
+    repos = []
     query = request.GET.get("q", "").strip()
-    results = []
 
     if query:
-        results = [f"Result 1 for '{query}'", f"Result 2 for '{query}'", f"Result 3 for '{query}'"]
+        url = f"https://api.github.com/users/{query}/repos?per_page=100"
+        headers = {"Accept": "application/vnd.github+json"}
+        response = requests.get(url, headers=headers)
 
-    return render(request, "search.html", {"query": query, "results": results})
+        if response.status_code == 200:
+            repos = response.json()
+        else:
+            repos = None
+
+    return render(request, "search.html", {"repos": repos, "query": query})
 
 @login_required(login_url='/accounts/login/')
 def add_bookmark(request):
