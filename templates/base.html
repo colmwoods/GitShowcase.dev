@@ -56,10 +56,12 @@
                     <li class="nav-item"><a class="nav-link" href="/accounts/login/">Log In</a></li>
                     {% endif %}
                     <li class="nav-item ms-3">
-                        <form class="d-flex" action="{% url 'search' %}" method="get">
-                            <input class="form-control me-2" type="search" name="q" placeholder="Search GitHub..."
-                                aria-label="Search">
-                            <button class="btn btn-outline-primary" type="submit">🔍</button>
+                        <form class="d-flex align-items-center" action="{% url 'search' %}" method="get"
+                            style="gap: 8px;">
+                            <input class="form-control" type="search" name="q" placeholder="Search GitHub..."
+                                aria-label="Search"
+                                style="max-width: 200px; border-radius: 20px; font-size: 0.9rem; padding: 6px 12px;">
+                            <button class="btn btn-primary search-btn" type="submit">🔍</button>
                         </form>
                     </li>
                 </ul>

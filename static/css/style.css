@@ -460,3 +460,23 @@ footer {
     color: #ffffff !important;
     opacity: 1 !important;
 }
+
+.search-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, #00bfff, #0077ff);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    background: linear-gradient(135deg, #00ffff, #00bfff);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 191, 255, 0.4);
+}
