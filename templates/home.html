@@ -57,17 +57,38 @@
                     class="btn-action download">⬇️ Download</a>
                 <a href="{{ repo.html_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
                 <button class="btn-action star" data-repo="{{ repo.full_name }}">⭐ Star</button>
+
                 <form method="post" action="{% url 'add_bookmark' %}" style="display:inline;">
                     {% csrf_token %}
                     <input type="hidden" name="repo_name" value="{{ repo.name }}">
                     <input type="hidden" name="repo_url" value="{{ repo.html_url }}">
                     <button type="submit" class="btn-action bookmark">🔖 Bookmark</button>
                 </form>
+
                 <button type="button" class="btn-action comment" data-bs-toggle="modal" data-bs-target="#commentModal"
-                    data-repo="{{ repo.name }}" data-url="{{ repo.html_url }}">
-                    💬 Comment
-                </button>
+                    data-repo="{{ repo.name }}" data-url="{{ repo.html_url }}">💬 Comment</button>
             </div>
+            {% with repo_comments=comments_by_repo|get_item:repo.name %}
+            {% if repo_comments %}
+            <div class="repo-comments-container">
+                <button class="toggle-comments-btn" data-target="comments-{{ forloop.counter }}">
+                    💬 {{ repo_comments|length }} Comment{{ repo_comments|pluralize }}
+                </button>
+
+                <div class="repo-comments" id="comments-{{ forloop.counter }}" style="display: none;">
+                    <ul>
+                        {% for comment in repo_comments %}
+                        <li>
+                            <small><strong>{{ comment.user.username }}</strong> — {{ comment.created_at|date:"M d, Y
+                                H:i" }}</small><br>
+                            {{ comment.body }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+            {% endwith %}
         </div>
         {% endfor %}
         {% else %}

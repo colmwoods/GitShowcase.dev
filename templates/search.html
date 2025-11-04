@@ -64,21 +64,43 @@
                 </button>
             </div>
         </div>
-        {% endfor %}
-    </div>
+        {% with repo_comments=comments_by_repo|get_item:repo.name %}
+        {% if repo_comments %}
+        <div class="repo-comments-container">
+            <button class="toggle-comments-btn" data-target="comments-{{ forloop.counter }}">
+                💬 {{ repo_comments|length }} Comment{{ repo_comments|pluralize }}
+            </button>
 
-    {% else %}
-    <p class="text-muted text-center mt-4">No repositories found for "{{ query }}".</p>
-    {% endif %}
-
-    {% else %}
-    <div class="login-container">
-        <div class="login-card">
-            <h2>Search for GitHub Users 🔍</h2>
-            <p>Use the search bar at the top to find repositories by username.</p>
+            <div class="repo-comments" id="comments-{{ forloop.counter }}" style="display: none;">
+                <ul>
+                    {% for comment in repo_comments %}
+                    <li>
+                        <small><strong>{{ comment.user.username }}</strong> — {{ comment.created_at|date:"M d, Y H:i"
+                            }}</small><br>
+                        {{ comment.body }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
+        {% endif %}
+        {% endwith %}
     </div>
-    {% endif %}
+    {% endfor %}
+</div>
+
+{% else %}
+<p class="text-muted text-center mt-4">No repositories found for "{{ query }}".</p>
+{% endif %}
+
+{% else %}
+<div class="login-container">
+    <div class="login-card">
+        <h2>Search for GitHub Users 🔍</h2>
+        <p>Use the search bar at the top to find repositories by username.</p>
+    </div>
+</div>
+{% endif %}
 </div>
 
 <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
