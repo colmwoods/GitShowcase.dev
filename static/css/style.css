@@ -418,9 +418,7 @@ footer {
 .btn-action.bookmark,
 .btn-action.remove {
     background: linear-gradient(135deg, #6f42c1, #9b59b6);
-    /* Purple gradient */
     color: #ffffff;
-    /* White text */
     border: none;
     padding: 8px 12px;
     border-radius: 8px;
@@ -433,7 +431,27 @@ footer {
 .btn-action.remove:hover {
     background: linear-gradient(135deg, #8e44ad, #a569bd);
     color: #ffffff;
-    /* Ensure stays white on hover */
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
+}
+
+.btn-remove {
+    background: linear-gradient(135deg, #6f42c1, #9b59b6);
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-remove:hover {
+    background: linear-gradient(135deg, #8e44ad, #a569bd);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
+    color: #fff;
 }
