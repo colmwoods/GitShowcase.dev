@@ -110,6 +110,14 @@ def search(request):
         if repos_response.status_code == 200:
             repos = repos_response.json()
 
+            for repo in repos:
+                updated = repo.get("updated_at")
+                if updated:
+                    try:
+                        repo["updated_at"] = datetime.strptime(updated, "%Y-%m-%dT%H:%M:%SZ")
+                    except ValueError:
+                        repo["updated_at"] = None
+
     return render(request, "search.html", {"repos": repos, "query": query, "user_data": user_data})
 
 
