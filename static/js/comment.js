@@ -20,32 +20,38 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    const editButtons = document.getElementsByClassName("btn-edit");
-    const commentText = document.getElementById("id_body");
-    const commentForm = document.getElementById("commentForm");
-    const submitButton = document.getElementById("submitButton");
-
-    for (let button of editButtons) {
+    document.querySelectorAll(".btn-edit").forEach((button) => {
         button.addEventListener("click", (e) => {
-            const commentId = e.target.getAttribute("data-comment_id");
-            const commentElement = document.getElementById(`comment${commentId}`);
-            if (!commentElement || !commentText) return;
+            e.preventDefault();
 
-            commentText.value = commentElement.innerText.trim();
-            submitButton.innerText = "Update";
-            commentForm.setAttribute("action", `/comment/edit/${commentId}/`);
+            const commentId = button.getAttribute("data-comment_id");
+            const commentTextElement = button.closest("li").querySelector("div");
+            const commentBody = commentTextElement ? commentTextElement.innerText.trim() : "";
+
+            const modalElement = document.getElementById("commentModal");
+            const modal = new bootstrap.Modal(modalElement);
+            const form = modalElement.querySelector("form");
+            const textarea = form.querySelector("textarea");
+            const modalTitle = document.getElementById("commentModalLabel");
+            const submitButton = form.querySelector("button[type='submit']");
+
+            textarea.value = commentBody;
+            form.action = `/comment/edit/${commentId}/`;
+            modalTitle.textContent = "✏️ Edit Comment";
+            submitButton.textContent = "Update Comment";
+
+            modal.show();
         });
-    }
+    });
 
-    const deleteButtons = document.getElementsByClassName("btn-delete");
-    for (let button of deleteButtons) {
+    document.querySelectorAll(".btn-delete").forEach((button) => {
         button.addEventListener("click", (e) => {
-            const commentId = e.target.getAttribute("data-comment_id");
+            const commentId = button.getAttribute("data-comment_id");
             if (!commentId || !deleteConfirm) return;
             deleteConfirm.href = `/comment/delete/${commentId}/`;
             if (deleteModal) deleteModal.show();
         });
-    }
+    });
 
     document.querySelectorAll(".toggle-comments-btn").forEach((button) => {
         button.addEventListener("click", () => {
@@ -57,5 +63,18 @@ document.addEventListener("DOMContentLoaded", () => {
             target.style.display = isHidden ? "block" : "none";
             button.textContent = button.textContent.replace(isHidden ? "💬" : "📖", isHidden ? "📖" : "💬");
         });
+    });
+
+    const commentModalEl = document.getElementById("commentModal");
+    commentModalEl.addEventListener("hidden.bs.modal", () => {
+        const form = commentModalEl.querySelector("form");
+        const textarea = form.querySelector("textarea");
+        const submitButton = form.querySelector("button[type='submit']");
+        const modalTitle = document.getElementById("commentModalLabel");
+
+        textarea.value = "";
+        form.action = "/comment/add/";
+        modalTitle.textContent = "Leave a Comment";
+        submitButton.textContent = "Post Comment";
     });
 });
