@@ -25,3 +25,28 @@ for (let button of deleteButtons) {
         deleteModal.show();
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const commentModal = document.getElementById('commentModal');
+    if (commentModal) {
+        commentModal.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget;
+            document.getElementById('modalRepoName').value = button.dataset.repo;
+            document.getElementById('modalRepoUrl').value = button.dataset.url;
+        });
+    }
+
+    document.querySelectorAll(".toggle-comments-btn").forEach(button => {
+        button.addEventListener("click", () => {
+            const targetId = button.getAttribute("data-target");
+            const target = document.getElementById(targetId);
+            if (target.style.display === "none") {
+                target.style.display = "block";
+                button.textContent = button.textContent.replace("💬", "📖"); // changes icon when open
+            } else {
+                target.style.display = "none";
+                button.textContent = button.textContent.replace("📖", "💬");
+            }
+        });
+    });
+});
