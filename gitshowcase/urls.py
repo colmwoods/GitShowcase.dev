@@ -27,4 +27,6 @@ urlpatterns = [
     path("api/star/", views.star_repo, name="star_repo"),
     path("search/", views.search, name="search"),
     path("add_bookmark/", views.add_bookmark, name="add_bookmark"),
+    path('bookmarks/', views.bookmark_list, name='bookmarks'),
+    path('delete_bookmark/<int:bookmark_id>/', views.delete_bookmark, name='delete_bookmark'),
 ]

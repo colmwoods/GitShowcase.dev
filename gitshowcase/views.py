@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
@@ -115,3 +115,14 @@ def add_bookmark(request):
         return redirect('bookmarks')
 
     return redirect('home')
+
+@login_required(login_url='/accounts/login/')
+def bookmark_list(request):
+    bookmarks = Bookmark.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, 'bookmark.html', {'bookmarks': bookmarks})
+
+@login_required(login_url='/accounts/login/')
+def delete_bookmark(request, bookmark_id):
+    bookmark = get_object_or_404(Bookmark, id=bookmark_id, user=request.user)
+    bookmark.delete()
+    return redirect('bookmarks')
