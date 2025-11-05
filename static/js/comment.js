@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const modalElement = document.getElementById("commentModal");
             if (!modalElement) return;
 
-            const modal = new bootstrap.Modal(modalElement);
+            const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
             const form = modalElement.querySelector("form");
             const textarea = form.querySelector("textarea");
             const modalTitle = document.getElementById("commentModalLabel");
@@ -96,32 +96,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- AVOID BOOKMARK FORM CONFLICT ---
     document.querySelectorAll("form[action*='delete_bookmark']").forEach((form) => {
-        form.addEventListener("submit", (e) => {
-            e.stopPropagation(); // prevent JS conflicts
-        });
+        form.addEventListener("submit", (e) => e.stopPropagation());
     });
 
-    // --- STAR BUTTON HANDLER ---
+    // --- STAR BUTTON HANDLER (no alerts, updates inline) ---
     document.querySelectorAll(".btn-action.star").forEach((button) => {
         button.addEventListener("click", async () => {
             const repoFullName = button.getAttribute("data-repo");
-            if (!repoFullName) {
-                alert("⚠️ Missing repository name.");
-                return;
-            }
+            if (!repoFullName) return;
+
+            button.disabled = true; // prevent spam clicks
+            button.textContent = "⏳ Fetching...";
 
             try {
-                // Use GitHub API to fetch live star count
                 const response = await fetch(`https://api.github.com/repos/${repoFullName}`);
                 if (response.ok) {
                     const repo = await response.json();
-                    alert(`⭐ ${repo.full_name} currently has ${repo.stargazers_count} stars!`);
+                    button.textContent = `⭐ ${repo.stargazers_count}`;
+                    button.classList.add("updated");
                 } else {
-                    alert("❌ Couldn't fetch repo info. Check repository name.");
+                    button.textContent = "⚠️ Error";
                 }
             } catch (err) {
                 console.error("Star fetch error:", err);
-                alert("Network error while fetching star data.");
+                button.textContent = "⚠️ Network error";
+            } finally {
+                setTimeout(() => {
+                    button.disabled = false;
+                }, 1500);
             }
         });
     });
