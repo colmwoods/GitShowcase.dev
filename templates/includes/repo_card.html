@@ -6,10 +6,14 @@
         <h3><a href="{{ repo_url }}" target="_blank">{{ repo_name }}</a></h3>
     </div>
     <div class="repo-footer">
-        <small>📅 Bookmarked on: {{ bookmark.created_at|date:"M d, Y" }}</small>
+        <span class="badge">Bookmarked Repo</span>
+        <small>📅 Bookmarked: {{ bookmark.created_at|date:"M d, Y" }}</small>
     </div>
     <div class="repo-actions">
         <a href="{{ repo_url }}" target="_blank" class="btn-action view">🔗 View</a>
+        <a href="{{ repo_url }}/archive/refs/heads/main.zip" class="btn-action download">⬇️ Download</a>
+        <a href="{{ repo_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
+        <button class="btn-action star" data-repo="{{ repo_name }}">⭐ Star</button>
         <form method="post" action="{% url 'delete_bookmark' bookmark.id %}" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="btn-action delete">🗑️ Remove</button>
@@ -17,12 +21,15 @@
     </div>
 </div>
 {% endwith %}
-{% else %}
+{% endif %}
+{% if repo %}
 {% with repo_url=repo.html_url repo_name=repo.name %}
 <div class="repo-card">
     <div class="repo-header">
         <h3><a href="{{ repo_url }}" target="_blank">{{ repo_name }}</a></h3>
+        {% if repo.stargazers_count %}
         <div class="repo-stats">⭐ {{ repo.stargazers_count }} | 🍴 {{ repo.forks_count }}</div>
+        {% endif %}
     </div>
     {% if repo.description %}
     <p>{{ repo.description }}</p>
@@ -35,10 +42,11 @@
     </div>
     <div class="repo-actions">
         <a href="{{ repo_url }}" target="_blank" class="btn-action view">🔗 View</a>
-        <a href="{{ repo_url }}/archive/refs/heads/{{ repo.default_branch }}.zip" class="btn-action download">⬇️
-            Download</a>
+        <a href="{{ repo_url }}/archive/refs/heads/{{ repo.default_branch|default:'main' }}.zip"
+            class="btn-action download">⬇️ Download</a>
         <a href="{{ repo_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
         <button class="btn-action star" data-repo="{{ repo.full_name }}">⭐ Star</button>
+
         <form method="post" action="{% url 'add_bookmark' %}" style="display:inline;">
             {% csrf_token %}
             <input type="hidden" name="repo_name" value="{{ repo.name }}">
@@ -46,7 +54,9 @@
             <button type="submit" class="btn-action bookmark">🔖 Bookmark</button>
         </form>
         <button type="button" class="btn-action comment" data-bs-toggle="modal" data-bs-target="#commentModal"
-            data-repo="{{ repo.name }}" data-url="{{ repo.html_url }}">💬 Comment</button>
+            data-repo="{{ repo.name }}" data-url="{{ repo.html_url }}">
+            💬 Comment
+        </button>
     </div>
     {% with repo_comments=comments_by_repo|get_item:repo.name %}
     {% if repo_comments %}
@@ -69,9 +79,8 @@
                     <div class="mt-1">
                         <a href="{% url 'edit_comment' comment.id %}" class="btn btn-sm btn-outline-info btn-edit"
                             data-comment_id="{{ comment.id }}">✏️ Edit</a>
-                        <button class="btn btn-sm btn-outline-danger btn-delete" data-comment_id="{{ comment.id }}">
-                            🗑️ Delete
-                        </button>
+                        <button class="btn btn-sm btn-outline-danger btn-delete" data-comment_id="{{ comment.id }}">🗑️
+                            Delete</button>
                     </div>
                     {% endif %}
                 </li>
