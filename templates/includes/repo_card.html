@@ -56,7 +56,6 @@
             💬 Comment
         </button>
     </div>
-    {% endif %}
     {% if repo %}
     <a href="{{ repo.html_url }}" target="_blank" class="btn-action view">🔗 View</a>
     <a href="{{ repo.html_url }}/archive/refs/heads/{{ repo.default_branch|default:'main' }}.zip"
