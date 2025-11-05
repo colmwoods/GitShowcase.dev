@@ -253,6 +253,7 @@ def add_comment(request):
             messages.error(request, "❌ Failed to add comment.")
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    return redirect('/')
 
 
 @login_required
