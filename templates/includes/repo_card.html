@@ -46,10 +46,12 @@
         <a href="{{ bookmark.repo_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
         <button class="btn-action star" data-repo="{{ bookmark.repo_url|cut:'https://github.com/' }}">⭐ Star</button>
 
+        {% if bookmark.id %}
         <form method="post" action="{% url 'delete_bookmark' bookmark.id %}" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="btn-action delete">🗑️ Remove</button>
         </form>
+        {% endif %}
 
         <button type="button" class="btn-action comment" data-bs-toggle="modal" data-bs-target="#commentModal"
             data-repo="{{ bookmark.repo_name }}" data-url="{{ bookmark.repo_url }}">
