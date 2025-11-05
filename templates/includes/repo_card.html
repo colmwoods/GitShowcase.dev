@@ -41,100 +41,98 @@
         {% endif %}
     </div>
     <div class="repo-actions">
-        {% if bookmark %}
         <a href="{{ bookmark.repo_url }}" target="_blank" class="btn-action view">🔗 View</a>
         <a href="{{ bookmark.repo_url }}/archive/refs/heads/main.zip" class="btn-action download">⬇️ Download</a>
         <a href="{{ bookmark.repo_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
-        <button class="btn-action star" data-repo="{{ bookmark.repo_name }}">⭐ Star</button>
+        <button class="btn-action star" data-repo="{{ bookmark.repo_url|cut:'https://github.com/' }}">⭐ Star</button>
+
         <form method="post" action="{% url 'delete_bookmark' bookmark.id %}" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="btn-action delete">🗑️ Remove</button>
         </form>
+
         <button type="button" class="btn-action comment" data-bs-toggle="modal" data-bs-target="#commentModal"
             data-repo="{{ bookmark.repo_name }}" data-url="{{ bookmark.repo_url }}">
             💬 Comment
         </button>
-        {% endif %}
-        {% if repo %}
-        <a href="{{ repo.html_url }}" target="_blank" class="btn-action view">🔗 View</a>
-        <a href="{{ repo.html_url }}/archive/refs/heads/{{ repo.default_branch|default:'main' }}.zip"
-            class="btn-action download">⬇️ Download</a>
-        <a href="{{ repo.html_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
-        <button class="btn-action star" data-repo="{{ repo.full_name }}">⭐ Star</button>
-        <form method="post" action="{% url 'add_bookmark' %}" style="display:inline;">
-            {% csrf_token %}
-            <input type="hidden" name="repo_name" value="{{ repo.name }}">
-            <input type="hidden" name="repo_url" value="{{ repo.html_url }}">
-            <button type="submit" class="btn-action bookmark">🔖 Bookmark</button>
-        </form>
-        <button type="button" class="btn-action comment" data-bs-toggle="modal" data-bs-target="#commentModal"
-            data-repo="{{ repo.name }}" data-url="{{ repo.html_url }}">
-            💬 Comment
-        </button>
-        {% endif %}
     </div>
-    {% if bookmark %}
-    {% with repo_comments=comments_by_repo|get_item:bookmark.repo_name %}
-    {% if repo_comments %}
-    <div class="repo-comments-container">
-        <button class="toggle-comments-btn btn btn-sm btn-outline-secondary"
-            data-target="comments-{{ forloop.counter }}">
-            💬 {{ repo_comments|length }} Comment{{ repo_comments|pluralize }}
-        </button>
-        <div class="repo-comments" id="comments-{{ forloop.counter }}" style="display:none;">
-            <ul class="list-unstyled repo-comment-list" style="margin-top:0.5rem;">
-                {% for comment in repo_comments %}
-                <li class="comment-item"
-                    style="margin-bottom:0.6rem;border-bottom:1px solid #222;padding-bottom:0.4rem;">
-                    <small><strong style="color:#00bfff;">{{ comment.user.username }}</strong> —
-                        {{ comment.created_at|date:"M d, Y H:i" }}</small>
-                    <div style="margin-top:0.25rem;">{{ comment.body }}</div>
-                    {% if user == comment.user %}
-                    <div class="mt-1">
-                        <a href="{% url 'edit_comment' comment.id %}" class="btn btn-sm btn-outline-info btn-edit">✏️
-                            Edit</a>
-                        <button class="btn btn-sm btn-outline-danger btn-delete" data-comment_id="{{ comment.id }}">🗑️
-                            Delete</button>
-                    </div>
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    {% endif %}
-    {% endwith %}
     {% endif %}
     {% if repo %}
-    {% with repo_comments=comments_by_repo|get_item:repo.name %}
-    {% if repo_comments %}
-    <div class="repo-comments-container">
-        <button class="toggle-comments-btn btn btn-sm btn-outline-secondary"
-            data-target="comments-{{ forloop.counter }}">
-            💬 {{ repo_comments|length }} Comment{{ repo_comments|pluralize }}
-        </button>
-        <div class="repo-comments" id="comments-{{ forloop.counter }}" style="display:none;">
-            <ul class="list-unstyled repo-comment-list" style="margin-top:0.5rem;">
-                {% for comment in repo_comments %}
-                <li class="comment-item"
-                    style="margin-bottom:0.6rem;border-bottom:1px solid #222;padding-bottom:0.4rem;">
-                    <small><strong style="color:#00bfff;">{{ comment.user.username }}</strong> —
-                        {{ comment.created_at|date:"M d, Y H:i" }}</small>
-                    <div style="margin-top:0.25rem;">{{ comment.body }}</div>
-                    {% if user == comment.user %}
-                    <div class="mt-1">
-                        <a href="{% url 'edit_comment' comment.id %}" class="btn btn-sm btn-outline-info btn-edit">✏️
-                            Edit</a>
-                        <button class="btn btn-sm btn-outline-danger btn-delete" data-comment_id="{{ comment.id }}">🗑️
-                            Delete</button>
-                    </div>
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+    <a href="{{ repo.html_url }}" target="_blank" class="btn-action view">🔗 View</a>
+    <a href="{{ repo.html_url }}/archive/refs/heads/{{ repo.default_branch|default:'main' }}.zip"
+        class="btn-action download">⬇️ Download</a>
+    <a href="{{ repo.html_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
+    <button class="btn-action star" data-repo="{{ repo.full_name }}">⭐ Star</button>
+    <form method="post" action="{% url 'add_bookmark' %}" style="display:inline;">
+        {% csrf_token %}
+        <input type="hidden" name="repo_name" value="{{ repo.name }}">
+        <input type="hidden" name="repo_url" value="{{ repo.html_url }}">
+        <button type="submit" class="btn-action bookmark">🔖 Bookmark</button>
+    </form>
+    <button type="button" class="btn-action comment" data-bs-toggle="modal" data-bs-target="#commentModal"
+        data-repo="{{ repo.name }}" data-url="{{ repo.html_url }}">
+        💬 Comment
+    </button>
+    {% endif %}
+</div>
+{% if bookmark %}
+{% with repo_comments=comments_by_repo|get_item:bookmark.repo_name %}
+{% if repo_comments %}
+<div class="repo-comments-container">
+    <button class="toggle-comments-btn btn btn-sm btn-outline-secondary" data-target="comments-{{ forloop.counter }}">
+        💬 {{ repo_comments|length }} Comment{{ repo_comments|pluralize }}
+    </button>
+    <div class="repo-comments" id="comments-{{ forloop.counter }}" style="display:none;">
+        <ul class="list-unstyled repo-comment-list" style="margin-top:0.5rem;">
+            {% for comment in repo_comments %}
+            <li class="comment-item" style="margin-bottom:0.6rem;border-bottom:1px solid #222;padding-bottom:0.4rem;">
+                <small><strong style="color:#00bfff;">{{ comment.user.username }}</strong> —
+                    {{ comment.created_at|date:"M d, Y H:i" }}</small>
+                <div style="margin-top:0.25rem;">{{ comment.body }}</div>
+                {% if user == comment.user %}
+                <div class="mt-1">
+                    <a href="{% url 'edit_comment' comment.id %}" class="btn btn-sm btn-outline-info btn-edit">✏️
+                        Edit</a>
+                    <button class="btn btn-sm btn-outline-danger btn-delete" data-comment_id="{{ comment.id }}">🗑️
+                        Delete</button>
+                </div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
     </div>
-    {% endif %}
-    {% endwith %}
-    {% endif %}
+</div>
+{% endif %}
+{% endwith %}
+{% endif %}
+{% if repo %}
+{% with repo_comments=comments_by_repo|get_item:repo.name %}
+{% if repo_comments %}
+<div class="repo-comments-container">
+    <button class="toggle-comments-btn btn btn-sm btn-outline-secondary" data-target="comments-{{ forloop.counter }}">
+        💬 {{ repo_comments|length }} Comment{{ repo_comments|pluralize }}
+    </button>
+    <div class="repo-comments" id="comments-{{ forloop.counter }}" style="display:none;">
+        <ul class="list-unstyled repo-comment-list" style="margin-top:0.5rem;">
+            {% for comment in repo_comments %}
+            <li class="comment-item" style="margin-bottom:0.6rem;border-bottom:1px solid #222;padding-bottom:0.4rem;">
+                <small><strong style="color:#00bfff;">{{ comment.user.username }}</strong> —
+                    {{ comment.created_at|date:"M d, Y H:i" }}</small>
+                <div style="margin-top:0.25rem;">{{ comment.body }}</div>
+                {% if user == comment.user %}
+                <div class="mt-1">
+                    <a href="{% url 'edit_comment' comment.id %}" class="btn btn-sm btn-outline-info btn-edit">✏️
+                        Edit</a>
+                    <button class="btn btn-sm btn-outline-danger btn-delete" data-comment_id="{{ comment.id }}">🗑️
+                        Delete</button>
+                </div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}
+{% endwith %}
+{% endif %}
 </div>
