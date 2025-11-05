@@ -215,7 +215,18 @@ def add_bookmark(request):
 @login_required(login_url='/accounts/login/')
 def bookmark_list(request):
     bookmarks = Bookmark.objects.filter(user=request.user).order_by('-created_at')
-    return render(request, 'bookmarks.html', {'bookmarks': bookmarks})
+    comments = Comment.objects.filter(user=request.user)
+    comments_by_repo = {}
+    for comment in comments:
+        repo_name = comment.repo_name
+        if repo_name not in comments_by_repo:
+            comments_by_repo[repo_name] = []
+        comments_by_repo[repo_name].append(comment)
+
+    return render(request, 'bookmarks.html', {
+        'bookmarks': bookmarks,
+        'comments_by_repo': comments_by_repo
+    })
 
 @login_required(login_url='/accounts/login/')
 def delete_bookmark(request, bookmark_id):
