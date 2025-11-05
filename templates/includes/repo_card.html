@@ -2,57 +2,56 @@
 <div class="repo-card">
     <div class="repo-header">
         <h3>
-            <a href="{{ repo.html_url|default:bookmark.repo_url }}" target="_blank">
-                {{ repo.name|default:bookmark.repo_name }}
-            </a>
+            {% if repo %}
+            <a href="{{ repo.html_url }}" target="_blank">{{ repo.name }}</a>
+            {% elif bookmark %}
+            <a href="{{ bookmark.repo_url }}" target="_blank">{{ bookmark.repo_name }}</a>
+            {% endif %}
         </h3>
-        {% if repo.stargazers_count %}
+        {% if repo and repo.stargazers_count %}
         <div class="repo-stats">
             ⭐ {{ repo.stargazers_count }} | 🍴 {{ repo.forks_count }}
         </div>
         {% endif %}
     </div>
-
-    {% if repo.description %}
+    {% if repo and repo.description %}
     <p>{{ repo.description }}</p>
-    {% elif bookmark.notes %}
+    {% elif bookmark and bookmark.notes %}
     <p>{{ bookmark.notes }}</p>
     {% else %}
     <p><em>No description available.</em></p>
     {% endif %}
-
     <div class="repo-footer">
-        {% if repo.language %}
+        {% if repo and repo.language %}
         <span class="badge">{{ repo.language }}</span>
         {% endif %}
-        {% if repo.updated_at %}
+        {% if repo and repo.updated_at %}
         <small>🕒 Updated: {{ repo.updated_at|date:"M d, Y" }}</small>
-        {% elif bookmark.created_at %}
+        {% elif bookmark and bookmark.created_at %}
         <small>📅 Bookmarked on: {{ bookmark.created_at|date:"M d, Y" }}</small>
         {% endif %}
     </div>
-
     <div class="repo-actions">
-        {% if repo.html_url %}
+        {% if repo %}
         <a href="{{ repo.html_url }}" target="_blank" class="btn-action view">🔗 View</a>
-        <a href="{{ repo.html_url }}/archive/refs/heads/{{ repo.default_branch }}" class="btn-action download">
+        <a href="{{ repo.html_url }}/archive/refs/heads/{{ repo.default_branch }}.zip" class="btn-action download">
             ⬇️ Download
         </a>
         <a href="{{ repo.html_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
         <button class="btn-action star" data-repo="{{ repo.full_name }}">⭐ Star</button>
         {% endif %}
 
-        {% if not is_bookmark_page %}
+        {% if is_bookmark_page %}
+        <form method="post" action="{% url 'delete_bookmark' bookmark.id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn-action delete">🗑️ Remove</button>
+        </form>
+        {% else %}
         <form method="post" action="{% url 'add_bookmark' %}" style="display:inline;">
             {% csrf_token %}
             <input type="hidden" name="repo_name" value="{{ repo.name }}">
             <input type="hidden" name="repo_url" value="{{ repo.html_url }}">
             <button type="submit" class="btn-action bookmark">🔖 Bookmark</button>
-        </form>
-        {% else %}
-        <form method="post" action="{% url 'delete_bookmark' bookmark.id %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn-action delete">🗑️ Remove</button>
         </form>
         {% endif %}
         <button type="button" class="btn-action comment" data-bs-toggle="modal" data-bs-target="#commentModal"
@@ -61,7 +60,7 @@
             💬 Comment
         </button>
     </div>
-    {% if not is_bookmark_page %}
+    {% if repo and not is_bookmark_page %}
     {% with repo_comments=comments_by_repo|get_item:repo.name %}
     {% if repo_comments %}
     <div class="repo-comments-container">
