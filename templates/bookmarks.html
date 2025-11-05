@@ -44,8 +44,11 @@
                 <a href="{{ bookmark.repo_url }}/archive/refs/heads/main.zip" class="btn-action download">⬇️
                     Download</a>
                 <a href="{{ bookmark.repo_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
-                <button class="btn-action star"
-                    data-repo="{{ bookmark.repo_url|cut:'https://github.com/'|cut:'http://github.com/' }}">
+                <button class="btn-action star" data-repo="{{ bookmark.repo_url
+                                     |cut:'https://github.com/'
+                                     |cut:'http://github.com/'
+                                     |cut:'https://www.github.com/'
+                                     |cut:'http://www.github.com/' }}">
                     ⭐ Star
                 </button>
                 <button type="button" class="btn-action comment" data-bs-toggle="modal" data-bs-target="#commentModal"
@@ -68,7 +71,6 @@
     </div>
 </div>
 {% endif %}
-{% endblock %}
 <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -91,7 +93,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -109,7 +110,6 @@
         </div>
     </div>
 </div>
-
-{% load static %}
 <script src="{% static 'js/star.js' %}"></script>
 <script src="{% static 'js/comment.js' %}"></script>
+{% endblock %}
