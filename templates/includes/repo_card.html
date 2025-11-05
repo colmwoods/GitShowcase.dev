@@ -43,7 +43,16 @@
         <a href="{{ repo.html_url }}/archive/refs/heads/{{ repo.default_branch|default:'main' }}.zip"
             class="btn-action download">⬇️ Download</a>
         <a href="{{ repo.html_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
-        <button class="btn-action star" data-repo="{{ repo.full_name }}">⭐ {{ repo.stargazers_count }}</button>
+
+        {% if user.is_authenticated %}
+        <button class="btn-action star" data-repo="{{ repo.full_name }}">
+            ⭐ {{ repo.stargazers_count }}
+        </button>
+        {% else %}
+        <a href="{% url 'account_login' %}" class="btn-action star">
+            ⭐ Star
+        </a>
+        {% endif %}
 
         <form method="post" action="{% url 'add_bookmark' %}" style="display:inline;">
             {% csrf_token %}
@@ -60,9 +69,15 @@
         <a href="{{ bookmark.repo_url }}" target="_blank" class="btn-action view">🔗 View</a>
         <a href="{{ bookmark.repo_url }}/archive/refs/heads/main.zip" class="btn-action download">⬇️ Download</a>
         <a href="{{ bookmark.repo_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
+        {% if user.is_authenticated %}
         <button class="btn-action star" data-repo="{{ bookmark.repo_url|cut:'https://github.com/' }}">
             ⭐ {{ bookmark.stargazers_count|default:0 }}
         </button>
+        {% else %}
+        <a href="{% url 'account_login' %}" class="btn-action star">
+            ⭐ Star
+        </a>
+        {% endif %}
 
         {% if bookmark.id %}
         <form method="post" action="{% url 'delete_bookmark' bookmark.id %}" style="display:inline;">
