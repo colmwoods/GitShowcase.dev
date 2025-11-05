@@ -25,7 +25,46 @@
     <div class="repo-container">
         {% if bookmarks %}
         {% for bookmark in bookmarks %}
-        {% include "includes/repo_card.html" with bookmark=bookmark comments_by_repo=comments_by_repo %}
+        <div class="repo-card">
+            <div class="repo-header">
+                <h3><a href="{{ bookmark.repo_url }}" target="_blank">{{ bookmark.repo_name }}</a></h3>
+            </div>
+
+            {% if bookmark.description %}
+            <p>{{ bookmark.description }}</p>
+            {% endif %}
+
+            <div class="repo-footer">
+                <span class="badge">{{ bookmark.language|default:"Unknown" }}</span>
+                <small>📅 Bookmarked: {{ bookmark.created_at|date:"M d, Y" }}</small>
+            </div>
+
+            <div class="repo-actions">
+                <a href="{{ bookmark.repo_url }}" target="_blank" class="btn-action view">🔗 View</a>
+                <a href="{{ bookmark.repo_url }}/archive/refs/heads/main.zip" class="btn-action download">⬇️
+                    Download</a>
+                <a href="{{ bookmark.repo_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
+
+                <!-- ⭐ STAR BUTTON — FIXED -->
+                <button class="btn-action star"
+                    data-repo="{{ bookmark.repo_url|cut:'https://github.com/'|cut:'http://github.com/' }}">
+                    ⭐ Star
+                </button>
+
+                <!-- 💬 COMMENT BUTTON — FIXED -->
+                <button type="button" class="btn-action comment" data-bs-toggle="modal" data-bs-target="#commentModal"
+                    data-repo="{{ bookmark.repo_name }}" data-url="{{ bookmark.repo_url }}">
+                    💬 Comment
+                </button>
+
+                {% if bookmark.id %}
+                <form method="post" action="{% url 'delete_bookmark' bookmark.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-action delete">🗑️ Remove</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
         {% endfor %}
         {% else %}
         <p class="text-muted">You haven't bookmarked any repositories yet.</p>
@@ -34,6 +73,8 @@
 </div>
 {% endif %}
 {% endblock %}
+
+<!-- 🧩 Comment + Delete Modals -->
 <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -56,6 +97,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -73,6 +115,8 @@
         </div>
     </div>
 </div>
+
 {% load static %}
 <script src="{% static 'js/star.js' %}"></script>
 <script src="{% static 'js/comment.js' %}"></script>
+{% endblock %}
