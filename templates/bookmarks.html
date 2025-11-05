@@ -23,6 +23,7 @@
     <h2 class="repo-title">Bookmarked Repositories</h2>
 
     <div class="repo-container">
+        {% if bookmarks %}
         {% for bookmark in bookmarks %}
         {% include "includes/repo_card.html" with bookmark=bookmark comments_by_repo=comments_by_repo %}
         {% endfor %}
@@ -33,6 +34,7 @@
 </div>
 {% endif %}
 {% endblock %}
+
 {% block modals %}
 <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -74,6 +76,7 @@
     </div>
 </div>
 {% endblock %}
+
 {% block scripts %}
 <script src="{% static 'js/star.js' %}"></script>
 <script src="{% static 'js/comment.js' %}"></script>
