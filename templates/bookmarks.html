@@ -44,14 +44,10 @@
                 <a href="{{ bookmark.repo_url }}/archive/refs/heads/main.zip" class="btn-action download">⬇️
                     Download</a>
                 <a href="{{ bookmark.repo_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
-
-                <!-- ⭐ STAR BUTTON — FIXED -->
                 <button class="btn-action star"
                     data-repo="{{ bookmark.repo_url|cut:'https://github.com/'|cut:'http://github.com/' }}">
                     ⭐ Star
                 </button>
-
-                <!-- 💬 COMMENT BUTTON — FIXED -->
                 <button type="button" class="btn-action comment" data-bs-toggle="modal" data-bs-target="#commentModal"
                     data-repo="{{ bookmark.repo_name }}" data-url="{{ bookmark.repo_url }}">
                     💬 Comment
@@ -73,8 +69,6 @@
 </div>
 {% endif %}
 {% endblock %}
-
-<!-- 🧩 Comment + Delete Modals -->
 <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -119,4 +113,3 @@
 {% load static %}
 <script src="{% static 'js/star.js' %}"></script>
 <script src="{% static 'js/comment.js' %}"></script>
-{% endblock %}
