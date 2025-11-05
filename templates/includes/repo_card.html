@@ -72,23 +72,26 @@
         {% endif %}
         {% endif %}
 
+        {% if user.is_authenticated %}
         <button type="button" class="btn-action comment" data-bs-toggle="modal" data-bs-target="#commentModal"
             data-repo="{% if bookmark %}{{ bookmark.repo_name }}{% else %}{{ repo.name }}{% endif %}"
             data-url="{% if bookmark %}{{ bookmark.repo_url }}{% else %}{{ repo.html_url }}{% endif %}">
             💬 Comment
         </button>
+        {% endif %}
     </div>
 
+    <!-- ✅ COMMENTS (always show bubble, even if 0) -->
     {% if bookmark %}
     {% with repo_comments=comments_by_repo|get_item:bookmark.repo_name %}
-    {% if repo_comments %}
     <div class="repo-comments-container">
         <button class="toggle-comments-btn btn btn-sm btn-outline-secondary"
             data-target="comments-{{ forloop.counter }}">
-            💬 {{ repo_comments|length }} Comment{{ repo_comments|pluralize }}
+            💬 {{ repo_comments|length|default:0 }} Comment{{ repo_comments|pluralize }}
         </button>
         <div class="repo-comments" id="comments-{{ forloop.counter }}" style="display:none;">
             <ul class="list-unstyled repo-comment-list" style="margin-top:0.5rem;">
+                {% if repo_comments %}
                 {% for comment in repo_comments %}
                 <li class="comment-item"
                     style="margin-bottom:0.6rem;border-bottom:1px solid #222;padding-bottom:0.4rem;">
@@ -105,21 +108,24 @@
                     {% endif %}
                 </li>
                 {% endfor %}
+                {% else %}
+                <li class="text-muted" style="margin-top:0.4rem;">No comments yet.</li>
+                {% endif %}
             </ul>
         </div>
     </div>
-    {% endif %}
     {% endwith %}
+
     {% elif repo %}
     {% with repo_comments=comments_by_repo|get_item:repo.name %}
-    {% if repo_comments %}
     <div class="repo-comments-container">
         <button class="toggle-comments-btn btn btn-sm btn-outline-secondary"
             data-target="comments-{{ forloop.counter }}">
-            💬 {{ repo_comments|length }} Comment{{ repo_comments|pluralize }}
+            💬 {{ repo_comments|length|default:0 }} Comment{{ repo_comments|pluralize }}
         </button>
         <div class="repo-comments" id="comments-{{ forloop.counter }}" style="display:none;">
             <ul class="list-unstyled repo-comment-list" style="margin-top:0.5rem;">
+                {% if repo_comments %}
                 {% for comment in repo_comments %}
                 <li class="comment-item"
                     style="margin-bottom:0.6rem;border-bottom:1px solid #222;padding-bottom:0.4rem;">
@@ -136,10 +142,12 @@
                     {% endif %}
                 </li>
                 {% endfor %}
+                {% else %}
+                <li class="text-muted" style="margin-top:0.4rem;">No comments yet.</li>
+                {% endif %}
             </ul>
         </div>
     </div>
-    {% endif %}
     {% endwith %}
     {% endif %}
 </div>
