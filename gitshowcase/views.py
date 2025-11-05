@@ -211,7 +211,7 @@ def bookmark_list(request):
             )
         else:
             b.repo_full_name = ""
-    comments = Comment.objects.filter(user=request.user)
+    comments = Comment.objects.all().order_by('-created_at')
     comments_by_repo = {}
     for comment in comments:
         repo_name = comment.repo_name
