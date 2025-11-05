@@ -505,3 +505,22 @@ footer {
 .repo-card {
     padding-bottom: 1rem;
 }
+
+.toggle-comments-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    width: 90%;
+    padding: 0.5rem 0.8rem;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.toggle-comments-btn:hover,
+.toggle-comments-btn:focus {
+    background-color: #c82333;
+    color: #fff;
+    transform: scale(1.02);
+}
