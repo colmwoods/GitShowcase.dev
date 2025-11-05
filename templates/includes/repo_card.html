@@ -6,7 +6,7 @@
         <h3><a href="{{ repo_url }}" target="_blank">{{ repo_name }}</a></h3>
     </div>
     <div class="repo-footer">
-        <span class="badge">Bookmarked Repo</span>
+        <span class="badge">Bookmarked</span>
         <small>📅 Bookmarked: {{ bookmark.created_at|date:"M d, Y" }}</small>
     </div>
     <div class="repo-actions">
@@ -14,6 +14,10 @@
         <a href="{{ repo_url }}/archive/refs/heads/main.zip" class="btn-action download">⬇️ Download</a>
         <a href="{{ repo_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
         <button class="btn-action star" data-repo="{{ repo_name }}">⭐ Star</button>
+        <button type="button" class="btn-action comment" data-bs-toggle="modal" data-bs-target="#commentModal"
+            data-repo="{{ repo_name }}" data-url="{{ repo_url }}">
+            💬 Comment
+        </button>
         <form method="post" action="{% url 'delete_bookmark' bookmark.id %}" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="btn-action delete">🗑️ Remove</button>
