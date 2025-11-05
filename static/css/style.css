@@ -524,3 +524,19 @@ footer {
     color: #fff;
     transform: scale(1.02);
 }
+
+.btn-action.comment {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 14px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-action.comment:hover,
+.btn-action.comment:focus {
+    background-color: #c82333;
+    color: #fff;
+    transform: scale(1.05);
+}
