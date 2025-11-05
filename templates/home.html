@@ -33,7 +33,7 @@
     <div class="repo-container">
         {% if repos %}
         {% for repo in repos %}
-
+        {% include "includes/repo_card.html" %}
         {% endfor %}
         {% else %}
         <p class="text-muted">You have no repositories yet.</p>
