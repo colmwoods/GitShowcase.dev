@@ -180,12 +180,34 @@ def add_bookmark(request):
         repo_url = request.POST.get('repo_url')
 
         # Avoid duplicates
-        if not Bookmark.objects.filter(user=request.user, repo_url=repo_url).exists():
-            Bookmark.objects.create(
-                user=request.user,
-                repo_name=repo_name,
-                repo_url=repo_url
-            )
+        if Bookmark.objects.filter(user=request.user, repo_url=repo_url).exists():
+            messages.info(request, f"'{repo_name}' is already bookmarked.")
+            return redirect('bookmarks')
+
+        # Try to fetch GitHub data
+        github_data = {}
+        try:
+            # repo_name may be like 'owner/repo'
+            if '/' not in repo_name and 'github.com/' in repo_url:
+                repo_name = repo_url.split('github.com/')[-1]
+            api_url = f"https://api.github.com/repos/{repo_name}"
+            response = requests.get(api_url, timeout=5)
+            if response.status_code == 200:
+                github_data = response.json()
+        except Exception as e:
+            print(f"GitHub API fetch failed: {e}")
+
+        Bookmark.objects.create(
+            user=request.user,
+            repo_name=repo_name,
+            repo_url=repo_url,
+            language=github_data.get('language'),
+            description=github_data.get('description'),
+            stargazers_count=github_data.get('stargazers_count', 0),
+            forks_count=github_data.get('forks_count', 0),
+        )
+
+        messages.success(request, f"'{repo_name}' has been bookmarked.")
         return redirect('bookmarks')
 
     return redirect('home')
