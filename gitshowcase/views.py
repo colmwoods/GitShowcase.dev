@@ -178,38 +178,25 @@ def add_bookmark(request):
     if request.method == 'POST':
         repo_name = request.POST.get('repo_name')
         repo_url = request.POST.get('repo_url')
+        language = request.POST.get('language', '')
+        description = request.POST.get('description', '')
+        stargazers_count = request.POST.get('stargazers_count', 0)
+        forks_count = request.POST.get('forks_count', 0)
 
-        # Avoid duplicates
-        if Bookmark.objects.filter(user=request.user, repo_url=repo_url).exists():
-            messages.info(request, f"'{repo_name}' is already bookmarked.")
-            return redirect('bookmarks')
+        # Extract full repo name (user/repo) from URL
+        repo_full_name = repo_url.replace("https://github.com/", "")
 
-        # Try to fetch GitHub data
-        github_data = {}
-        try:
-            # repo_name may be like 'owner/repo'
-            if '/' not in repo_name and 'github.com/' in repo_url:
-                repo_name = repo_url.split('github.com/')[-1]
-            api_url = f"https://api.github.com/repos/{repo_name}"
-            response = requests.get(api_url, timeout=5)
-            if response.status_code == 200:
-                github_data = response.json()
-        except Exception as e:
-            print(f"GitHub API fetch failed: {e}")
-
-        Bookmark.objects.create(
-            user=request.user,
-            repo_name=repo_name,
-            repo_url=repo_url,
-            language=github_data.get('language'),
-            description=github_data.get('description'),
-            stargazers_count=github_data.get('stargazers_count', 0),
-            forks_count=github_data.get('forks_count', 0),
-        )
-
-        messages.success(request, f"'{repo_name}' has been bookmarked.")
+        if not Bookmark.objects.filter(user=request.user, repo_url=repo_url).exists():
+            Bookmark.objects.create(
+                user=request.user,
+                repo_name=repo_name,
+                repo_url=repo_url,
+                language=language,
+                description=description,
+                stargazers_count=stargazers_count,
+                forks_count=forks_count
+            )
         return redirect('bookmarks')
-
     return redirect('home')
 
 @login_required(login_url='/accounts/login/')
