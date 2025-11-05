@@ -34,8 +34,6 @@
 </div>
 {% endif %}
 {% endblock %}
-
-{% block modals %}
 <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -75,9 +73,8 @@
         </div>
     </div>
 </div>
-{% endblock %}
 
-{% block scripts %}
+{% load static %}
 <script src="{% static 'js/star.js' %}"></script>
 <script src="{% static 'js/comment.js' %}"></script>
 {% endblock %}
