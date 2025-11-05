@@ -14,6 +14,7 @@ from .forms import CommentForm
 def home(request):
     repos = []
     comments_by_repo = {}
+    bookmarked_urls = []
 
     if request.user.is_authenticated:
         try:
@@ -56,6 +57,10 @@ def home(request):
                 for comment in comments:
                     comments_by_repo.setdefault(comment.repo_name, []).append(comment)
 
+            bookmarked_urls = list(
+                Bookmark.objects.filter(user=request.user).values_list("repo_url", flat=True)
+            )
+
         except Exception as e:
             print("💥 GitHub API exception:", e)
 
@@ -65,6 +70,7 @@ def home(request):
         {
             "repos": repos,
             "comments_by_repo": comments_by_repo,
+            "bookmarked_urls": bookmarked_urls,
         },
     )
 
@@ -114,6 +120,7 @@ def search(request):
     repos = []
     user_data = None
     comments_by_repo = {}
+    bookmarked_urls = []
     query = request.GET.get("q", "").strip()
 
     if query:
@@ -147,6 +154,11 @@ def search(request):
                 for comment in comments:
                     comments_by_repo.setdefault(comment.repo_name, []).append(comment)
 
+        if request.user.is_authenticated:
+            bookmarked_urls = list(
+                Bookmark.objects.filter(user=request.user).values_list("repo_url", flat=True)
+        )
+
     return render(
         request,
         "search.html",
@@ -155,6 +167,7 @@ def search(request):
             "query": query,
             "user_data": user_data,
             "comments_by_repo": comments_by_repo,
+            "bookmarked_urls": bookmarked_urls,
         },
     )
 
