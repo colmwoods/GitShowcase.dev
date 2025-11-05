@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const deleteModalElement = document.getElementById("deleteModal");
     const deleteModal = deleteModalElement ? new bootstrap.Modal(deleteModalElement) : null;
     const deleteConfirm = document.getElementById("deleteConfirm");
+
+    // --- COMMENT MODAL (open prefilled) ---
     if (commentModal) {
         commentModal.addEventListener("show.bs.modal", (event) => {
             const button = event.relatedTarget;
@@ -21,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (modalTitle) modalTitle.textContent = `💬 Comment on ${repoName}`;
         });
     }
+
+    // --- EDIT COMMENT (reuse modal) ---
     document.querySelectorAll(".btn-edit").forEach((button) => {
         button.addEventListener("click", (e) => {
             e.preventDefault();
@@ -46,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
             modal.show();
         });
     });
+
+    // --- DELETE COMMENT ONLY ---
     document.querySelectorAll("button.btn-delete[data-comment_id]").forEach((button) => {
         button.addEventListener("click", (e) => {
             e.preventDefault();
@@ -55,6 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (deleteModal) deleteModal.show();
         });
     });
+
+    // --- TOGGLE COMMENTS VISIBILITY ---
     document.querySelectorAll(".toggle-comments-btn").forEach((button) => {
         button.addEventListener("click", () => {
             const targetId = button.getAttribute("data-target");
@@ -68,6 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 : button.textContent.replace("📖", "💬");
         });
     });
+
+    // --- RESET COMMENT MODAL ON CLOSE ---
     if (commentModal) {
         commentModal.addEventListener("hidden.bs.modal", () => {
             const form = commentModal.querySelector("form");
@@ -83,10 +93,36 @@ document.addEventListener("DOMContentLoaded", () => {
             submitButton.textContent = "Post Comment";
         });
     }
+
+    // --- AVOID BOOKMARK FORM CONFLICT ---
     document.querySelectorAll("form[action*='delete_bookmark']").forEach((form) => {
         form.addEventListener("submit", (e) => {
-            // Avoid JS conflicts
-            e.stopPropagation();
+            e.stopPropagation(); // prevent JS conflicts
+        });
+    });
+
+    // --- STAR BUTTON HANDLER ---
+    document.querySelectorAll(".btn-action.star").forEach((button) => {
+        button.addEventListener("click", async () => {
+            const repoFullName = button.getAttribute("data-repo");
+            if (!repoFullName) {
+                alert("⚠️ Missing repository name.");
+                return;
+            }
+
+            try {
+                // Use GitHub API to fetch live star count
+                const response = await fetch(`https://api.github.com/repos/${repoFullName}`);
+                if (response.ok) {
+                    const repo = await response.json();
+                    alert(`⭐ ${repo.full_name} currently has ${repo.stargazers_count} stars!`);
+                } else {
+                    alert("❌ Couldn't fetch repo info. Check repository name.");
+                }
+            } catch (err) {
+                console.error("Star fetch error:", err);
+                alert("Network error while fetching star data.");
+            }
         });
     });
 });
