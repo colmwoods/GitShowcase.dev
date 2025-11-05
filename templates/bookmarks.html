@@ -24,7 +24,7 @@
     <div class="repo-container">
         {% if bookmarks %}
         {% for bookmark in bookmarks %}
-        {% include "includes/repo_card.html" with bookmark=bookmark is_bookmark_page=True %}
+        {% include "includes/repo_card.html" with bookmark=bookmark %}
         {% endfor %}
         {% else %}
         <p class="text-muted">You haven't bookmarked any repositories yet.</p>
