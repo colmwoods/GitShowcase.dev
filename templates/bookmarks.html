@@ -24,25 +24,7 @@
     <div class="repo-container">
         {% if bookmarks %}
         {% for bookmark in bookmarks %}
-        <div class="repo-card">
-            <div class="repo-header">
-                <h3><a href="{{ bookmark.repo_url }}" target="_blank">{{ bookmark.repo_name }}</a></h3>
-            </div>
-
-            {% if bookmark.notes %}
-            <p>{{ bookmark.notes }}</p>
-            {% else %}
-            <p><em>No notes added.</em></p>
-            {% endif %}
-
-            <div class="repo-footer">
-                <small>Bookmarked on: {{ bookmark.created_at|date:"M d, Y" }}</small>
-            </div>
-            <form method="post" action="{% url 'delete_bookmark' bookmark.id %}" style="margin-top: 10px;">
-                {% csrf_token %}
-                <button type="submit" class="btn-action delete">🗑️ Remove</button>
-            </form>
-        </div>
+        {% include "includes/repo_card.html" with bookmark=bookmark is_bookmark_page=True %}
         {% endfor %}
         {% else %}
         <p class="text-muted">You haven't bookmarked any repositories yet.</p>
