@@ -22,9 +22,9 @@
     <h2 class="repo-title">Bookmarked Repositories</h2>
 
     <div class="repo-container">
-        {% if bookmarks %}
         {% for bookmark in bookmarks %}
-        {% include "includes/repo_card.html" with bookmark=bookmark %}
+        {% include "includes/repo_card.html" with bookmark=bookmark comments_by_repo=comments_by_repo %}
+        {% endfor %}
         {% endfor %}
         {% else %}
         <p class="text-muted">You haven't bookmarked any repositories yet.</p>
