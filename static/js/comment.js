@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const deleteModalElement = document.getElementById("deleteModal");
     const deleteModal = deleteModalElement ? new bootstrap.Modal(deleteModalElement) : null;
     const deleteConfirm = document.getElementById("deleteConfirm");
-
     if (commentModal) {
         commentModal.addEventListener("show.bs.modal", (event) => {
             const button = event.relatedTarget;
@@ -12,14 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const repoName = button.getAttribute("data-repo");
             const repoUrl = button.getAttribute("data-url");
 
-            document.getElementById("modalRepoName").value = repoName || "";
-            document.getElementById("modalRepoUrl").value = repoUrl || "";
+            const repoNameInput = document.getElementById("modalRepoName");
+            const repoUrlInput = document.getElementById("modalRepoUrl");
+
+            if (repoNameInput) repoNameInput.value = repoName || "";
+            if (repoUrlInput) repoUrlInput.value = repoUrl || "";
 
             const modalTitle = document.getElementById("commentModalLabel");
-            if (modalTitle) modalTitle.textContent = `Leave a Comment on ${repoName}`;
+            if (modalTitle) modalTitle.textContent = `💬 Comment on ${repoName}`;
         });
     }
-
     document.querySelectorAll(".btn-edit").forEach((button) => {
         button.addEventListener("click", (e) => {
             e.preventDefault();
@@ -29,6 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const commentBody = commentTextElement ? commentTextElement.innerText.trim() : "";
 
             const modalElement = document.getElementById("commentModal");
+            if (!modalElement) return;
+
             const modal = new bootstrap.Modal(modalElement);
             const form = modalElement.querySelector("form");
             const textarea = form.querySelector("textarea");
@@ -43,16 +46,15 @@ document.addEventListener("DOMContentLoaded", () => {
             modal.show();
         });
     });
-
-    document.querySelectorAll(".btn-delete").forEach((button) => {
+    document.querySelectorAll("button.btn-delete[data-comment_id]").forEach((button) => {
         button.addEventListener("click", (e) => {
+            e.preventDefault();
             const commentId = button.getAttribute("data-comment_id");
             if (!commentId || !deleteConfirm) return;
             deleteConfirm.href = `/comment/delete/${commentId}/`;
             if (deleteModal) deleteModal.show();
         });
     });
-
     document.querySelectorAll(".toggle-comments-btn").forEach((button) => {
         button.addEventListener("click", () => {
             const targetId = button.getAttribute("data-target");
@@ -61,20 +63,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const isHidden = target.style.display === "none" || !target.style.display;
             target.style.display = isHidden ? "block" : "none";
-            button.textContent = button.textContent.replace(isHidden ? "💬" : "📖", isHidden ? "📖" : "💬");
+            button.textContent = isHidden
+                ? button.textContent.replace("💬", "📖")
+                : button.textContent.replace("📖", "💬");
         });
     });
+    if (commentModal) {
+        commentModal.addEventListener("hidden.bs.modal", () => {
+            const form = commentModal.querySelector("form");
+            if (!form) return;
 
-    const commentModalEl = document.getElementById("commentModal");
-    commentModalEl.addEventListener("hidden.bs.modal", () => {
-        const form = commentModalEl.querySelector("form");
-        const textarea = form.querySelector("textarea");
-        const submitButton = form.querySelector("button[type='submit']");
-        const modalTitle = document.getElementById("commentModalLabel");
+            const textarea = form.querySelector("textarea");
+            const submitButton = form.querySelector("button[type='submit']");
+            const modalTitle = document.getElementById("commentModalLabel");
 
-        textarea.value = "";
-        form.action = "/comment/add/";
-        modalTitle.textContent = "Leave a Comment";
-        submitButton.textContent = "Post Comment";
+            textarea.value = "";
+            form.action = "/comment/add/";
+            modalTitle.textContent = "💬 Leave a Comment";
+            submitButton.textContent = "Post Comment";
+        });
+    }
+    document.querySelectorAll("form[action*='delete_bookmark']").forEach((form) => {
+        form.addEventListener("submit", (e) => {
+            // Avoid JS conflicts
+            e.stopPropagation();
+        });
     });
 });
