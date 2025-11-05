@@ -223,6 +223,14 @@ def bookmark_list(request):
         'bookmarks': bookmarks,
         'comments_by_repo': comments_by_repo
     })
+
+
+@login_required(login_url='/accounts/login/')
+def delete_bookmark(request, bookmark_id):
+    bookmark = get_object_or_404(Bookmark, id=bookmark_id, user=request.user)
+    bookmark.delete()
+    return redirect('bookmarks')
+
 # ---------------- COMMENTS ----------------
 @login_required
 def add_comment(request):
