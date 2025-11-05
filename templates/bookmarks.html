@@ -25,45 +25,7 @@
     <div class="repo-container">
         {% if bookmarks %}
         {% for bookmark in bookmarks %}
-        <div class="repo-card">
-            <div class="repo-header">
-                <h3><a href="{{ bookmark.repo_url }}" target="_blank">{{ bookmark.repo_name }}</a></h3>
-            </div>
-
-            {% if bookmark.description %}
-            <p>{{ bookmark.description }}</p>
-            {% endif %}
-
-            <div class="repo-footer">
-                <span class="badge">{{ bookmark.language|default:"Unknown" }}</span>
-                <small>📅 Bookmarked: {{ bookmark.created_at|date:"M d, Y" }}</small>
-            </div>
-
-            <div class="repo-actions">
-                <a href="{{ bookmark.repo_url }}" target="_blank" class="btn-action view">🔗 View</a>
-                <a href="{{ bookmark.repo_url }}/archive/refs/heads/main.zip" class="btn-action download">⬇️
-                    Download</a>
-                <a href="{{ bookmark.repo_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
-                <button class="btn-action star" data-repo="{{ bookmark.repo_url
-                                     |cut:'https://github.com/'
-                                     |cut:'http://github.com/'
-                                     |cut:'https://www.github.com/'
-                                     |cut:'http://www.github.com/' }}">
-                    ⭐ Star
-                </button>
-                <button type="button" class="btn-action comment" data-bs-toggle="modal" data-bs-target="#commentModal"
-                    data-repo="{{ bookmark.repo_name }}" data-url="{{ bookmark.repo_url }}">
-                    💬 Comment
-                </button>
-
-                {% if bookmark.id %}
-                <form method="post" action="{% url 'delete_bookmark' bookmark.id %}" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn-action delete">🗑️ Remove</button>
-                </form>
-                {% endif %}
-            </div>
-        </div>
+        {% include "includes/repo_card.html" with bookmark=bookmark comments_by_repo=comments_by_repo %}
         {% endfor %}
         {% else %}
         <p class="text-muted">You haven't bookmarked any repositories yet.</p>
