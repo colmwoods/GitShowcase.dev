@@ -15,12 +15,14 @@ def home(request):
     repos = []
     comments_by_repo = {}
     bookmarked_urls = []
+    starred_repos = set()
 
     if request.user.is_authenticated:
         try:
             social_account = SocialAccount.objects.get(user=request.user, provider='github')
             token = SocialToken.objects.get(account=social_account, account__user=request.user)
 
+            # ✅ Fetch user repos
             url = (
                 "https://api.github.com/user/repos"
                 "?visibility=all"
@@ -57,9 +59,30 @@ def home(request):
                 for comment in comments:
                     comments_by_repo.setdefault(comment.repo_name, []).append(comment)
 
+            # ✅ Get user's bookmarked repos
             bookmarked_urls = list(
                 Bookmark.objects.filter(user=request.user).values_list("repo_url", flat=True)
             )
+
+            # ✅ Fetch user's starred repos
+            starred_response = requests.get(
+                "https://api.github.com/user/starred?per_page=100",
+                headers={
+                    "Authorization": f"token {token.token}",
+                    "Accept": "application/vnd.github+json",
+                },
+            )
+            print("⭐ GitHub star fetch status:", starred_response.status_code)
+
+            if starred_response.status_code == 200:
+                try:
+                    api_data = starred_response.json()
+                    starred_repos = {r["full_name"].lower() for r in api_data}
+                    print("⭐ Starred repos returned:", list(starred_repos)[:5])
+                except Exception as e:
+                    print("⚠️ Error parsing starred repos:", str(e))
+            else:
+                print("⚠️ GitHub API star fetch failed:", starred_response.text[:200])
 
         except Exception as e:
             print("💥 GitHub API exception:", e)
@@ -71,6 +94,7 @@ def home(request):
             "repos": repos,
             "comments_by_repo": comments_by_repo,
             "bookmarked_urls": bookmarked_urls,
+            "starred_repos": starred_repos,
         },
     )
 
@@ -122,6 +146,33 @@ def star_repo(request):
     except Exception as e:
         return JsonResponse({"ok": False, "error": str(e)}, status=500)
 
+
+# ---------------- Starred Repos ----------------
+def get_starred_repos(user):
+    """Fetch all GitHub repos starred by the authenticated user."""
+    starred = set()
+    if user.is_authenticated:
+        social_account = SocialAccount.objects.filter(user=user, provider="github").first()
+        if social_account:
+            token = SocialToken.objects.filter(account=social_account).first()
+            if token:
+                response = requests.get(
+                    "https://api.github.com/user/starred?per_page=100",
+                    headers={
+                        "Authorization": f"token {token.token}",
+                        "Accept": "application/vnd.github+json",
+                    },
+                )
+                print("⭐ GitHub star fetch status:", response.status_code)
+                if response.status_code == 200:
+                    try:
+                        starred = {repo["full_name"].lower() for repo in response.json()}
+                        print("⭐ Starred repos returned:", list(starred)[:5])
+                    except Exception as e:
+                        print("⚠️ Error parsing starred repos:", str(e))
+                else:
+                    print("⚠️ GitHub API star fetch failed:", response.text[:200])
+    return starred
     
 # ---------------- SEARCH PAGE ----------------
 def search(request):
