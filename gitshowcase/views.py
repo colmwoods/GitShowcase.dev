@@ -137,7 +137,7 @@ def search(request):
         repos_url = f"https://api.github.com/users/{query}/repos?per_page=100&sort=updated&direction=desc"
         headers = {"Accept": "application/vnd.github+json"}
 
-        # Fetch GitHub user + repos
+        # Fetch user + repos
         user_response = requests.get(user_url, headers=headers)
         repos_response = requests.get(repos_url, headers=headers)
 
@@ -154,8 +154,7 @@ def search(request):
                         repo["updated_at"] = datetime.strptime(updated, "%Y-%m-%dT%H:%M:%SZ")
                     except ValueError:
                         repo["updated_at"] = None
-                # Normalize name for comparison
-                repo["full_name"] = repo["full_name"].lower()
+                repo["full_name"] = repo["full_name"].lower()  # normalize name
 
             repo_names = [r.get("name") for r in repos if "name" in r]
             if repo_names:
@@ -163,27 +162,35 @@ def search(request):
                 for comment in comments:
                     comments_by_repo.setdefault(comment.repo_name, []).append(comment)
 
-        # ✅ Get user's starred repos
+        # ✅ Fetch user's starred repos (with pagination)
         if request.user.is_authenticated:
             social_account = SocialAccount.objects.filter(user=request.user, provider='github').first()
             if social_account:
                 token = SocialToken.objects.filter(account=social_account).first()
                 if token:
-                    star_response = requests.get(
-                        "https://api.github.com/user/starred?per_page=100",
-                        headers={
-                            "Authorization": f"token {token.token}",
-                            "Accept": "application/vnd.github+json",
-                        },
-                    )
+                    page = 1
+                    while True:
+                        star_response = requests.get(
+                            f"https://api.github.com/user/starred?per_page=100&page={page}",
+                            headers={
+                                "Authorization": f"token {token.token}",
+                                "Accept": "application/vnd.github+json",
+                            },
+                        )
+                        if star_response.status_code != 200:
+                            print("⚠️ GitHub star fetch failed:", star_response.status_code)
+                            break
 
-                    if star_response.status_code == 200:
                         api_data = star_response.json()
-                        starred_repos = {repo["full_name"].lower() for repo in api_data}
-                    else:
-                        print("⚠️ GitHub star fetch failed:", star_response.status_code, star_response.text[:100])
+                        if not api_data:
+                            break  # no more pages
 
-        # ✅ Get bookmarks
+                        starred_repos.update({repo["full_name"].lower() for repo in api_data})
+                        page += 1
+
+                    print(f"⭐ User has {len(starred_repos)} starred repos.")
+
+        # ✅ Bookmarks
         if request.user.is_authenticated:
             bookmarked_urls = list(
                 Bookmark.objects.filter(user=request.user).values_list("repo_url", flat=True)
@@ -201,6 +208,7 @@ def search(request):
             "starred_repos": starred_repos,
         },
     )
+
 
 
 
