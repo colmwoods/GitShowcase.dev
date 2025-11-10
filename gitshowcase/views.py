@@ -129,21 +129,23 @@ def search(request):
     user_data = None
     comments_by_repo = {}
     bookmarked_urls = []
-    starred_repos = set()
     query = request.GET.get("q", "").strip()
+
+    starred_repos = set()  # Always define it
 
     if query:
         user_url = f"https://api.github.com/users/{query}"
         repos_url = f"https://api.github.com/users/{query}/repos?per_page=100&sort=updated&direction=desc"
         headers = {"Accept": "application/vnd.github+json"}
 
-        # Fetch user + repos
         user_response = requests.get(user_url, headers=headers)
         repos_response = requests.get(repos_url, headers=headers)
 
+        # ✅ Fetch GitHub user info
         if user_response.status_code == 200:
             user_data = user_response.json()
 
+        # ✅ Fetch repositories
         if repos_response.status_code == 200:
             repos = repos_response.json()
 
@@ -154,48 +156,40 @@ def search(request):
                         repo["updated_at"] = datetime.strptime(updated, "%Y-%m-%dT%H:%M:%SZ")
                     except ValueError:
                         repo["updated_at"] = None
-                repo["full_name"] = repo["full_name"].lower()  # normalize name
 
+            # ✅ Collect comments for repos found
             repo_names = [r.get("name") for r in repos if "name" in r]
             if repo_names:
                 comments = Comment.objects.filter(repo_name__in=repo_names)
                 for comment in comments:
                     comments_by_repo.setdefault(comment.repo_name, []).append(comment)
 
-        # ✅ Fetch user's starred repos (with pagination)
-        if request.user.is_authenticated:
-            social_account = SocialAccount.objects.filter(user=request.user, provider='github').first()
-            if social_account:
-                token = SocialToken.objects.filter(account=social_account).first()
-                if token:
-                    page = 1
-                    while True:
-                        star_response = requests.get(
-                            f"https://api.github.com/user/starred?per_page=100&page={page}",
-                            headers={
-                                "Authorization": f"token {token.token}",
-                                "Accept": "application/vnd.github+json",
-                            },
-                        )
-                        if star_response.status_code != 200:
-                            print("⚠️ GitHub star fetch failed:", star_response.status_code)
-                            break
+    # ✅ Fetch starred repos for authenticated users
+    if request.user.is_authenticated:
+        social_account = SocialAccount.objects.filter(user=request.user, provider='github').first()
+        if social_account:
+            token = SocialToken.objects.filter(account=social_account).first()
+            if token:
+                star_response = requests.get(
+                    "https://api.github.com/user/starred?per_page=100",
+                    headers={
+                        "Authorization": f"token {token.token}",
+                        "Accept": "application/vnd.github+json",
+                    },
+                )
+                print("⭐ GitHub star fetch status:", star_response.status_code)
 
+                if star_response.status_code == 200:
+                    try:
                         api_data = star_response.json()
-                        if not api_data:
-                            break  # no more pages
+                        starred_repos = {r["full_name"].lower() for r in api_data}
+                        print("⭐ Starred repos returned:", list(starred_repos)[:5])
+                    except Exception as e:
+                        print("⚠️ Error parsing starred repos:", str(e))
+                else:
+                    print("⚠️ GitHub API star fetch failed:", star_response.text[:200])
 
-                        starred_repos.update({repo["full_name"].lower() for repo in api_data})
-                        page += 1
-
-                    print(f"⭐ User has {len(starred_repos)} starred repos.")
-
-        # ✅ Bookmarks
-        if request.user.is_authenticated:
-            bookmarked_urls = list(
-                Bookmark.objects.filter(user=request.user).values_list("repo_url", flat=True)
-            )
-
+    # ✅ Return everything to the template
     return render(
         request,
         "search.html",
@@ -208,8 +202,6 @@ def search(request):
             "starred_repos": starred_repos,
         },
     )
-
-
 
 
 # ---------------- BOOKMARKS ----------------
