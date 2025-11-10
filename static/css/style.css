@@ -486,6 +486,36 @@ footer {
     text-align: center;
 }
 
+.repo-comments {
+    max-height: 220px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #444 transparent;
+    padding-right: 5px;
+    margin-top: 0.5rem;
+    text-align: left;
+}
+
+.repo-comments::-webkit-scrollbar {
+    width: 6px;
+}
+
+.repo-comments::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 3px;
+}
+
+.comment-item {
+    margin-bottom: 0.3rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #333;
+}
+
+.comment-item:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+
 .toggle-comments-btn {
     width: 90%;
     padding: 0.5rem 0.8rem;
