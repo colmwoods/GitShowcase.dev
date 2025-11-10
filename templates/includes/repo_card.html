@@ -110,8 +110,14 @@
                 {% for comment in repo_comments %}
                 <li class="comment-item"
                     style="margin-bottom:0.6rem;border-bottom:1px solid #222;padding-bottom:0.4rem;">
-                    <small><strong style="color:#00bfff;">{{ comment.user.username }}</strong> —
-                        {{ comment.created_at|date:"M d, Y H:i" }}</small>
+                    {% with github=comment.user.socialaccount_set.first %}
+                    <small>
+                        <strong style="color:#00bfff;">
+                            {{ github.extra_data.login|default:comment.user.username }}
+                        </strong> —
+                        {{ comment.created_at|date:"M d, Y H:i" }}
+                    </small>
+                    {% endwith %}
                     <div style="margin-top:0.25rem;">{{ comment.body }}</div>
                     {% if user == comment.user %}
                     <div class="mt-1">
