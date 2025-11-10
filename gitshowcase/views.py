@@ -162,10 +162,38 @@ def search(request):
                 for comment in comments:
                     comments_by_repo.setdefault(comment.repo_name, []).append(comment)
 
+        # ✅ Get starred repositories if user is logged in
+        if request.user.is_authenticated:
+            social_account = SocialAccount.objects.filter(user=request.user, provider='github').first()
+            if social_account:
+                token = SocialToken.objects.filter(account=social_account).first()
+                if token:
+                    # Fetch all starred repos for the logged-in user
+                    star_response = requests.get(
+                        "https://api.github.com/user/starred",
+                        headers={
+                            "Authorization": f"token {token.token}",
+                            "Accept": "application/vnd.github+json",
+                        },
+                    )
+                    if star_response.status_code == 200:
+                        starred_repos = {r["full_name"] for r in star_response.json()}
+                    else:
+                        starred_repos = set()
+                else:
+                    starred_repos = set()
+            else:
+                starred_repos = set()
+        else:
+            starred_repos = set()
+
+        # ✅ Get user bookmarks if logged in
         if request.user.is_authenticated:
             bookmarked_urls = list(
                 Bookmark.objects.filter(user=request.user).values_list("repo_url", flat=True)
-        )
+            )
+    else:
+        starred_repos = set()
 
     return render(
         request,
@@ -176,6 +204,7 @@ def search(request):
             "user_data": user_data,
             "comments_by_repo": comments_by_repo,
             "bookmarked_urls": bookmarked_urls,
+            "starred_repos": starred_repos,  # ✅ add this line
         },
     )
 
