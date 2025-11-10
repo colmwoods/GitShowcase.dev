@@ -125,12 +125,17 @@
                     </div>
                     {% endwith %}
                     <div style="margin-top:0.25rem;">{{ comment.body }}</div>
+
                     {% if user == comment.user %}
-                    <div class="mt-1">
-                        <a href="{% url 'edit_comment' comment.id %}" class="btn btn-sm btn-outline-info btn-edit">✏️
-                            Edit</a>
-                        <button class="btn btn-sm btn-outline-danger btn-delete" data-comment_id="{{ comment.id }}">🗑️
-                            Delete</button>
+                    <div class="comment-actions" style="margin-top:0.2rem; display:flex; gap:0.25rem;">
+                        <a href="{% url 'edit_comment' comment.id %}" class="btn btn-outline-info btn-edit"
+                            style="font-size:0.75rem; padding:0.15rem 0.4rem; line-height:1;">
+                            ✏️ Edit
+                        </a>
+                        <button class="btn btn-outline-danger btn-delete" data-comment_id="{{ comment.id }}"
+                            style="font-size:0.75rem; padding:0.15rem 0.4rem; line-height:1;">
+                            🗑️ Delete
+                        </button>
                     </div>
                     {% endif %}
                 </li>
@@ -171,12 +176,17 @@
                     </div>
                     {% endwith %}
                     <div style="margin-top:0.25rem;">{{ comment.body }}</div>
+
                     {% if user == comment.user %}
-                    <div class="mt-1">
-                        <a href="{% url 'edit_comment' comment.id %}" class="btn btn-sm btn-outline-info btn-edit">✏️
-                            Edit</a>
-                        <button class="btn btn-sm btn-outline-danger btn-delete" data-comment_id="{{ comment.id }}">🗑️
-                            Delete</button>
+                    <div class="comment-actions" style="margin-top:0.2rem; display:flex; gap:0.25rem;">
+                        <a href="{% url 'edit_comment' comment.id %}" class="btn btn-outline-info btn-edit"
+                            style="font-size:0.75rem; padding:0.15rem 0.4rem; line-height:1;">
+                            ✏️ Edit
+                        </a>
+                        <button class="btn btn-outline-danger btn-delete" data-comment_id="{{ comment.id }}"
+                            style="font-size:0.75rem; padding:0.15rem 0.4rem; line-height:1;">
+                            🗑️ Delete
+                        </button>
                     </div>
                     {% endif %}
                 </li>
