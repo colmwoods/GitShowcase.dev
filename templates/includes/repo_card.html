@@ -45,7 +45,7 @@
         <a href="{{ repo.html_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
 
         {% if user.is_authenticated %}
-        {% if repo.full_name in starred_repos %}
+        {% if repo.full_name|lower in starred_repos %}
         <button class="btn-action star starred" data-repo="{{ repo.full_name }}">
             ⭐ Starred
         </button>
@@ -77,7 +77,7 @@
         <a href="{{ bookmark.repo_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
         {% if user.is_authenticated %}
         {% with repo_full_name=bookmark.repo_url|cut:'https://github.com/' %}
-        {% if repo_full_name in starred_repos %}
+        {% if repo.full_name|lower in starred_repos %}
         <button class="btn-action star starred" data-repo="{{ repo_full_name }}">
             ⭐ Starred
         </button>
