@@ -170,18 +170,22 @@ def search(request):
                 token = SocialToken.objects.filter(account=social_account).first()
                 if token:
                     star_response = requests.get(
-                        "https://api.github.com/user/starred",
+                        "https://api.github.com/user/starred?per_page=100",
                         headers={
                             "Authorization": f"token {token.token}",
                             "Accept": "application/vnd.github+json",
                         },
                     )
                     if star_response.status_code == 200:
-                        starred_repos = {repo["full_name"] for repo in star_response.json()}
+                        # Normalize all full_names to lowercase (avoid mismatched case)
+                        starred_repos = {r["full_name"].lower() for r in star_response.json()}
+
+        # ✅ Get bookmarks
         if request.user.is_authenticated:
             bookmarked_urls = list(
-                Bookmark.objects.filter(user=request.user).values_list("repo_url", flat=True)
-            )
+                Bookmark.objects.filter(user=request.user).values_list("repo_url", flat=True))
+    for repo in repos:
+        repo["full_name"] = repo["full_name"].lower()
 
     return render(
         request,
@@ -195,6 +199,7 @@ def search(request):
             "starred_repos": starred_repos,
         },
     )
+
 
 
 # ---------------- BOOKMARKS ----------------
