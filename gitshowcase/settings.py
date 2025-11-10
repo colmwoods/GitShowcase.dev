@@ -30,6 +30,11 @@ DEBUG = False
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com']
 
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://gitshowcase-dev-a0b7673e36ce.herokuapp.com",
+]
+
+
 # Application definition
 
 INSTALLED_APPS = [
