@@ -92,8 +92,6 @@ def star_repo(request):
 
         if not repo_full_name:
             return JsonResponse({"ok": False, "error": "Missing repo name"}, status=400)
-
-        # Get the user's GitHub access token
         social_account = SocialAccount.objects.get(user=request.user, provider='github')
         token = SocialToken.objects.get(account=social_account, account__user=request.user)
 
@@ -102,7 +100,7 @@ def star_repo(request):
             "Authorization": f"token {token.token}",
             "Accept": "application/vnd.github+json",
         }
-        
+
         check = requests.get(url, headers=headers)
         already_starred = check.status_code == 204
 
@@ -124,6 +122,62 @@ def star_repo(request):
     except Exception as e:
         return JsonResponse({"ok": False, "error": str(e)}, status=500)
 
+    
+# ---------------- SEARCH PAGE ----------------
+def search(request):
+    repos = []
+    user_data = None
+    comments_by_repo = {}
+    bookmarked_urls = []
+    query = request.GET.get("q", "").strip()
+
+    if query:
+        user_url = f"https://api.github.com/users/{query}"
+        repos_url = f"https://api.github.com/users/{query}/repos?per_page=100&sort=updated&direction=desc"
+        headers = {"Accept": "application/vnd.github+json"}
+
+        user_response = requests.get(user_url, headers=headers)
+        repos_response = requests.get(repos_url, headers=headers)
+
+        # ✅ Fetch GitHub user info
+        if user_response.status_code == 200:
+            user_data = user_response.json()
+
+        # ✅ Fetch repositories
+        if repos_response.status_code == 200:
+            repos = repos_response.json()
+
+            for repo in repos:
+                updated = repo.get("updated_at")
+                if updated:
+                    try:
+                        repo["updated_at"] = datetime.strptime(updated, "%Y-%m-%dT%H:%M:%SZ")
+                    except ValueError:
+                        repo["updated_at"] = None
+
+            # ✅ Collect comments for repos found
+            repo_names = [r.get("name") for r in repos if "name" in r]
+            if repo_names:
+                comments = Comment.objects.filter(repo_name__in=repo_names)
+                for comment in comments:
+                    comments_by_repo.setdefault(comment.repo_name, []).append(comment)
+
+        if request.user.is_authenticated:
+            bookmarked_urls = list(
+                Bookmark.objects.filter(user=request.user).values_list("repo_url", flat=True)
+        )
+
+    return render(
+        request,
+        "search.html",
+        {
+            "repos": repos,
+            "query": query,
+            "user_data": user_data,
+            "comments_by_repo": comments_by_repo,
+            "bookmarked_urls": bookmarked_urls,
+        },
+    )
 
 
 # ---------------- BOOKMARKS ----------------
