@@ -76,14 +76,23 @@
         <a href="{{ bookmark.repo_url }}/archive/refs/heads/main.zip" class="btn-action download">⬇️ Download</a>
         <a href="{{ bookmark.repo_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
         {% if user.is_authenticated %}
-        <button class="btn-action star" data-repo="{{ bookmark.repo_url|cut:'https://github.com/' }}">
-            ⭐ {{ bookmark.stargazers_count|default:0 }}
+        {% with repo_full_name=bookmark.repo_url|cut:'https://github.com/' %}
+        {% if repo_full_name in starred_repos %}
+        <button class="btn-action star starred" data-repo="{{ repo_full_name }}">
+            ⭐ Starred
         </button>
+        {% else %}
+        <button class="btn-action star" data-repo="{{ repo_full_name }}">
+            ⭐ Star
+        </button>
+        {% endif %}
+        {% endwith %}
         {% else %}
         <a href="{% url 'account_login' %}" class="btn-action star">
             ⭐ Star
         </a>
         {% endif %}
+
 
         {% if bookmark.id %}
         <form method="post" action="{% url 'delete_bookmark' bookmark.id %}" style="display:inline;">
