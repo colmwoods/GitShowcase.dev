@@ -111,12 +111,18 @@
                 <li class="comment-item"
                     style="margin-bottom:0.6rem;border-bottom:1px solid #222;padding-bottom:0.4rem;">
                     {% with github=comment.user.socialaccount_set.first %}
-                    <small>
-                        <strong style="color:#00bfff;">
-                            {{ github.extra_data.login|default:comment.user.username }}
-                        </strong> —
-                        {{ comment.created_at|date:"M d, Y H:i" }}
-                    </small>
+                    <div style="display:flex; align-items:center; gap:0.4rem;">
+                        {% if github %}
+                        <img src="{{ github.extra_data.avatar_url }}" alt="Avatar"
+                            style="width:24px; height:24px; border-radius:50%;">
+                        {% endif %}
+                        <small>
+                            <strong style="color:#00bfff;">
+                                {{ github.extra_data.login|default:comment.user.username }}
+                            </strong> —
+                            {{ comment.created_at|date:"M d, Y H:i" }}
+                        </small>
+                    </div>
                     {% endwith %}
                     <div style="margin-top:0.25rem;">{{ comment.body }}</div>
                     {% if user == comment.user %}
@@ -151,12 +157,18 @@
                 <li class="comment-item"
                     style="margin-bottom:0.6rem;border-bottom:1px solid #222;padding-bottom:0.4rem;">
                     {% with github=comment.user.socialaccount_set.first %}
-                    <small>
-                        <strong style="color:#00bfff;">
-                            {{ github.extra_data.login|default:comment.user.username }}
-                        </strong> —
-                        {{ comment.created_at|date:"M d, Y H:i" }}
-                    </small>
+                    <div style="display:flex; align-items:center; gap:0.4rem;">
+                        {% if github %}
+                        <img src="{{ github.extra_data.avatar_url }}" alt="Avatar"
+                            style="width:24px; height:24px; border-radius:50%;">
+                        {% endif %}
+                        <small>
+                            <strong style="color:#00bfff;">
+                                {{ github.extra_data.login|default:comment.user.username }}
+                            </strong> —
+                            {{ comment.created_at|date:"M d, Y H:i" }}
+                        </small>
+                    </div>
                     {% endwith %}
                     <div style="margin-top:0.25rem;">{{ comment.body }}</div>
                     {% if user == comment.user %}
