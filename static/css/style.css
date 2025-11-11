@@ -570,3 +570,7 @@ footer {
     color: #fff;
     transform: scale(1.05);
 }
+
+section#alerts {
+    margin-top: 5em;
+}
