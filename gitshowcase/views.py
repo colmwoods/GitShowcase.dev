@@ -378,3 +378,15 @@ def delete_comment(request, comment_id):
     comment.delete()
     messages.success(request, "🗑️ Comment deleted successfully.")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
+# ---------------- CONTACT PAGE ----------------
+def contact(request):
+    if request.method == 'POST':
+        # Just go straight to the success page
+        return render(request, 'form/success.html')
+    return render(request, 'form/contact.html')
+
+
+def success(request):
+    return render(request, 'form/success.html')
