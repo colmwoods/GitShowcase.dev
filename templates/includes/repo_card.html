@@ -144,6 +144,7 @@
                     {% if user == comment.user %}
                     <div class="comment-actions" style="margin-top:0.2rem; display:flex; gap:0.25rem;">
                         <a href="{% url 'edit_comment' comment.id %}" class="btn btn-outline-info btn-edit"
+                            data-comment_id="{{ comment.id }}"
                             style="font-size:0.75rem; padding:0.15rem 0.4rem; line-height:1;">
                             ✏️ Edit
                         </a>
@@ -193,7 +194,8 @@
                     <div style="margin-top:0.25rem;">{{ comment.body }}</div>
 
                     {% if user == comment.user %}
-                    <div class="comment-actions" style="margin-top:0.2rem; display:flex; gap:0.25rem;">
+                    <div class="comment-actions" data-comment_id="{{ comment.id }}"
+                        style="margin-top:0.2rem; display:flex; gap:0.25rem;">
                         <a href="{% url 'edit_comment' comment.id %}" class="btn btn-outline-info btn-edit"
                             style="font-size:0.75rem; padding:0.15rem 0.4rem; line-height:1;">
                             ✏️ Edit
