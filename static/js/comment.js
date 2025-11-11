@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
 
             const commentId = button.getAttribute("data-comment_id");
-            const commentTextElement = button.closest("li").querySelector("div");
+            const commentTextElement = button.closest("li").querySelector(".comment-body");
             const commentBody = commentTextElement ? commentTextElement.innerText.trim() : "";
 
             const modalElement = document.getElementById("commentModal");
