@@ -366,44 +366,6 @@ footer {
     white-space: nowrap;
 }
 
-/* --- FINAL BUTTON FIX: Natural text width, 2x3 layout --- */
-.repo-actions {
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
-    justify-content: center;
-    align-items: center;
-    gap: 10px 18px;
-    /* vertical / horizontal spacing */
-    margin-top: 1rem;
-    text-align: center;
-}
-
-.repo-actions .btn-action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 14px;
-    /* perfect compact feel */
-    font-size: 0.85rem;
-    font-weight: 500;
-    border-radius: 8px;
-    border: none;
-    white-space: nowrap;
-    color: #fff;
-    width: auto !important;
-    /* 🧠 force width to fit text */
-    height: auto !important;
-    /* 🧠 keep compact height */
-    min-width: unset !important;
-    max-width: unset !important;
-}
-
-.repo-actions .btn-action:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-}
-
-
 /* --- Responsive (keep same look everywhere) --- */
 @media (max-width: 768px),
 (max-width: 480px) {
