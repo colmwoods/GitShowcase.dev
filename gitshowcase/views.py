@@ -286,7 +286,7 @@ def add_bookmark(request):
 def bookmark_list(request):
     bookmarks = Bookmark.objects.filter(user=request.user).order_by('-created_at')
 
-    # Prepare repo_full_name for each bookmark
+    # ✅ Update counts dynamically before rendering
     for b in bookmarks:
         if b.repo_url:
             b.repo_full_name = (
@@ -294,24 +294,32 @@ def bookmark_list(request):
                           .replace("http://github.com/", "")
                           .strip("/")
             )
+            try:
+                response = requests.get(f"https://api.github.com/repos/{b.repo_full_name}")
+                if response.status_code == 200:
+                    data = response.json()
+                    b.stargazers_count = data.get("stargazers_count", b.stargazers_count)
+                    b.forks_count = data.get("forks_count", b.forks_count)
+            except Exception as e:
+                print(f"⚠️ Could not update counts for {b.repo_full_name}: {e}")
         else:
             b.repo_full_name = ""
     starred_repos = []
-    if request.user.is_authenticated:
-        github_account = request.user.socialaccount_set.filter(provider='github').first()
-        if github_account:
-            token = github_account.socialtoken_set.first().token
-            headers = {"Authorization": f"token {token}"}
-            response = requests.get("https://api.github.com/user/starred", headers=headers)
-            if response.status_code == 200:
-                starred_repos = [repo["full_name"].lower() for repo in response.json()]
+    github_account = request.user.socialaccount_set.filter(provider='github').first()
+    if github_account:
+        token = github_account.socialtoken_set.first().token
+        headers = {"Authorization": f"token {token}"}
+        response = requests.get("https://api.github.com/user/starred", headers=headers)
+        if response.status_code == 200:
+            starred_repos = [repo["full_name"].lower() for repo in response.json()]
+
+    # 💬 Comments
     comments = Comment.objects.all().order_by('-created_at')
     comments_by_repo = {}
     for comment in comments:
         repo_name = comment.repo_name
-        if repo_name not in comments_by_repo:
-            comments_by_repo[repo_name] = []
-        comments_by_repo[repo_name].append(comment)
+        comments_by_repo.setdefault(repo_name, []).append(comment)
+
     return render(request, 'bookmarks.html', {
         'bookmarks': bookmarks,
         'comments_by_repo': comments_by_repo,
