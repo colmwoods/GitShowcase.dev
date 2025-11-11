@@ -75,9 +75,10 @@
         <a href="{{ bookmark.repo_url }}" target="_blank" class="btn-action view">🔗 View</a>
         <a href="{{ bookmark.repo_url }}/archive/refs/heads/main.zip" class="btn-action download">⬇️ Download</a>
         <a href="{{ bookmark.repo_url }}/fork" target="_blank" class="btn-action fork">🍴 Fork</a>
+
         {% if user.is_authenticated %}
-        {% with repo_full_name=bookmark.repo_url|cut:'https://github.com/' %}
-        {% if repo.full_name|lower in starred_repos %}
+        {% with repo_full_name=bookmark.repo_url|cut:'https://github.com/'|cut:'http://github.com/' %}
+        {% if repo_full_name|lower in starred_repos %}
         <button class="btn-action star starred" data-repo="{{ repo_full_name }}">
             ⭐ Starred
         </button>
@@ -92,6 +93,7 @@
             ⭐ Star
         </a>
         {% endif %}
+
 
 
         {% if bookmark.id %}
