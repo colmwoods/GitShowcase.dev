@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Bookmark, Comment
+from .models import Bookmark, Comment, ContactMessage
 import requests
 
 
@@ -39,3 +39,9 @@ class CommentAdmin(admin.ModelAdmin):
         return f'<a href="{obj.repo_url}" target="_blank">{obj.repo_url}</a>'
     repo_link.allow_tags = True
     repo_link.short_description = "Repository URL"
+
+
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'email', 'created_at')
+    search_fields = ('first_name', 'last_name', 'email', 'message')
