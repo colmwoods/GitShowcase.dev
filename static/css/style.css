@@ -284,19 +284,41 @@ footer {
 }
 
 .repo-card {
+    background: #fff;
+    color: #333;
+    border-radius: 16px;
+    padding: 1.5rem;
     width: 100%;
     max-width: 340px;
-    height: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: 16px;
-    background: #fff;
-    color: #333;
-    padding: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    min-height: 460px;
+    /* ✅ Ensures even height */
 }
+
+.repo-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-top: auto;
+    /* pushes footer to bottom */
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.badge {
+    background: linear-gradient(135deg, #00bfff, #0077ff);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
 
 .repo-card:hover {
     transform: translateY(-6px);
@@ -337,22 +359,6 @@ footer {
     color: #444;
     margin-top: 0.5rem;
     line-height: 1.4;
-}
-
-.repo-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.85rem;
-    margin-top: 1rem;
-}
-
-.badge {
-    background: linear-gradient(135deg, #00bfff, #0077ff);
-    color: white;
-    padding: 4px 10px;
-    border-radius: 8px;
-    font-size: 0.8rem;
 }
 
 .repo-actions {
@@ -528,10 +534,6 @@ footer {
     background-color: #007bff;
     color: white;
     border-color: #007bff;
-}
-
-.repo-card {
-    padding-bottom: 1rem;
 }
 
 .toggle-comments-btn {
