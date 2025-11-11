@@ -366,56 +366,53 @@ footer {
     white-space: nowrap;
 }
 
-/* --- 2x3 grid but natural button widths --- */
+/* --- 2x3 GRID (buttons flow naturally) --- */
 .repo-actions {
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    /* ✅ natural width */
-    gap: 12px 20px;
-    /* row/column spacing */
+    grid-template-columns: repeat(2, max-content);
+    /* ✅ let each button size itself */
     justify-content: center;
-    /* keeps grid centered */
     align-items: center;
+    gap: 12px 18px;
+    /* row / column spacing */
     margin-top: 1rem;
-    padding: 0 10px;
+    text-align: center;
 }
 
-/* --- natural responsive buttons --- */
+/* --- BUTTONS: pure text-based width --- */
 .repo-actions .btn-action {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 6px 14px;
-    /* ✅ balanced spacing inside buttons */
+    padding: 6px 16px;
+    /* balanced padding around text */
     font-size: 0.85rem;
     font-weight: 500;
     border-radius: 8px;
-    text-align: center;
     border: none;
     white-space: nowrap;
     color: #fff;
     transition: all 0.2s ease;
-    min-width: 85px;
-    /* ensures no button gets too tiny */
-    max-width: 150px;
-    /* keeps long labels neat */
+    height: auto;
+    /* no fixed height */
+    width: auto;
+    /* ✅ full freedom */
 }
 
-/* hover animation */
+/* Hover animation */
 .repo-actions .btn-action:hover {
     transform: translateY(-2px);
     opacity: 0.9;
 }
 
-/* ✅ keep same behavior on all screen sizes */
+/* --- Responsive (keep same look everywhere) --- */
 @media (max-width: 768px),
 (max-width: 480px) {
     .repo-actions {
-        grid-template-columns: repeat(2, auto);
-        gap: 12px 20px;
+        grid-template-columns: repeat(2, max-content);
+        gap: 12px 18px;
     }
 }
-
 
 
 /* --- Mobile Adjustments --- */
