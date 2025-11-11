@@ -52,10 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- DELETE COMMENT ONLY ---
-    document.querySelectorAll("button.btn-delete[data-comment_id]").forEach((button) => {
+    document.querySelectorAll("button.btn-delete[data-commentId]").forEach((button) => {
         button.addEventListener("click", (e) => {
             e.preventDefault();
-            const commentId = button.getAttribute("data-comment_id");
+            const commentId = button.getAttribute("data-commentId");
             if (!commentId || !deleteConfirm) return;
             deleteConfirm.href = `/comment/delete/${commentId}/`;
             if (deleteModal) deleteModal.show();
