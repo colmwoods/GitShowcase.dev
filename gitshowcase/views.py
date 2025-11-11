@@ -360,7 +360,8 @@ def edit_comment(request, comment_id):
     else:
         messages.error(request, "❌ Invalid request.")
 
-    return HttpResponseRedirect(request.META.get("HTTP_REFERER", "/"))
+  ##  return HttpResponseRedirect(request.META.get("HTTP_REFERER", "/"))
+    return redirect('/')
 
 
 @login_required
