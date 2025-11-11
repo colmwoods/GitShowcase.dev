@@ -366,44 +366,43 @@ footer {
     white-space: nowrap;
 }
 
-/* --- 2x3 GRID (buttons flow naturally) --- */
+/* --- FINAL BUTTON FIX: Natural text width, 2x3 layout --- */
 .repo-actions {
     display: grid;
     grid-template-columns: repeat(2, max-content);
-    /* ✅ let each button size itself */
     justify-content: center;
     align-items: center;
-    gap: 12px 18px;
-    /* row / column spacing */
+    gap: 10px 18px;
+    /* vertical / horizontal spacing */
     margin-top: 1rem;
     text-align: center;
 }
 
-/* --- BUTTONS: pure text-based width --- */
 .repo-actions .btn-action {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 6px 16px;
-    /* balanced padding around text */
+    padding: 6px 14px;
+    /* perfect compact feel */
     font-size: 0.85rem;
     font-weight: 500;
     border-radius: 8px;
     border: none;
     white-space: nowrap;
     color: #fff;
-    transition: all 0.2s ease;
-    height: auto;
-    /* no fixed height */
-    width: auto;
-    /* ✅ full freedom */
+    width: auto !important;
+    /* 🧠 force width to fit text */
+    height: auto !important;
+    /* 🧠 keep compact height */
+    min-width: unset !important;
+    max-width: unset !important;
 }
 
-/* Hover animation */
 .repo-actions .btn-action:hover {
     transform: translateY(-2px);
     opacity: 0.9;
 }
+
 
 /* --- Responsive (keep same look everywhere) --- */
 @media (max-width: 768px),
