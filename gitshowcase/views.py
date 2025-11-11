@@ -8,7 +8,7 @@ import requests
 import json
 from datetime import datetime
 from .models import Bookmark, Comment
-from .forms import CommentForm
+from .forms import CommentForm, ContactForm
 
 # ---------------- HOME PAGE ----------------
 def home(request):
@@ -383,9 +383,13 @@ def delete_comment(request, comment_id):
 # ---------------- CONTACT PAGE ----------------
 def contact(request):
     if request.method == 'POST':
-        # Just go straight to the success page
-        return render(request, 'form/success.html')
-    return render(request, 'form/contact.html')
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'form/success.html')
+    else:
+        form = ContactForm()
+    return render(request, 'form/contact.html', {'form': form})
 
 
 def success(request):
