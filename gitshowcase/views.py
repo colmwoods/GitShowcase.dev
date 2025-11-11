@@ -385,8 +385,14 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            form.save()
-            return render(request, 'form/success.html')
+            try:
+                form.save()
+                return render(request, 'form/success.html')
+            except Exception as e:
+                print("💥 Contact form error:", e)
+                return render(request, 'form/contact.html', {'form': form})
+        else:
+            print("❌ Form errors:", form.errors)
     else:
         form = ContactForm()
     return render(request, 'form/contact.html', {'form': form})
