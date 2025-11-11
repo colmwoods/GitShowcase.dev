@@ -20,7 +20,7 @@
 
 {% if user.is_authenticated %}
 <div class="repo-section">
-    <h2 class="repo-title">Bookmarked Repositories ({{ repos|length }})</h2>
+    <h2 class="repo-title">Bookmarked Repositories ({{ bookmarks|length }})</h2>
 
     <div class="repo-container">
         {% if bookmarks %}
