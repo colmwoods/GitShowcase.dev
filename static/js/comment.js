@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", (e) => {
             e.preventDefault();
 
-            const commentId = button.dataset.commentId;
+            const commentId = button.dataset.commentid;
             const commentTextElement = button.closest("li").querySelector(".comment-body");
             const commentBody = commentTextElement ? commentTextElement.innerText.trim() : "";
 
