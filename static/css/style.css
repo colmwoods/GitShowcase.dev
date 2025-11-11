@@ -366,39 +366,62 @@ footer {
     white-space: nowrap;
 }
 
-/* --- Action Buttons Section: 2x3 Compact Layout --- */
+/* --- PERFECT 2x3 BUTTON GRID (matches screenshot) --- */
 .repo-actions {
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    /* ✅ 2 per row, auto width */
-    gap: 10px 16px;
-    /* row / column gap */
+    grid-template-columns: repeat(2, 1fr);
+    /* Always 2 buttons per row */
+    gap: 14px 18px;
+    /* vertical / horizontal spacing */
+    justify-items: center;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0 12px;
+}
+
+/* --- Button Style: same as screenshot --- */
+.repo-actions .btn-action {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    /* ✅ centers grid inside card */
-    margin-top: 0.7rem;
-    padding: 0 10px;
-    /* adds breathing room on left/right */
-}
-
-/* Compact buttons — not full width */
-.repo-actions .btn-action {
-    padding: 6px 12px;
-    /* smaller height */
-    font-size: 0.8rem;
-    /* ✅ smaller text */
+    width: 120px;
+    /* ✅ identical width for all buttons */
+    height: 38px;
+    /* ✅ same height as screenshot */
+    font-size: 0.85rem;
+    font-weight: 500;
     border-radius: 8px;
     white-space: nowrap;
-    min-width: 100px;
-    /* ensures equal width visually */
+    border: none;
+    color: #fff;
     text-align: center;
-    transition: transform 0.2s, opacity 0.2s;
+    padding: 0;
+    /* use fixed height for consistency */
+    transition: all 0.2s ease;
 }
 
+/* Hover behavior */
 .repo-actions .btn-action:hover {
     transform: translateY(-2px);
     opacity: 0.9;
 }
+
+/* ✅ No resizing on smaller screens — same spacing + grid everywhere */
+@media (max-width: 1024px),
+(max-width: 768px),
+(max-width: 480px) {
+    .repo-actions {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px 18px;
+    }
+
+    .repo-actions .btn-action {
+        width: 120px;
+        height: 38px;
+        font-size: 0.85rem;
+    }
+}
+
 
 /* --- Mobile Adjustments --- */
 @media (max-width: 768px) {
