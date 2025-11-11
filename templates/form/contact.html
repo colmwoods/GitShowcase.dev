@@ -12,40 +12,34 @@
 
                     <form class="row g-4" method="POST" action="{% url 'contact' %}">
                         {% csrf_token %}
-
                         <!-- First Name -->
                         <div class="col-12 col-md-6">
-                            <label for="first_name" class="form-label">First Name</label>
-                            <input type="text" class="form-control form-control-lg" id="first_name"
-                                placeholder="First name" required>
+                            <label for="id_first_name" class="form-label">First Name</label>
+                            {{ form.first_name|add_class:"form-control form-control-lg" }}
                         </div>
 
                         <!-- Last Name -->
                         <div class="col-12 col-md-6">
-                            <label for="last_name" class="form-label">Last Name</label>
-                            <input type="text" class="form-control form-control-lg" id="last_name"
-                                placeholder="Last name" required>
+                            <label for="id_last_name" class="form-label">Last Name</label>
+                            {{ form.last_name|add_class:"form-control form-control-lg" }}
                         </div>
 
                         <!-- Email -->
                         <div class="col-12">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control form-control-lg" id="email"
-                                placeholder="Your email address" required>
+                            <label for="id_email" class="form-label">Email</label>
+                            {{ form.email|add_class:"form-control form-control-lg" }}
                         </div>
 
-                        <!-- Phone (optional) -->
+                        <!-- Phone -->
                         <div class="col-12">
-                            <label for="phone" class="form-label">Phone (optional)</label>
-                            <input type="tel" class="form-control form-control-lg" id="phone"
-                                placeholder="Your phone number (optional)" pattern="[0-9]*" inputmode="numeric">
+                            <label for="id_phone" class="form-label">Phone (optional)</label>
+                            {{ form.phone|add_class:"form-control form-control-lg" }}
                         </div>
 
                         <!-- Message -->
                         <div class="col-12">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control form-control-lg" id="message" rows="5"
-                                placeholder="Type your message here..." required></textarea>
+                            <label for="id_message" class="form-label">Message</label>
+                            {{ form.message|add_class:"form-control form-control-lg" }}
                         </div>
 
                         <!-- Submit Button -->
