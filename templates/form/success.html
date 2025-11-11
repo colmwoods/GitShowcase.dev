@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container text-center py-5">
-    <div class="card shadow-lg border-0 p-5">
+<section class="d-flex align-items-center min-vh-100 bg-transparent text-white">
+    <div class="container text-center py-5">
         <h2 class="mb-3">Message Sent!</h2>
         <p class="lead">Thanks for reaching out — this is just a demo form, so no message was sent.</p>
         <a href="{% url 'contact' %}" class="btn btn-primary mt-3">Back to Contact Form</a>
     </div>
-</div>
+</section>
 {% endblock %}
