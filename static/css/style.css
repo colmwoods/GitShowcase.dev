@@ -366,61 +366,56 @@ footer {
     white-space: nowrap;
 }
 
-/* --- PERFECT 2x3 BUTTON GRID (matches screenshot) --- */
+/* --- 2x3 grid but natural button widths --- */
 .repo-actions {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* Always 2 buttons per row */
-    gap: 14px 18px;
-    /* vertical / horizontal spacing */
-    justify-items: center;
+    grid-template-columns: repeat(2, auto);
+    /* ✅ natural width */
+    gap: 12px 20px;
+    /* row/column spacing */
+    justify-content: center;
+    /* keeps grid centered */
     align-items: center;
     margin-top: 1rem;
-    padding: 0 12px;
+    padding: 0 10px;
 }
 
-/* --- Button Style: same as screenshot --- */
+/* --- natural responsive buttons --- */
 .repo-actions .btn-action {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 120px;
-    /* ✅ identical width for all buttons */
-    height: 38px;
-    /* ✅ same height as screenshot */
+    padding: 6px 14px;
+    /* ✅ balanced spacing inside buttons */
     font-size: 0.85rem;
     font-weight: 500;
     border-radius: 8px;
-    white-space: nowrap;
-    border: none;
-    color: #fff;
     text-align: center;
-    padding: 0;
-    /* use fixed height for consistency */
+    border: none;
+    white-space: nowrap;
+    color: #fff;
     transition: all 0.2s ease;
+    min-width: 85px;
+    /* ensures no button gets too tiny */
+    max-width: 150px;
+    /* keeps long labels neat */
 }
 
-/* Hover behavior */
+/* hover animation */
 .repo-actions .btn-action:hover {
     transform: translateY(-2px);
     opacity: 0.9;
 }
 
-/* ✅ No resizing on smaller screens — same spacing + grid everywhere */
-@media (max-width: 1024px),
-(max-width: 768px),
+/* ✅ keep same behavior on all screen sizes */
+@media (max-width: 768px),
 (max-width: 480px) {
     .repo-actions {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px 18px;
-    }
-
-    .repo-actions .btn-action {
-        width: 120px;
-        height: 38px;
-        font-size: 0.85rem;
+        grid-template-columns: repeat(2, auto);
+        gap: 12px 20px;
     }
 }
+
 
 
 /* --- Mobile Adjustments --- */
