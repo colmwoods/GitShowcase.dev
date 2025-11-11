@@ -285,6 +285,8 @@ def add_bookmark(request):
 @login_required(login_url='/accounts/login/')
 def bookmark_list(request):
     bookmarks = Bookmark.objects.filter(user=request.user).order_by('-created_at')
+
+    # Prepare repo_full_name for each bookmark
     for b in bookmarks:
         if b.repo_url:
             b.repo_full_name = (
@@ -294,6 +296,15 @@ def bookmark_list(request):
             )
         else:
             b.repo_full_name = ""
+    starred_repos = []
+    if request.user.is_authenticated:
+        github_account = request.user.socialaccount_set.filter(provider='github').first()
+        if github_account:
+            token = github_account.socialtoken_set.first().token
+            headers = {"Authorization": f"token {token}"}
+            response = requests.get("https://api.github.com/user/starred", headers=headers)
+            if response.status_code == 200:
+                starred_repos = [repo["full_name"].lower() for repo in response.json()]
     comments = Comment.objects.all().order_by('-created_at')
     comments_by_repo = {}
     for comment in comments:
@@ -301,11 +312,12 @@ def bookmark_list(request):
         if repo_name not in comments_by_repo:
             comments_by_repo[repo_name] = []
         comments_by_repo[repo_name].append(comment)
-
     return render(request, 'bookmarks.html', {
         'bookmarks': bookmarks,
-        'comments_by_repo': comments_by_repo
+        'comments_by_repo': comments_by_repo,
+        'starred_repos': starred_repos,
     })
+
 
 
 @login_required(login_url='/accounts/login/')
