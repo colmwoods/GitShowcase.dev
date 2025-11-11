@@ -283,6 +283,7 @@ footer {
     }
 }
 
+/* -------------------- REPOSITORY CARD LAYOUT -------------------- */
 .repo-card {
     background: #fff;
     color: #333;
@@ -295,38 +296,17 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 460px;
-    /* ✅ Ensures even height */
+    min-height: 480px;
+    /* ✅ Keeps consistent height for all cards */
 }
 
-.repo-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.85rem;
-    margin-top: auto;
-    /* pushes footer to bottom */
-    padding-top: 0.8rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.badge {
-    background: linear-gradient(135deg, #00bfff, #0077ff);
-    color: white;
-    padding: 4px 10px;
-    border-radius: 8px;
-    font-size: 0.8rem;
-    white-space: nowrap;
-}
-
-
+/* Hover glow */
 .repo-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 8px 20px rgba(0, 191, 255, 0.3);
 }
 
-
-/* HEADER */
+/* --- Card Header --- */
 .repo-header {
     display: flex;
     justify-content: space-between;
@@ -354,19 +334,72 @@ footer {
     color: #666;
 }
 
+/* --- Card Description --- */
 .repo-card p {
     font-size: 0.9rem;
     color: #444;
     margin-top: 0.5rem;
     line-height: 1.4;
+    min-height: 40px;
+    /* ✅ ensures spacing even if description missing */
 }
 
-.repo-actions {
+/* --- Footer Section (Language + Date) --- */
+.repo-footer {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-top: auto;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 1rem;
+    /* ✅ breathing space before buttons */
 }
+
+.badge {
+    background: linear-gradient(135deg, #00bfff, #0077ff);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+/* --- Action Buttons Section (2 × 3 layout) --- */
+.repo-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    gap: 12px 14px;
+    align-items: center;
+    justify-items: stretch;
+    margin-top: 0.5rem;
+}
+
+.repo-actions .btn-action {
+    width: 100%;
+    text-align: center;
+}
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 768px) {
+    .repo-card {
+        min-height: 420px;
+        max-width: 100%;
+    }
+
+    .repo-actions {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .repo-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 .btn-action {
     padding: 6px 10px;
