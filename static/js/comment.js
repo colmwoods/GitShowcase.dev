@@ -29,8 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", (e) => {
             e.preventDefault();
 
-            const commentId = button.getAttribute("data-comment_id");
-            console.log("Editing comment ID:", commentId);
+            const commentId = button.dataset.commentId;
             const commentTextElement = button.closest("li").querySelector(".comment-body");
             const commentBody = commentTextElement ? commentTextElement.innerText.trim() : "";
 
