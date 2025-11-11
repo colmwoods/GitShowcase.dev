@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment
+from .models import Comment, ContactMessage
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -12,3 +12,8 @@ class CommentForm(forms.ModelForm):
                 'class': 'form-control'
             }),
         }
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactMessage
+        fields = ['first_name', 'last_name', 'email', 'phone', 'message']
