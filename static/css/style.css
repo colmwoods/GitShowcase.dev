@@ -366,19 +366,38 @@ footer {
     white-space: nowrap;
 }
 
-/* --- Action Buttons Section (2 × 3 layout) --- */
+/* --- Action Buttons Section: 2x3 Compact Layout --- */
 .repo-actions {
     display: grid;
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
-    gap: 12px 14px;
+    grid-template-columns: repeat(2, auto);
+    /* ✅ 2 per row, auto width */
+    gap: 10px 16px;
+    /* row / column gap */
     align-items: center;
-    justify-items: stretch;
-    margin-top: 0.5rem;
+    justify-content: center;
+    /* ✅ centers grid inside card */
+    margin-top: 0.7rem;
+    padding: 0 10px;
+    /* adds breathing room on left/right */
 }
 
+/* Compact buttons — not full width */
 .repo-actions .btn-action {
-    width: 100%;
+    padding: 6px 12px;
+    /* smaller height */
+    font-size: 0.8rem;
+    /* ✅ smaller text */
+    border-radius: 8px;
+    white-space: nowrap;
+    min-width: 100px;
+    /* ensures equal width visually */
     text-align: center;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.repo-actions .btn-action:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
 }
 
 /* --- Mobile Adjustments --- */
