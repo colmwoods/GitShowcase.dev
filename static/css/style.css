@@ -335,18 +335,23 @@ footer {
 }
 
 .repo-card p {
+    font-size: 0.9rem;
+    color: #444;
     margin-top: 0.3rem;
-    /* keep a small readable gap */
-    margin-bottom: 0.2rem;
-    /* 🔥 shrink spacing below description */
+    /* less gap after description */
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
 }
 
 .repo-footer {
-    margin-top: 0.2rem;
-    /* tightens the gap between footer and description */
-    margin-bottom: 0.3rem;
-    /* 🔥 removes the white void before the buttons */
-    padding-top: 0.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    margin-bottom: 0.4rem;
+    /* ✅ tighter spacing before buttons */
 }
 
 .badge {
