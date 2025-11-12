@@ -376,31 +376,30 @@ footer {
 }
 
 .repo-actions {
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    gap: 14px 22px;
-    /* vertical/horizontal spacing */
-    margin-top: 1.2rem;
-    text-align: center;
+    gap: 10px 16px;
+    /* vertical | horizontal space */
+    margin-top: 1rem;
 }
 
-/* Buttons */
 .repo-actions .btn-action {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 7px 16px;
-    /* slightly more vertical room */
+    padding: 6px 14px;
+    /* height control only */
     font-size: 0.85rem;
     font-weight: 500;
     border-radius: 8px;
     border: none;
-    white-space: nowrap;
+    line-height: 1;
+    /* consistent height */
     color: #fff;
-    width: auto;
-    height: auto;
+    cursor: pointer;
+    white-space: nowrap;
+    /* prevents wrapping */
     transition: all 0.2s ease;
 }
 
@@ -408,6 +407,8 @@ footer {
     transform: translateY(-2px);
     opacity: 0.9;
 }
+
+
 
 /* --- Mobile Adjustments --- */
 @media (max-width: 768px) {
