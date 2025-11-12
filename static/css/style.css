@@ -486,7 +486,6 @@ footer {
     background: linear-gradient(135deg, #6f42c1, #9b59b6);
     color: #ffffff;
     border: none;
-    padding: 8px 12px;
     border-radius: 8px;
     font-size: 0.85rem;
     cursor: pointer;
@@ -622,7 +621,6 @@ footer {
     color: #fff;
     border: none;
     border-radius: 8px;
-    padding: 6px 14px;
     transition: all 0.2s ease-in-out;
 }
 
