@@ -394,6 +394,16 @@ footer {
     transition: all 0.2s ease;
 }
 
+.repo-actions>* {
+    flex: 0 1 calc(50% - 16px);
+}
+
+/* ✅ optional: enforce same look even on very small screens */
+@media (max-width: 360px) {
+    .repo-actions>* {
+        flex: 0 1 calc(50% - 12px);
+    }
+}
 
 .repo-actions .btn-action:hover {
     transform: translateY(-2px);
