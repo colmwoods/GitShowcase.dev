@@ -395,9 +395,13 @@ footer {
 }
 
 
-.repo-actions::after {
-    content: "";
-    flex: auto;
+/* ✅ ensures 2 per row visually, without changing widths */
+@media (max-width: 1024px) {
+    .repo-actions {
+        max-width: 260px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .repo-actions .btn-action:hover {
