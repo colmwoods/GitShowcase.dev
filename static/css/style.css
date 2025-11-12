@@ -21,7 +21,6 @@ body {
 /* -------------------- COMMON PAGE STYLES -------------------- */
 .login-page,
 .home-hero,
-.about-container,
 .repo-section {
     background: none;
     /* background now handled by body */
@@ -186,16 +185,31 @@ footer {
 }
 
 /* -------------------- ABOUT PAGE -------------------- */
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 4rem 1rem;
+    /* adds breathing space */
+    min-height: 100vh;
+    /* keeps it centered on tall pages */
+    box-sizing: border-box;
+}
+
 .about-card {
     background: #ffffff;
     padding: 3rem 2.5rem;
     border-radius: 16px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
     text-align: left;
-    width: 700px;
-    animation: fadeIn 1s ease forwards;
+    width: 100%;
+    max-width: 700px;
+    /* centers nicely */
     color: #333;
     line-height: 1.7;
+    animation: fadeIn 1s ease forwards;
+    overflow-wrap: break-word;
 }
 
 .about-card h1 {
