@@ -408,6 +408,29 @@ footer {
     opacity: 0.9;
 }
 
+/* 🔹 Force 2x2x2 button layout on all screen widths */
+@media (max-width: 1031px) {
+    .repo-actions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+        gap: 10px 16px;
+    }
+}
+
+/* 🔹 Specifically fix smallest phones (320px and up) */
+@media (max-width: 375px) {
+    .repo-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 320px) {
+    .repo-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 
 
 /* --- Mobile Adjustments --- */
