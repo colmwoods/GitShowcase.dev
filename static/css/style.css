@@ -375,36 +375,23 @@ footer {
     margin-top: 1rem;
 }
 
-/* ✅ NEW LINE ADDED BELOW */
 .repo-actions .btn-action {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 10px 18px;
+    /* height control only */
     font-size: 0.85rem;
     font-weight: 500;
     border-radius: 8px;
     border: none;
     line-height: 1.2;
+    /* consistent height */
     color: #fff;
     cursor: pointer;
     white-space: nowrap;
+    /* prevents wrapping */
     transition: all 0.2s ease;
-
-    /* ✅ ADDED THIS LINE to enforce 2 per row */
-    flex: 0 1 calc(50% - 16px);
-    text-align: center;
-    /* ✅ added for better centering */
-}
-
-/* ✅ Added this media query block to keep same layout on small screens */
-@media (max-width: 1031px),
-(max-width: 768px),
-(max-width: 480px),
-(max-width: 320px) {
-    .repo-actions .btn-action {
-        flex: 0 1 calc(50% - 16px);
-    }
 }
 
 
