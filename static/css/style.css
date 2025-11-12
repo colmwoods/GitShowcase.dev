@@ -394,6 +394,11 @@ footer {
     transition: all 0.2s ease;
 }
 
+.repo-actions::after {
+    content: "";
+    flex: auto;
+}
+
 
 /* ✅ ensures 2 per row visually, without changing widths */
 @media (max-width: 1024px) {
