@@ -371,7 +371,7 @@ footer {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px 16px;
-    /* vertical | horizontal space */
+    /* vertical | horizontal spacing */
     margin-top: 1rem;
 }
 
@@ -380,13 +380,12 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 10px 18px;
-    /* height control only */
+    /* equal height, flexible width */
     font-size: 0.85rem;
     font-weight: 500;
     border-radius: 8px;
     border: none;
     line-height: 1.2;
-    /* consistent height */
     color: #fff;
     cursor: pointer;
     white-space: nowrap;
@@ -394,19 +393,9 @@ footer {
     transition: all 0.2s ease;
 }
 
-.repo-actions::after {
-    content: "";
-    flex: auto;
-}
-
-
-/* ✅ ensures 2 per row visually, without changing widths */
-@media (max-width: 1024px) {
-    .repo-actions {
-        max-width: 260px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+.repo-actions .btn-action:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
 }
 
 .repo-actions .btn-action:hover {
