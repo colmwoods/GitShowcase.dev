@@ -366,26 +366,25 @@ footer {
     white-space: nowrap;
 }
 
-/* --- Always 2×2×2 buttons, keep natural (text-based) widths --- */
+/* ✅ Always 2×2×2 layout for buttons — text-based width */
 .repo-actions {
-    display: grid !important;
-    grid-template-columns: repeat(2, max-content) !important;
-    /* two columns, sized to content */
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    /* each button fits text */
     justify-content: center;
-    /* center the two columns */
-    align-content: start;
+    align-items: center;
     gap: 10px 16px;
-    /* row | column gap */
+    /* row-gap | column-gap */
     margin-top: 1rem;
 }
 
-/* keep your button sizing EXACTLY as you set it */
+/* ✅ Buttons: same height, flexible width */
 .repo-actions .btn-action {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 10px 18px;
-    /* height control only; no width forced */
+    /* controls height */
     font-size: 0.85rem;
     font-weight: 500;
     border-radius: 8px;
@@ -394,22 +393,21 @@ footer {
     color: #fff;
     cursor: pointer;
     white-space: nowrap;
-    /* don't let text wrap */
+    /* text stays in one line */
+    width: auto;
+    /* ✅ allows natural width per text */
     transition: all 0.2s ease;
 }
 
-/* Tighten spacing on the very smallest phones — no size change to buttons */
-@media (max-width: 360px) {
-    .repo-card {
-        padding: 1rem;
-    }
-
-    /* give buttons a bit more room */
+/* ✅ Keep same 2×2×2 layout even on smaller screens */
+@media (max-width: 1031px),
+(max-width: 768px),
+(max-width: 480px) {
     .repo-actions {
-        gap: 8px 10px;
+        grid-template-columns: repeat(2, max-content);
+        justify-content: center;
+        gap: 8px 12px;
     }
-
-    /* smaller gaps, still 2×2×2 */
 }
 
 
