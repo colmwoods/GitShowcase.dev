@@ -288,15 +288,16 @@ footer {
     background: #fff;
     color: #333;
     border-radius: 16px;
-    padding: 1.2rem;
-    /* 🔥 slightly smaller padding for tighter layout */
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 340px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 450px;
-    /* ✅ matches your reference image */
+    min-height: 480px;
+    /* ✅ Keeps consistent height for all cards */
 }
 
 /* Hover glow */
@@ -334,24 +335,18 @@ footer {
 }
 
 .repo-card p {
-    font-size: 0.9rem;
-    color: #444;
     margin-top: 0.3rem;
-    /* less gap after description */
-    margin-bottom: 0.3rem;
-    line-height: 1.4;
+    /* keep a small readable gap */
+    margin-bottom: 0.2rem;
+    /* 🔥 shrink spacing below description */
 }
 
 .repo-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.85rem;
-    margin-top: auto;
-    padding-top: 0.5rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    margin-bottom: 0.4rem;
-    /* ✅ tighter spacing before buttons */
+    margin-top: 0.2rem;
+    /* tightens the gap between footer and description */
+    margin-bottom: 0.3rem;
+    /* 🔥 removes the white void before the buttons */
+    padding-top: 0.2rem;
 }
 
 .badge {
@@ -373,12 +368,12 @@ footer {
 }
 
 .repo-actions {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 10px 16px;
-    margin-top: 0.8rem;
-    /* ✅ tighter connection with footer */
+    /* vertical | horizontal space */
+    margin-top: 1rem;
 }
 
 .repo-actions .btn-action {
@@ -386,13 +381,17 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 10px 18px;
-    /* ✅ perfect button height (like in image) */
+    /* height control only */
     font-size: 0.85rem;
     font-weight: 500;
     border-radius: 8px;
     border: none;
-    white-space: nowrap;
+    line-height: 1.2;
+    /* consistent height */
     color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+    /* prevents wrapping */
     transition: all 0.2s ease;
 }
 
