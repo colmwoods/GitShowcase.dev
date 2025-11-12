@@ -334,24 +334,27 @@ footer {
     color: #666;
 }
 
+/* --- Card Description --- */
 .repo-card p {
     font-size: 0.9rem;
     color: #444;
-    margin-top: 0.3rem;
-    /* less gap after description */
-    margin-bottom: 0.3rem;
+    margin-top: 0.5rem;
     line-height: 1.4;
+    min-height: 40px;
+    /* ✅ ensures spacing even if description missing */
 }
 
+/* --- Footer Section (Language + Date) --- */
 .repo-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 0.85rem;
     margin-top: auto;
-    padding-top: 0.5rem;
-    margin-bottom: 0.4rem;
-    /* ✅ tighter spacing before buttons */
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 1rem;
+    /* ✅ breathing space before buttons */
 }
 
 .badge {
