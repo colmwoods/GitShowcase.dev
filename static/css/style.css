@@ -366,25 +366,21 @@ footer {
     white-space: nowrap;
 }
 
-/* ✅ Always 2×2×2 layout for buttons — text-based width */
 .repo-actions {
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
-    /* each button fits text */
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
     gap: 10px 16px;
-    /* row-gap | column-gap */
+    /* vertical | horizontal space */
     margin-top: 1rem;
 }
 
-/* ✅ Buttons: same height, flexible width */
+/* ✅ NEW LINE ADDED BELOW */
 .repo-actions .btn-action {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 10px 18px;
-    /* controls height */
     font-size: 0.85rem;
     font-weight: 500;
     border-radius: 8px;
@@ -393,20 +389,21 @@ footer {
     color: #fff;
     cursor: pointer;
     white-space: nowrap;
-    /* text stays in one line */
-    width: auto;
-    /* ✅ allows natural width per text */
     transition: all 0.2s ease;
+
+    /* ✅ ADDED THIS LINE to enforce 2 per row */
+    flex: 0 1 calc(50% - 16px);
+    text-align: center;
+    /* ✅ added for better centering */
 }
 
-/* ✅ Keep same 2×2×2 layout even on smaller screens */
+/* ✅ Added this media query block to keep same layout on small screens */
 @media (max-width: 1031px),
 (max-width: 768px),
-(max-width: 480px) {
-    .repo-actions {
-        grid-template-columns: repeat(2, max-content);
-        justify-content: center;
-        gap: 8px 12px;
+(max-width: 480px),
+(max-width: 320px) {
+    .repo-actions .btn-action {
+        flex: 0 1 calc(50% - 16px);
     }
 }
 
