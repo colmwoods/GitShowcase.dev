@@ -3,183 +3,104 @@
 > [!NOTE]  
 > Return back to the [README.md](README.md) file.
 
-⚠️ INSTRUCTIONS ⚠️
+This document outlines all testing carried out on **GitShowcase.dev**, including code validation, responsiveness checks, browser compatibility testing, Lighthouse audits, defensive programming tests, and user story validation. All tests were performed on the deployed Heroku version to ensure accurate results aligned with real user interactions.
 
-In the following sections, you need to convince the assessors that you have conducted enough manual testing to legitimately believe that the site works well. Essentially, in this part, you should go over all of your project's features, and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
+Throughout development, testing played a central role in verifying that each feature behaved as expected — from GitHub OAuth authentication, to repository listing, bookmarking, commenting, searching users, and interacting with the GitHub API.
 
-⚠️ --- END --- ⚠️
+Where relevant, screenshots are provided to demonstrate successful testing outcomes, and any issues that arose during development have been documented in the Bugs section.
 
-## Code Validation
+---
 
-⚠️ INSTRUCTIONS ⚠️
+# Code Validation
 
-Use the space below to discuss code validation for all of your own code files (*where applicable*). You are not required to validate external libraries/frameworks.
+The following sections detail validation of all **HTML**, **CSS**, **JavaScript**, and **Python** files included in the project.  
+Only files written or modified by me have been validated — external libraries such as Bootstrap and Django Allauth are excluded, as they are maintained by third parties.
 
-**MANDATORY**: You must provide a screenshot for each file you validate.
+Each validator was used according to its recommended method:
 
-**PRO TIP**: Where possible, always validate the live URL pages/files, not your local code using copy/paste. There could be subtle/hidden differences.
+- **HTML** — validated using W3C Validator (live URL or compiled HTML via View Page Source).  
+- **CSS** — validated using W3C Jigsaw Validator (live URL).  
+- **JavaScript** — validated using JSHint with ES6 enabled.  
+- **Python** — validated using the PEP8 CI Linter.
 
-⚠️ --- END --- ⚠️
+This ensures the codebase adheres to correct syntax, readability standards, and best practices.
 
-### HTML
+### ## HTML Validation
 
-⚠️ INSTRUCTIONS ⚠️
+I have used the recommended **[HTML W3C Validator](https://validator.w3.org)** to validate all HTML files across the GitShowcase.dev project. Since this is a Django application that includes template tags such as `{% url %}`, `{% for %}`, and `{{ variables }}`, these files cannot be validated directly when pasted into the validator.
 
-1. [*recommended*] If you are using the live deployed site URLs, validate using this link: https://validator.w3.org/#validate_by_uri
-2. Otherwise, if you are copying/pasting your HTML code manually, use this link: https://validator.w3.org/#validate_by_input
+To ensure accurate validation:
 
-It's recommended to validate the live pages (all of them) using the deployed URL. This will give you a custom URL as well, which you can use below on your testing documentation. It makes it easier to return back to a page for validating it again in the future. The URL will look something like this:
+- Public pages were validated using the **Validate by URL** method on the deployed Heroku site.
+- Templates requiring authentication (such as bookmarks or comment-related views) were opened on the deployed site while logged in, and the compiled HTML was obtained through the browser’s **View Page Source**. This HTML was then validated using the **Validate by Direct Input** option.
+- Templates not reachable by URL (such as `base.html` or include components like `repo_card.html`) were validated by manually reviewing their rendered HTML output within the browser tools and validating the copied HTML.
 
-- https://validator.w3.org/nu/?doc=https://colmwoods.github.io/GitShowcase.dev/index.html
+This ensured every template was validated in its final rendered form, free of Django/Jinja syntax.
 
-⚠️ --- END --- ⚠️
-
-🛑 IMPORTANT 🛑
-
-RE: Python/Jinja syntax in HTML
-
-Python projects that use Jinja syntax, such as `{% for loops %}`, `{% url 'home' %}`, and `{{ variable|filter }}` will not validate properly if you're copying/pasting into the HTML validator.
-
-In order to properly validate these types of files, it's recommended to [validate by uri](https://validator.w3.org/#validate_by_uri) from the deployed Heroku pages.
-
-Unfortunately, pages that require a user to be "logged-in" and authenticated (CRUD functionality) will not work using this method, due to the fact that the HTML Validator (W3C) doesn't have access to login to an account on your project. In order to properly validate HTML pages with Jinja syntax for authenticated pages, follow these steps:
-
-- Navigate to the deployed pages which require authentication.
-- Right-click anywhere on the page, and select **View Page Source** (usually `CTRL+U` or `⌘+U` on Mac).
-- This will display the entire "compiled" code, without any Jinja syntax.
-- Copy everything, and use the [validate by input](https://validator.w3.org/#validate_by_input) method.
-- Repeat this process for every page that requires a user to be logged-in/authenticated (e.g.: CRUD functionality).
-
-🛑 ---- END --- 🛑
-
-I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files.
+### HTML Validation Results
 
 | Directory | File | URL | Screenshot | Notes |
-| --- | --- | --- | --- | --- |
-| templates | [about.html](https://github.com/colmwoods/GitShowcase.dev/blob/main/templates/about.html) | ⚠️ Link (if applicable) | ![screenshot](documentation/validation/html-templates-about.png) | ⚠️ Notes (if applicable) |
-| templates | [bookmarks.html](https://github.com/colmwoods/GitShowcase.dev/blob/main/templates/bookmarks.html) | ⚠️ Link (if applicable) | ![screenshot](documentation/validation/html-templates-bookmarks.png) | ⚠️ Notes (if applicable) |
-| templates | [home.html](https://github.com/colmwoods/GitShowcase.dev/blob/main/templates/home.html) | ⚠️ Link (if applicable) | ![screenshot](documentation/validation/html-templates-home.png) | ⚠️ Notes (if applicable) |
-| templates | [search.html](https://github.com/colmwoods/GitShowcase.dev/blob/main/templates/search.html) | ⚠️ Link (if applicable) | ![screenshot](documentation/validation/html-templates-search.png) | ⚠️ Notes (if applicable) |
-| templates | [login.html](https://github.com/colmwoods/GitShowcase.dev/blob/main/templates/account/login.html) | ⚠️ Link (if applicable) | ![screenshot](documentation/validation/html-templates-login.png) | ⚠️ Notes (if applicable) |
+|----------|------|-----|-----------|-------|
+| templates | about.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/about | ![screenshot](documentation/validation/html-about.png) | Static About page describing the platform and its purpose |
+| templates | bookmarks.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/bookmarks | ![screenshot](documentation/validation/html-bookmarks.png) | Displays the authenticated user’s bookmarked repositories |
+| templates | home.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/ | ![screenshot](documentation/validation/html-home.png) | Main homepage showing repositories retrieved from the GitHub API |
+| templates | search.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/search | ![screenshot](documentation/validation/html-search.png) | GitHub user search page allowing exploration of other profiles |
+| templates | 404.html | Not accessible directly | ![screenshot](documentation/validation/html-404.png) | Custom 404 page; validated via “View Page Source” |
+| templates | base.html | No live link (layout template) | ![screenshot](documentation/validation/html-base.png) | Master base template providing layout, navigation, and footer for all pages |
+| templates/includes | repo_card.html | No live link (include file) | ![screenshot](documentation/validation/html-repo-card.png) | Reusable card component for displaying repository metadata |
+| templates/account | login.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/accounts/login | ![screenshot](documentation/validation/html-login.png) | GitHub OAuth login page |
+| templates/form | contact.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/contact | ![screenshot](documentation/validation/html-contact.png) | Contact form that stores messages in the database |
+| templates/form | success.html | POST-only (no direct URL) | ![screenshot](documentation/validation/html-success.png) | Confirmation page displayed after a successful contact form submission |
 
 
-### CSS
+## CSS Validation
 
-⚠️ INSTRUCTIONS ⚠️
+I have used the recommended **[W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/)** to validate the custom CSS used in GitShowcase.dev. The project uses a single custom stylesheet (`style.css`) alongside external libraries such as Bootstrap. Only my own CSS was validated; external framework stylesheets are not required to be checked.
 
-1. [*recommended*] If you are using the live deployed site, use this link: https://jigsaw.w3.org/css-validator/#validate_by_uri
-2. If you are copying/pasting your CSS code, use this link: https://jigsaw.w3.org/css-validator/#validate_by_input
+The deployed CSS file was validated using the **Validate by URL** method to ensure the production version matched the validated output.
 
-It's recommended to validate the live site for your primary CSS file on the deployed URL. This will give you a custom URL as well, which you can use below on your testing documentation. It makes it easier to return back to a page for validating it again in the future. The URL will look something like this:
-
-- https://jigsaw.w3.org/css-validator/validator?uri=https://gitshowcase-dev-a0b7673e36ce.herokuapp.com
-
-If you have additional/multiple CSS files, then individual "[validation by input](https://jigsaw.w3.org/css-validator/#validate_by_input)" is recommended for the extra CSS files.
-
-**IMPORTANT**: Third-Party tools
-
-If you're using external libraries/frameworks (e.g: Bootstrap, Materialize, Font Awesome, etc.), then sometimes the tool will attempt to also validate these, even though it's not part of your own actual code that you wrote. You are not required to validate the external libraries or frameworks!
-
-⚠️ --- END --- ⚠️
-
-I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator) to validate all of my CSS files.
+### CSS Validation Results
 
 | Directory | File | URL | Screenshot | Notes |
-| --- | --- | --- | --- | --- |
-| static | [style.css](https://github.com/colmwoods/GitShowcase.dev/blob/main/static/css/style.css) | ⚠️ Link (if applicable) | ![screenshot](documentation/validation/css-static-style.png) | ⚠️ Notes (if applicable) |
+|----------|------|-----|-----------|-------|
+| static/css | style.css | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/static/css/style.css | ![screenshot](documentation/validation/css-style.png) | Main custom stylesheet controlling layout, typography, colour scheme, and components across the site |
 
 
-### JavaScript
+## JavaScript Validation
 
-⚠️ INSTRUCTIONS ⚠️
+I have used the recommended **[JSHint](https://jshint.com)** tool to validate all JavaScript files in the project. The validator was configured to support modern JavaScript (ES6+). Any warnings related to external globals (such as objects provided by the browser, Django templates, or API responses) were reviewed and considered acceptable where they related to external dependencies rather than issues in my own code.
 
-If using modern JavaScript (ES6) methods, then make sure to include the following line at the very top of every single JavaScript file in your project (this should remain in your files for submission as well):
+Both scripts focus on enhancing user interaction for starring repositories and working with comments on the front end.
 
-`/* jshint esversion: 11 */`
-
-If you are also including jQuery (`$`), then the updated format will be:
-
-`/* jshint esversion: 11, jquery: true */`
-
-This allows the JShint validator to recognize modern ES6 methods, such as: `let`, `const`, `template literals`, `arrow functions (=>)`, etc.
-
-**IMPORTANT**: External resources
-
-Sometimes we'll write JavaScript that imports variables from other files, such as "an array of questions" from `questions.js`, which are used within the main `script.js` file elsewhere. If that's the case, the JShint validation tool doesn't know how to recognize "unused variables" that would normally be imported locally when running your own project. These warnings are acceptable, so showcase on your screenshot(s).
-
-The same thing applies when using external libraries such as Stripe, Leaflet, Bootstrap, Materialize, etc. To instantiate these components, we need to use their respective declarator. Again, the JShint validation tool would flag these as "undefined/unused variables". These warnings are acceptable, so showcase on your screenshot(s).
-
-⚠️ --- END --- ⚠️
-
-I have used the recommended [JShint Validator](https://jshint.com) to validate all of my JS files.
+### JavaScript Validation Results
 
 | Directory | File | URL | Screenshot | Notes |
-| --- | --- | --- | --- | --- |
-| static | [star.js](https://github.com/colmwoods/GitShowcase.dev/blob/main/static/js/star.js) |  | ![screenshot](documentation/validation/js-static-star.png) | ⚠️ Notes (if applicable) |
+|----------|------|-----|-----------|-------|
+| static/js | comment.js | Included via base template; no direct URL | ![screenshot](documentation/validation/js-comment.png) | Handles client-side behaviour for comment interactions, such as toggling forms or improving UX around comment actions |
+| static/js | star.js | Included via base template; no direct URL | ![screenshot](documentation/validation/js-star.png) | Manages the star/unstar UI behaviour and communicates with the backend logic tied to GitHub star actions |
 
 
-### Python
+## Python Validation
 
-⚠️ INSTRUCTIONS ⚠️
+I have used the recommended **[PEP8 CI Python Linter](https://pep8ci.herokuapp.com)** to validate all Python files that I created or modified for GitShowcase.dev. This includes core Django project files, views, models, forms, and configuration modules.
 
-The [CI Python Linter](https://pep8ci.herokuapp.com) can be used two different ways.
+Auto-generated Django files located in `migrations/` and `__pycache__/` were intentionally excluded from validation.  
+Where Django’s default configuration resulted in very long lines (for example, some password validator settings in `settings.py`), the `# noqa` comment was added sparingly and only when line-breaking would negatively impact readability or functionality.
 
-- Copy/Paste your Python code directly into the linter.
-- As an API, using the "raw" URL appended to the linter URL.
-    - To find the "raw" URL, navigate to your file directly on the GitHub repo.
-    - On that page, GitHub provides a button on the right called "Raw" that you can click.
-    - From that new page, copy the full URL, and paste it after the CI Python Linter URL (with a `/` separator).
-
-It's recommended to validate each file using the API URL. This will give you a custom URL which you can use on your testing documentation. It makes it easier to return back to a file for validating it again in the future. Use the steps above to generate your own custom URLs for each Python file.
-
-**IMPORTANT**: `E501 line too long` errors
-
-You must strive to fix all Python lines that are too long (>80 characters). In rare cases where you cannot break the lines [*without breaking the functionality*], adding "`  # noqa`" (*NO Quality Assurance*) to the end of those lines will ignore linting validation. Do not use "`  # noqa`" all over your project just to clear down validation errors! This can still cause a project to fail, for failing to fix actual PEP8 validation errors.
-
-Sometimes variables can get too long, or excessive `if/else` conditional statements. These are acceptable instances to use the "`  # noqa`" comment.
-
-When trying to fix "line too long" errors, try to avoid using `/` to split lines. A better approach would be to use any type of opening bracket, and hit `<Enter>` just after that. Any opening bracket type will work: `(`, `[`, `{`. By using an opening bracket, Python knows where to appropriately indent the next line of code, without having to *guess* for yourself and attempt to "tab" to the correct indentation level.
-
-⚠️ --- END --- ⚠️
-
-🛑 IMPORTANT 🛑
-
-**IMPORTANT**: Django settings
-
-The Django `settings.py` file comes with 4 lines that are quite long, and will throw the `E501 line too long` error. This is default behavior, but can be fixed by adding the "`  # noqa`" comment at the end of those lines.
-
-```python
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # noqa
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",  # noqa
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",  # noqa
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",  # noqa
-    },
-]
-```
-
-**IMPORTANT**: *migration* and *pycache* files
-
-You do not have to validate files from the `migrations/` or `pycache/` folders! Ignore these `.py` files, and validate just the files that you've created or modified.
-
-🛑 --- END --- 🛑
-
-I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com) to validate all of my Python files.
+### Python Validation Results
 
 | Directory | File | URL | Screenshot | Notes |
-| --- | --- | --- | --- | --- |
-| gitshowcase | [models.py](https://github.com/colmwoods/GitShowcase.dev/blob/main/gitshowcase/models.py) | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/models.py) | ![screenshot](documentation/validation/py-gitshowcase-models.png) | ⚠️ Notes (if applicable) |
-| gitshowcase | [settings.py](https://github.com/colmwoods/GitShowcase.dev/blob/main/gitshowcase/settings.py) | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/settings.py) | ![screenshot](documentation/validation/py-gitshowcase-settings.png) | ⚠️ Notes (if applicable) |
-| gitshowcase | [urls.py](https://github.com/colmwoods/GitShowcase.dev/blob/main/gitshowcase/urls.py) | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/urls.py) | ![screenshot](documentation/validation/py-gitshowcase-urls.png) | ⚠️ Notes (if applicable) |
-| gitshowcase | [views.py](https://github.com/colmwoods/GitShowcase.dev/blob/main/gitshowcase/views.py) | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/views.py) | ![screenshot](documentation/validation/py-gitshowcase-views.png) | ⚠️ Notes (if applicable) |
-|  | [manage.py](https://github.com/colmwoods/GitShowcase.dev/blob/main/manage.py) | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/manage.py) | ![screenshot](documentation/validation/py--manage.png) | ⚠️ Notes (if applicable) |
+|----------|------|-----|-----------|-------|
+| gitshowcase | admin.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/admin.py) | ![screenshot](documentation/validation/py-admin.png) | Registers models with the Django admin interface |
+| gitshowcase | asgi.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/asgi.py) | ![screenshot](documentation/validation/py-asgi.png) | Standard ASGI configuration for async deployment |
+| gitshowcase | forms.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/forms.py) | ![screenshot](documentation/validation/py-forms.png) | Contains the contact form and any related form logic |
+| gitshowcase | models.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/models.py) | ![screenshot](documentation/validation/py-models.png) | Defines core models such as Repository, Bookmark, Comment, and Contact |
+| gitshowcase | settings.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/settings.py) | ![screenshot](documentation/validation/py-settings.png) | Project configuration, including installed apps, middleware, database, and third-party integrations |
+| gitshowcase | urls.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/urls.py) | ![screenshot](documentation/validation/py-urls.png) | URL routing for the main pages (home, bookmarks, search, about, contact, etc.) |
+| gitshowcase | views.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/views.py) | ![screenshot](documentation/validation/py-views.png) | Implements application logic for fetching GitHub data, handling bookmarks, comments, search, and page rendering |
+| gitshowcase | wsgi.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/wsgi.py) | ![screenshot](documentation/validation/py-wsgi.png) | Standard WSGI configuration used by the production server |
+| root | manage.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/manage.py) | ![screenshot](documentation/validation/py-manage.png) | Django management script used to run commands such as migrations, tests, and starting the development server |
+
 
 
 ## Responsiveness
