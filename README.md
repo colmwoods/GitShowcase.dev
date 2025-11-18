@@ -500,7 +500,9 @@ GitHub Issues served as the home for:
 
 ## MoSCoW Prioritisation
 
-The project used MoSCoW to determine priorities:
+MoSCoW was used to prioritise features during development.  
+Full User Stories, Acceptance Criteria, and Agile planning can be found in  
+👉 [user_stories.md](docs/user_stories.md).
 
 ### **Must Have**
 - GitHub OAuth login  
