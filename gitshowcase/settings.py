@@ -111,6 +111,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'gitshowcase.wsgi.application'
 
+# Need This Line For Mockup
+X_FRAME_OPTIONS = 'ALLOWALL'
+
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
