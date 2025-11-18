@@ -71,9 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const isHidden = target.style.display === "none" || !target.style.display;
             target.style.display = isHidden ? "block" : "none";
-            button.textContent = isHidden
-                ? button.textContent.replace("💬", "📖")
-                : button.textContent.replace("📖", "💬");
+            button.textContent = isHidden ?
+                button.textContent.replace("💬", "📖") :
+                button.textContent.replace("📖", "💬");
         });
     });
 
