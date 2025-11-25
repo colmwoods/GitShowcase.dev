@@ -7,6 +7,26 @@ Developer: Colm Woods ([colmwoods](https://www.github.com/colmwoods))
 [![GitHub repo size](https://img.shields.io/github/repo-size/colmwoods/GitShowcase.dev)](https://www.github.com/colmwoods/GitShowcase.dev)
 [![badge](https://img.shields.io/badge/deployment-Heroku-purple)](https://gitshowcase-dev-a0b7673e36ce.herokuapp.com)
 
+# Table of Contents
+- [Project Introduction](#project-introduction-and-rationale)
+- [UX](#ux)
+  - [1. Strategy](#1-strategy)
+  - [2. Scope](#2-scope)
+  - [3. Structure](#3-structure)
+  - [4. Skeleton](#4-skeleton)
+  - [5. Surface](#5-surface)
+- [Colour Scheme](#colour-scheme)
+- [Typography](#typography)
+- [Wireframes](#wireframes)
+- [User Stories](#user-stories)
+- [Features](#features)
+- [Database Design](#database-design)
+- [Agile Development](#agile-development-process)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Credits](#credits)
+- [Acknowledgements](#acknowledgements)
+
 # Project Introduction And Rationale
 
 GitShowcase.dev is a platform designed for developers to present, explore, and interact with GitHub repositories in a clean, structured, and user-friendly interface. While GitHub provides powerful developer tooling, GitShowcase.dev focuses on enhancing *presentation*, *readability*, and *discoverability* — giving users a portfolio-style experience without requiring them to manually curate content.

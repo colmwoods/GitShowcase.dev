@@ -11,7 +11,7 @@ Where relevant, screenshots are provided to demonstrate successful testing outco
 
 ---
 
-# Code Validation
+## Code Validation
 
 The following sections detail validation of all **HTML**, **CSS**, **JavaScript**, and **Python** files included in the project.  
 Only files written or modified by me have been validated — external libraries such as Bootstrap and Django Allauth are excluded, as they are maintained by third parties.
@@ -25,7 +25,7 @@ Each validator was used according to its recommended method:
 
 This ensures the codebase adheres to correct syntax, readability standards, and best practices.
 
-### ## HTML Validation
+### HTML Validation
 
 I have used the recommended **[HTML W3C Validator](https://validator.w3.org)** to validate all HTML files across the GitShowcase.dev project. Since this is a Django application that includes template tags such as `{% url %}`, `{% for %}`, and `{{ variables }}`, these files cannot be validated directly when pasted into the validator.
 
@@ -41,16 +41,16 @@ This ensured every template was validated in its final rendered form, free of Dj
 
 | Directory | File | URL | Screenshot | Notes |
 |----------|------|-----|-----------|-------|
-| templates | about.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/about | ![screenshot](documentation/validation/html-about.png) | Static About page describing the platform and its purpose |
-| templates | bookmarks.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/bookmarks | ![screenshot](documentation/validation/html-bookmarks.png) | Displays the authenticated user’s bookmarked repositories |
-| templates | home.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/ | ![screenshot](documentation/validation/html-home.png) | Main homepage showing repositories retrieved from the GitHub API |
-| templates | search.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/search | ![screenshot](documentation/validation/html-search.png) | GitHub user search page allowing exploration of other profiles |
-| templates | 404.html | Not accessible directly | ![screenshot](documentation/validation/html-404.png) | Custom 404 page; validated via “View Page Source” |
-| templates | base.html | No live link (layout template) | ![screenshot](documentation/validation/html-base.png) | Master base template providing layout, navigation, and footer for all pages |
-| templates/includes | repo_card.html | No live link (include file) | ![screenshot](documentation/validation/html-repo-card.png) | Reusable card component for displaying repository metadata |
-| templates/account | login.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/accounts/login | ![screenshot](documentation/validation/html-login.png) | GitHub OAuth login page |
-| templates/form | contact.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/contact | ![screenshot](documentation/validation/html-contact.png) | Contact form that stores messages in the database |
-| templates/form | success.html | POST-only (no direct URL) | ![screenshot](documentation/validation/html-success.png) | Confirmation page displayed after a successful contact form submission |
+| templates | about.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/about | ![screenshot](documentation/validation/html-about.jpg) | Static About page describing the platform and its purpose |
+| templates | bookmarks.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/bookmarks | ![screenshot](documentation/validation/html-bookmarks.jpg) | Displays the authenticated user’s bookmarked repositories |
+| templates | home.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/ | ![screenshot](documentation/validation/html-home.jpg) | Main homepage showing repositories retrieved from the GitHub API |
+| templates | search.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/search | ![screenshot](documentation/validation/html-search.jpg) | GitHub user search page allowing exploration of other profiles |
+| templates | 404.html | Not accessible directly | ![screenshot](documentation/validation/html-404.jpg) | Custom 404 page; validated via “View Page Source” |
+| templates | base.html | No live link (layout template) | ![screenshot](documentation/validation/html-base.jpg) | Master base template providing layout, navigation, and footer for all pages, Tested by removing django blocks and pasting into validator |
+| templates/includes | repo_card.html | No live link (include file) | ![screenshot](documentation/validation/html-repo_card.jpg) | Reusable card component for displaying repository metadata, Tested by removing django blocks and pasting into validator |
+| templates/account | login.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/accounts/login | ![screenshot](documentation/validation/html-login.jpg) | GitHub OAuth login page |
+| templates/form | contact.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/contact | ![screenshot](documentation/validation/html-contact.jpg) | Contact form that stores messages in the database |
+| templates/form | success.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/success | ![screenshot](documentation/validation/html-success.jpg) | Confirmation page displayed after a successful contact form submission |
 
 
 ## CSS Validation
@@ -63,7 +63,7 @@ The deployed CSS file was validated using the **Validate by URL** method to ensu
 
 | Directory | File | URL | Screenshot | Notes |
 |----------|------|-----|-----------|-------|
-| static/css | style.css | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/static/css/style.css | ![screenshot](documentation/validation/css-style.png) | Main custom stylesheet controlling layout, typography, colour scheme, and components across the site |
+| static/css | style.css | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/static/css/style.css | ![screenshot](documentation/validation/css-style.jpg) | Main custom stylesheet controlling layout, typography, colour scheme, and components across the site |
 
 
 ## JavaScript Validation
@@ -76,8 +76,8 @@ Both scripts focus on enhancing user interaction for starring repositories and w
 
 | Directory | File | URL | Screenshot | Notes |
 |----------|------|-----|-----------|-------|
-| static/js | comment.js | Included via base template; no direct URL | ![screenshot](documentation/validation/js-comment.png) | Handles client-side behaviour for comment interactions, such as toggling forms or improving UX around comment actions |
-| static/js | star.js | Included via base template; no direct URL | ![screenshot](documentation/validation/js-star.png) | Manages the star/unstar UI behaviour and communicates with the backend logic tied to GitHub star actions |
+| static/js | comment.js | Included via base template; no direct URL | ![screenshot](documentation/validation/js-comment.jpg) | Handles client-side behaviour for comment interactions, such as toggling forms or improving UX around comment actions |
+| static/js | star.js | Included via base template; no direct URL | ![screenshot](documentation/validation/js-star.jpg) | Manages the star/unstar UI behaviour and communicates with the backend logic tied to GitHub star actions |
 
 
 ## Python Validation
@@ -91,377 +91,410 @@ Where Django’s default configuration resulted in very long lines (for example,
 
 | Directory | File | URL | Screenshot | Notes |
 |----------|------|-----|-----------|-------|
-| gitshowcase | admin.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/admin.py) | ![screenshot](documentation/validation/py-admin.png) | Registers models with the Django admin interface |
-| gitshowcase | asgi.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/asgi.py) | ![screenshot](documentation/validation/py-asgi.png) | Standard ASGI configuration for async deployment |
-| gitshowcase | forms.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/forms.py) | ![screenshot](documentation/validation/py-forms.png) | Contains the contact form and any related form logic |
-| gitshowcase | models.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/models.py) | ![screenshot](documentation/validation/py-models.png) | Defines core models such as Repository, Bookmark, Comment, and Contact |
-| gitshowcase | settings.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/settings.py) | ![screenshot](documentation/validation/py-settings.png) | Project configuration, including installed apps, middleware, database, and third-party integrations |
-| gitshowcase | urls.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/urls.py) | ![screenshot](documentation/validation/py-urls.png) | URL routing for the main pages (home, bookmarks, search, about, contact, etc.) |
-| gitshowcase | views.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/views.py) | ![screenshot](documentation/validation/py-views.png) | Implements application logic for fetching GitHub data, handling bookmarks, comments, search, and page rendering |
-| gitshowcase | wsgi.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/wsgi.py) | ![screenshot](documentation/validation/py-wsgi.png) | Standard WSGI configuration used by the production server |
-| root | manage.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/manage.py) | ![screenshot](documentation/validation/py-manage.png) | Django management script used to run commands such as migrations, tests, and starting the development server |
+| gitshowcase | admin.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/admin.py) | ![screenshot](documentation/validation/py-admin.jpg) | Registers models with the Django admin interface |
+| gitshowcase | asgi.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/asgi.py) | ![screenshot](documentation/validation/py-asgi.jpg) | Standard ASGI configuration for async deployment |
+| gitshowcase | forms.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/forms.py) | ![screenshot](documentation/validation/py-forms.jpg) | Contains the contact form and any related form logic |
+| gitshowcase | models.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/models.py) | ![screenshot](documentation/validation/py-models.jpg) | Defines core models such as Repository, Bookmark, Comment, and Contact |
+| gitshowcase | settings.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/settings.py) | ![screenshot](documentation/validation/py-settings.jpg) | Project configuration, including installed apps, middleware, database, and third-party integrations |
+| gitshowcase | urls.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/urls.py) | ![screenshot](documentation/validation/py-urls.jpg) | URL routing for the main pages (home, bookmarks, search, about, contact, etc.) |
+| gitshowcase | views.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/views.py) | ![screenshot](documentation/validation/py-views.jpg) | Implements application logic for fetching GitHub data, handling bookmarks, comments, search, and page rendering |
+| gitshowcase | wsgi.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/wsgi.py) | ![screenshot](documentation/validation/py-wsgi.jpg) | Standard WSGI configuration used by the production server |
+| root | manage.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/manage.py) | ![screenshot](documentation/validation/py-manage.jpg) | Django management script used to run commands such as migrations, tests, and starting the development server |
 
-
+---
 
 ## Responsiveness
 
-⚠️ INSTRUCTIONS ⚠️
+All publicly accessible pages of GitShowcase.dev were tested for responsiveness using:
 
-Use this space to discuss testing the live/deployed site on various device sizes.
+- **Chrome DevTools Device Emulator**
+- **Safari Responsive Design Mode**
+- **Actual physical devices** (iPhone 12, Samsung Galaxy A52, iPad 10th gen)
+- Screen sizes between **320px and 1920px**
 
-The minimum requirement is to test the following 3 sizes:
+The Bootstrap grid system, custom CSS, and component layout were checked to ensure consistent rendering across mobile, tablet, and desktop breakpoints.
 
-- Mobile
-- Tablet
-- Desktop
+Every page was verified for:
 
-**IMPORTANT**: You must provide screenshots of your results, to "prove" that you've actually tested them.
+- Proper text scaling  
+- No horizontal scrolling  
+- Correct card/grid wrapping  
+- Navigation collapsing correctly on mobile  
+- Buttons and forms remaining accessible and sized correctly  
+- Images and repository cards maintaining alignment
 
-Using the [amiresponsive](http://ami.responsivedesign.is) mockup images (*or similar*) does not meet the requirements. Consider using some of the built-in device sizes from the Developer Tools.
+### Aesthetic Multi-Device Mockup
 
-If you have tested the project on your actual mobile phone or tablet, consider also including screenshots of these as well. It showcases a higher level of manual tests, and can be seen as a positive inclusion!
+To visually demonstrate how GitShowcase.dev appears across multiple devices, I generated a responsive mockup using **ami.responsivedesign.is**.
 
-⚠️ --- END --- ⚠️
+![screenshot](documentation/responsiveness/mockup.jpg)
+
+*Note: This mockup is for presentation only. All formal responsiveness testing was carried out using physical devices and developer tools, as shown in the table below.*
 
 I've tested my deployed project to check for responsiveness issues.
+To ensure consistent behaviour across key device categories, three standard screen sizes were used as primary responsiveness checkpoints:
+
+- **Mobile:** 375 × 812 px (iPhone 12 baseline)
+- **Tablet:** 768 × 1024 px (iPad portrait)
+- **Laptop/Desktop:** 1440 × 900 px (MacBook Air/Pro baseline)
+
+> **Authentication Notice:**  
+> Several pages included in this responsiveness testing — such as Bookmarks, Search Users, and any GitHub-integrated features — require the user to be logged in.  
+> Because of this, these pages are not accessible to the public without authentication.  
+> All screenshots and tests were carried out while logged in to ensure that both public and private areas of the platform behave consistently across all screen sizes.
 
 | Page | Mobile | Tablet | Desktop | Notes |
-| --- | --- | --- | --- | --- |
-| Register | ![screenshot](documentation/responsiveness/mobile-register.png) | ![screenshot](documentation/responsiveness/tablet-register.png) | ![screenshot](documentation/responsiveness/desktop-register.png) | Works as expected |
-| Login | ![screenshot](documentation/responsiveness/mobile-login.png) | ![screenshot](documentation/responsiveness/tablet-login.png) | ![screenshot](documentation/responsiveness/desktop-login.png) | Works as expected |
-| Home | ![screenshot](documentation/responsiveness/mobile-home.png) | ![screenshot](documentation/responsiveness/tablet-home.png) | ![screenshot](documentation/responsiveness/desktop-home.png) | Works as expected |
-| Add Blog | ![screenshot](documentation/responsiveness/mobile-add-blog.png) | ![screenshot](documentation/responsiveness/tablet-add-blog.png) | ![screenshot](documentation/responsiveness/desktop-add-blog.png) | Works as expected |
-| Edit Blog | ![screenshot](documentation/responsiveness/mobile-edit-blog.png) | ![screenshot](documentation/responsiveness/tablet-edit-blog.png) | ![screenshot](documentation/responsiveness/desktop-edit-blog.png) | Works as expected |
-| Blog Post | ![screenshot](documentation/responsiveness/mobile-blog-post.png) | ![screenshot](documentation/responsiveness/tablet-blog-post.png) | ![screenshot](documentation/responsiveness/desktop-blog-post.png) | Works as expected |
-| 404 | ![screenshot](documentation/responsiveness/mobile-404.png) | ![screenshot](documentation/responsiveness/tablet-404.png) | ![screenshot](documentation/responsiveness/desktop-404.png) | Works as expected |
+|------|--------|--------|---------|--------|
+| Home | ![screenshot](documentation/responsiveness/mobile-home.jpg) | ![screenshot](documentation/responsiveness/tablet-home.jpg) | ![screenshot](documentation/responsiveness/desktop-home.jpg) | Repository cards stack correctly on mobile and expand into grid layout on larger screens |
+| About | ![screenshot](documentation/responsiveness/mobile-about.jpg) | ![screenshot](documentation/responsiveness/tablet-about.jpg) | ![screenshot](documentation/responsiveness/desktop-about.jpg) | Text and spacing scale evenly across all screen sizes |
+| Bookmarks | ![screenshot](documentation/responsiveness/mobile-bookmarks.jpg) | ![screenshot](documentation/responsiveness/tablet-bookmarks.jpg) | ![screenshot](documentation/responsiveness/desktop-bookmarks.jpg) | Bookmark cards reflow correctly and stay aligned |
+| Search Users | ![screenshot](documentation/responsiveness/mobile-search.jpg) | ![screenshot](documentation/responsiveness/tablet-search.jpg) | ![screenshot](documentation/responsiveness/desktop-search.jpg) | Search bar and user result listings remain centred and responsive |
+| Contact | ![screenshot](documentation/responsiveness/mobile-contact.jpg) | ![screenshot](documentation/responsiveness/tablet-contact.jpg) | ![screenshot](documentation/responsiveness/desktop-contact.jpg) | Form inputs adjust properly with the screen size |
+| Contact Success | ![screenshot](documentation/responsiveness/mobile-success.jpg) | ![screenshot](documentation/responsiveness/tablet-success.jpg) | ![screenshot](documentation/responsiveness/desktop-success.jpg) | Confirmation message stays centred and readable on all devices |
+| Login | ![screenshot](documentation/responsiveness/mobile-login.jpg) | ![screenshot](documentation/responsiveness/tablet-login.jpg) | ![screenshot](documentation/responsiveness/desktop-login.jpg) | GitHub login button displays centrally and remains touch-friendly |
+| 404 | ![screenshot](documentation/responsiveness/mobile-404.jpg) | ![screenshot](documentation/responsiveness/tablet-404.jpg) | ![screenshot](documentation/responsiveness/desktop-404.jpg) | Error message and navigation button remain fully responsive |
+
+---
 
 ## Browser Compatibility
 
-⚠️ INSTRUCTIONS ⚠️
+The deployed version of GitShowcase.dev was tested across multiple browsers to ensure consistent rendering, layout behaviour, interaction, and performance. Each page was reviewed on the latest stable releases of **Google Chrome**, **Mozilla Firefox**, **Apple Safari**, **Opera**, and **Microsoft Edge**.
 
-Use this space to discuss testing the live/deployed site on various browsers. Consider testing at least 3 different browsers, if available on your system. You DO NOT need to use all of the browsers below, just pick any 3 (minimum).
+Screenshots were taken on all five browsers to demonstrate compatibility and confirm that GitHub OAuth login, repository cards, bookmarks, comments, forms, and search functionality behave consistently.
 
-Recommended browsers to consider:
-- [Chrome](https://www.google.com/chrome)
-- [Firefox (Developer Edition)](https://www.mozilla.org/firefox/developer)
-- [Edge](https://www.microsoft.com/edge)
-- [Safari](https://support.apple.com/downloads/safari)
-- [Brave](https://brave.com/download)
-- [Opera](https://www.opera.com/download)
+| Page | Chrome | Firefox | Safari | Opera | Edge | Notes |
+|------|--------|---------|--------|--------|--------|--------|
+| Home | ![screenshot](documentation/browsers/chrome-home.jpg) | ![screenshot](documentation/browsers/firefox-home.jpg) | ![screenshot](documentation/browsers/safari-home.jpg) | ![screenshot](documentation/browsers/opera-home.jpg) | ![screenshot](documentation/browsers/edge-home.jpg) | Repository cards and layout behave consistently across browsers |
+| About | ![screenshot](documentation/browsers/chrome-about.jpg) | ![screenshot](documentation/browsers/firefox-about.jpg) | ![screenshot](documentation/browsers/safari-about.jpg) | ![screenshot](documentation/browsers/opera-about.jpg) | ![screenshot](documentation/browsers/edge-about.jpg) | Static about page displays correctly on all platforms |
+| Bookmarks | ![screenshot](documentation/browsers/chrome-bookmarks.jpg) | ![screenshot](documentation/browsers/firefox-bookmarks.jpg) | ![screenshot](documentation/browsers/safari-bookmarks.jpg) | ![screenshot](documentation/browsers/opera-bookmarks.jpg) | ![screenshot](documentation/browsers/edge-bookmarks.jpg) | Bookmark functionality and card layout work consistently |
+| Search Users | ![screenshot](documentation/browsers/chrome-search.jpg) | ![screenshot](documentation/browsers/firefox-search.jpg) | ![screenshot](documentation/browsers/safari-search.jpg) | ![screenshot](documentation/browsers/opera-search.jpg) | ![screenshot](documentation/browsers/edge-search.jpg) | Search bar and user listings behave the same across browsers |
+| Contact | ![screenshot](documentation/browsers/chrome-contact.jpg) | ![screenshot](documentation/browsers/firefox-contact.jpg) | ![screenshot](documentation/browsers/safari-contact.jpg) | ![screenshot](documentation/browsers/opera-contact.jpg) | ![screenshot](documentation/browsers/edge-contact.jpg) | Form fields render consistently and submit correctly |
+| Contact Success | ![screenshot](documentation/browsers/chrome-success.jpg) | ![screenshot](documentation/browsers/firefox-success.jpg) | ![screenshot](documentation/browsers/safari-success.jpg) | ![screenshot](documentation/browsers/opera-success.jpg) | ![screenshot](documentation/browsers/edge-success.jpg) | Confirmation message displays correctly on all browsers |
+| Login | ![screenshot](documentation/browsers/chrome-login.jpg) | ![screenshot](documentation/browsers/firefox-login.jpg) | ![screenshot](documentation/browsers/safari-login.jpg) | ![screenshot](documentation/browsers/opera-login.jpg) | ![screenshot](documentation/browsers/edge-login.jpg) | GitHub OAuth login button displays properly across all browsers |
+| 404 | ![screenshot](documentation/browsers/chrome-404.jpg) | ![screenshot](documentation/browsers/firefox-404.jpg) | ![screenshot](documentation/browsers/safari-404.jpg) | ![screenshot](documentation/browsers/opera-404.jpg) | ![screenshot](documentation/browsers/edge-404.jpg) | Custom error page remains fully compatible |
 
-**IMPORTANT**: You must provide screenshots of the browsers you've tested, to "prove" that you've actually tested them.
 
-Please note, there are services out there that can test multiple browser compatibilities at the same time. Some of these are paid services, but some are free. If you use these, you must provide a link to the source used for attribution, and multiple screenshots of the results.
+All tested browsers displayed the site properly with identical behaviour across all interactive elements.
 
-⚠️ --- END --- ⚠️
-
-I've tested my deployed project on multiple browsers to check for compatibility issues.
-
-| Page | Chrome | Firefox | Safari | Notes |
-| --- | --- | --- | --- | --- |
-| Register | ![screenshot](documentation/browsers/chrome-register.png) | ![screenshot](documentation/browsers/firefox-register.png) | ![screenshot](documentation/browsers/safari-register.png) | Works as expected |
-| Login | ![screenshot](documentation/browsers/chrome-login.png) | ![screenshot](documentation/browsers/firefox-login.png) | ![screenshot](documentation/browsers/safari-login.png) | Works as expected |
-| Home | ![screenshot](documentation/browsers/chrome-home.png) | ![screenshot](documentation/browsers/firefox-home.png) | ![screenshot](documentation/browsers/safari-home.png) | Works as expected |
-| Add Blog | ![screenshot](documentation/browsers/chrome-add-blog.png) | ![screenshot](documentation/browsers/firefox-add-blog.png) | ![screenshot](documentation/browsers/safari-add-blog.png) | Works as expected |
-| Edit Blog | ![screenshot](documentation/browsers/chrome-edit-blog.png) | ![screenshot](documentation/browsers/firefox-edit-blog.png) | ![screenshot](documentation/browsers/safari-edit-blog.png) | Works as expected |
-| Blog Post | ![screenshot](documentation/browsers/chrome-blog-post.png) | ![screenshot](documentation/browsers/firefox-blog-post.png) | ![screenshot](documentation/browsers/safari-blog-post.png) | Works as expected |
-| 404 | ![screenshot](documentation/browsers/chrome-404.png) | ![screenshot](documentation/browsers/firefox-404.png) | ![screenshot](documentation/browsers/safari-404.png) | Works as expected |
+---
 
 ## Lighthouse Audit
 
-⚠️ INSTRUCTIONS ⚠️
+The deployed GitShowcase.dev application was tested using **Google Lighthouse** within Chrome DevTools. Each page was tested for both **mobile** and **desktop** to evaluate accessibility, performance, SEO, and best-practice compliance.
 
-Use this space to discuss testing the live/deployed site's Lighthouse Audit reports. Avoid testing the local version (Gitpod/VSCode/etc.), as this can have knock-on effects for performance. If you don't have "Lighthouse" in your Developer Tools, it can be added as an [extension](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk).
+Mobile scores tend to be lower due to GitHub API requests, external fonts, and the use of third-party assets, which is expected and typical for API-driven applications. Desktop results generally show higher scores.
 
-Unless your project is a single-page application (SPA), you should test Lighthouse Audit results for all of your pages, for both *mobile* and *desktop*.
-
-**IMPORTANT**: You must provide screenshots of the results, to "prove" that you've actually tested them.
-
-⚠️ --- END --- ⚠️
-
-I've tested my deployed project using the Lighthouse Audit tool to check for any major issues. Some warnings are outside of my control, and mobile results tend to be lower than desktop.
+I am running these lighthouse tests in incognito mode as chrome extentions and more can have an impact on final
 
 | Page | Mobile | Desktop |
-| --- | --- | --- |
-| Register | ![screenshot](documentation/lighthouse/mobile-register.png) | ![screenshot](documentation/lighthouse/desktop-register.png) |
-| Login | ![screenshot](documentation/lighthouse/mobile-login.png) | ![screenshot](documentation/lighthouse/desktop-login.png) |
-| Home | ![screenshot](documentation/lighthouse/mobile-home.png) | ![screenshot](documentation/lighthouse/desktop-home.png) |
-| Add Blog | ![screenshot](documentation/lighthouse/mobile-add-blog.png) | ![screenshot](documentation/lighthouse/desktop-add-blog.png) |
-| Edit Blog | ![screenshot](documentation/lighthouse/mobile-edit-blog.png) | ![screenshot](documentation/lighthouse/desktop-edit-blog.png) |
-| Blog Post | ![screenshot](documentation/lighthouse/mobile-blog-post.png) | ![screenshot](documentation/lighthouse/desktop-blog-post.png) |
-| 404 | ![screenshot](documentation/lighthouse/mobile-404.png) | ![screenshot](documentation/lighthouse/desktop-404.png) |
+|------|--------|---------|
+| Home | ![screenshot](documentation/lighthouse/mobile-home.jpg) | ![screenshot](documentation/lighthouse/desktop-home.jpg) |
+| About | ![screenshot](documentation/lighthouse/mobile-about.jpg) | ![screenshot](documentation/lighthouse/desktop-about.jpg) |
+| Bookmarks | ![screenshot](documentation/lighthouse/mobile-bookmarks.jpg) | ![screenshot](documentation/lighthouse/desktop-bookmarks.jpg) |
+| Search Users | ![screenshot](documentation/lighthouse/mobile-search.jpg) | ![screenshot](documentation/lighthouse/desktop-search.jpg) |
+| Contact | ![screenshot](documentation/lighthouse/mobile-contact.jpg) | ![screenshot](documentation/lighthouse/desktop-contact.jpg) |
+| Contact Success | ![screenshot](documentation/lighthouse/mobile-success.jpg) | ![screenshot](documentation/lighthouse/desktop-success.jpg) |
+| Login | ![screenshot](documentation/lighthouse/mobile-login.jpg) | ![screenshot](documentation/lighthouse/desktop-login.jpg) |
+| 404 | ![screenshot](documentation/lighthouse/mobile-404.jpg) | ![screenshot](documentation/lighthouse/desktop-404.jpg) |
+
+All audited pages returned results within expected ranges, with no critical accessibility or best-practice issues detected. Minor performance warnings relate primarily to external GitHub API calls and third-party content, which are outside the project's control.
+
+---
 
 ## Defensive Programming
 
-⚠️ INSTRUCTIONS ⚠️
+Defensive programming was a critical part of building GitShowcase.dev due to the amount of user interaction, external API calls, and authenticated features. The platform integrates GitHub OAuth, stores user-generated comments, manages personalised bookmarks, and handles user searches, form submissions, and repository interactions. Because of this, strict validation, permission checks, and safe error handling were essential throughout development.
 
-Defensive programming (defensive design) is extremely important! When building projects that accept user inputs or forms, you should always test the level of security for each form field. Examples of this could include (but not limited to):
+The main goals of defensive programming in this project were:
 
-All Projects:
+- **Prevent unauthorised access** to features that require GitHub authentication  
+- **Ensure users can only modify their own data**, including bookmarks and comments  
+- **Validate all form inputs** to protect from invalid or malicious submissions  
+- **Handle URL manipulation safely**, preventing users from accessing or changing content through crafted URLs  
+- **Protect against API misuse**, ensuring actions like starring/un-starring can only occur when authenticated  
+- **Provide clear feedback and safe fallbacks**, avoiding crashes or unhandled exceptions  
+- **Maintain data separation between users**, so no personal content or interactions leak between accounts  
 
-- Users cannot submit an empty form (add the `required` attribute)
-- Users must enter valid field types (ensure the correct input `type=""` is used)
-- Users cannot brute-force a URL to navigate to a restricted pages
+All tests were repeated as:
 
-Python Projects:
+- **Guest user**
+- **Authenticated GitHub user**
+- **Admin user (Django admin panel)**
 
-- Users cannot perform CRUD functionality if not authenticated (if login functionality exists)
-- User-A should not be able to manipulate data belonging to User-B, or vice versa
-- Non-Authenticated users should not be able to access pages that require authentication
-- Standard users should not be able to access pages intended for superusers/admins
+Each feature was tested for both **expected behaviour** and **failure handling**, ensuring the system responded safely, securely, and predictably.
 
-You'll want to test all functionality on your application, whether it's a standard form, or CRUD functionality, for data manipulation on a database. Try to access various pages on your site as different user types (User-A, User-B, guest user, admin, superuser). You should include any manual tests performed, and the expected results/outcome.
+| Feature / Page | Expectation | Test Performed | Result | Screenshot |
+|----------------|-------------|----------------|--------|------------|
+| **GitHub OAuth Login** | Only authenticated users should access features such as bookmarks and comments. | Tried accessing `/bookmarks/` and comment on repo cards when logged out. | Redirected to login page as expected and for comments when go to repo card no red comment button option | ![screenshot](documentation/defensive/login-required.jpg) |
+| **Login Page** | Invalid OAuth attempts must fail safely. | Attempted login without a valid GitHub session. | GitHub rejected unauthorised authentication attempt; no access granted. | ![screenshot](documentation/defensive/login-failure.jpg) |
+| **Bookmarks (Authenticated-only)** | Only logged-in users can bookmark repos. | Attempted to load `/bookmarks/` as guest. | Redirected to login page; no data exposed. | ![screenshot](documentation/defensive/bookmarks-denied.jpg) |
+| **Bookmarking** | User-A should not see or manipulate User-B bookmarks. | Logged in as two different GitHub accounts and compared results. | Bookmarks displayed only for the correct user; no leakage. | ![screenshot](documentation/defensive/bookmarks-user-separated.jpg) |
+| **Comments: Add** | Users cannot post empty or invalid comments. | Submitted empty comment. | Form displayed validation error; comment not created. | ![screenshot](documentation/defensive/comment-empty.jpg) |
+| **Comments: Edit** | Only the comment owner can edit their comment. | Logged out and went over to my own comment. | no edit and delete buttons appear as expected. | ![screenshot](documentation/defensive/comment-edit-denied.jpg) |
+| **Comments: Delete** | Only the creator may delete their own comment. | Logged in and went over to my own comment. | edit and delete buttons appear as expeccted | ![screenshot](documentation/defensive/comment-delete-protected.jpg) |
+| **Search Users** | Must not allow malicious or invalid input to break search. | Entered symbols, emojis, SQL injection strings, empty input. | Search returned safe error handling or no results; no crashes. | ![screenshot](documentation/defensive/search-validation.jpg) |
+| **Repository Details** | User cannot access repo-specific functionality for invalid repo names. | Modified repo name in URL to a non-existent repo. | Safe error message displayed; no crash. | ![screenshot](documentation/defensive/repo-invalid.jpg) |
+| **Contact Form** | Form fields must require valid entries. | Submitted form with empty fields and invalid email format. | Validation errors displayed; form rejected as expected. | ![screenshot](documentation/defensive/contact-invalid.jpg) |
+| **Contact Form Submission** | Only complete, valid data is stored. | Submitted valid message. | Message saved to DB and redirected to success page. | ![screenshot](documentation/defensive/contact-success.jpg) |
+| **404 Page** | Non-existent URLs must return a custom 404 page. | Navigated to `/thispagedoesnotexist123/`. | Custom 404 page displayed with correct branding. | ![screenshot](documentation/defensive/404.jpg) |
+| **Navbar Links** | Navbar elements should adjust based on authentication state. | Checked menus while logged in/out. | Login link replaced by Logout link. | ![screenshot](documentation/defensive/navbar-auth.jpg) |
+| **Star / Unstar Repo** | API actions should only work for authenticated users. | Tried starring a repo while logged out. | Brought back to login page once star pressed | ![screenshot](documentation/defensive/star-denied.jpg) |
+| **Direct URL Protection** | Users cannot brute-force URLs such as `/admin/` or restricted views. | Typed /admin directly. | Access denied unless logged into Django admin. | ![screenshot](documentation/defensive/admin-protected.jpg) |
 
-Testing should be replicable (can someone else replicate the same outcome?). Ideally, tests cases should focus on each individual section of every page on the website. Each test case should be specific, objective, and step-wise replicable.
+### Summary
 
-Instead of adding a general overview saying that everything works fine, consider documenting tests on each element of the page (eg. button clicks, input box validation, navigation links, etc.) by testing them in their "happy flow", their "bad/exception flow", mentioning the expected and observed results, and drawing a parallel between them where applicable.
+All defensive programming checks confirmed that GitShowcase.dev handles invalid inputs, unauthorised access, and URL manipulation safely. Features requiring authentication behaved correctly, and no user-to-user data leakage was possible during testing.
 
-Consider using the following format for manual test cases:
-
-- Expected Outcome / Test Performed / Result Received / Fixes Implemented
-
-- **Expected**: "Feature is expected to do X when the user does Y."
-- **Testing**: "Tested the feature by doing Y."
-- (either) **Result**: "The feature behaved as expected, and it did Y."
-- (or) **Result**: "The feature did not respond to A, B, or C."
-- **Fix**: "I did Z to the code because something was missing."
-
-Use the table below as a basic start, and expand on it using the logic above.
-
-⚠️ --- END --- ⚠️
-
-Defensive programming was manually tested with the below user acceptance testing:
-
-| Page | Expectation | Test | Result | Screenshot |
-| --- | --- | --- | --- | --- |
-| Blog Management | Feature is expected to allow the blog owner to create new posts with a title, featured image, and content. | Created a new post with valid title, image, and content data. | Post was created successfully and displayed correctly in the blog. | ![screenshot](documentation/defensive/create-post.png) |
-| | Feature is expected to allow the blog owner to update existing posts. | Edited the content of an existing blog post. | Post was updated successfully with the new content. | ![screenshot](documentation/defensive/update-post.png) |
-| | Feature is expected to allow the blog owner to delete blog posts. | Attempted to delete a blog post, confirming the action before proceeding. | Blog post was deleted successfully. | ![screenshot](documentation/defensive/delete-post.png) |
-| | Feature is expected to retrieve a list of all published posts. | Accessed the blog owner dashboard to view all published posts. | All published posts were displayed in a list view. | ![screenshot](documentation/defensive/published-posts.png) |
-| | Feature is expected to preview posts as drafts before publishing. | Created a draft post and previewed it. | Draft was displayed correctly in preview mode. | ![screenshot](documentation/defensive/preview-draft.png) |
-| Comments Management | Feature is expected to allow the blog owner to approve or reject comments. | Approved and rejected comments from the dashboard. | Approved comments were published; rejected comments were removed. | ![screenshot](documentation/defensive/review-comments.png) |
-| | Feature is expected to allow the blog owner to edit or delete comments. | Edited and deleted existing comments. | Comments were updated or removed successfully. | ![screenshot](documentation/defensive/edit-delete-comments.png) |
-| User Authentication | Feature is expected to allow registered users to log in to the site. | Attempted to log in with valid and invalid credentials. | Login was successful with valid credentials; invalid credentials were rejected. | ![screenshot](documentation/defensive/login.png) |
-| | Feature is expected to allow users to register for an account. | Registered a new user with unique credentials. | User account was created successfully. | ![screenshot](documentation/defensive/register.png) |
-| | Feature is expected to allow users to log out securely. | Logged out and tried accessing a restricted page. | Access was denied after logout, as expected. | ![screenshot](documentation/defensive/logout.png) |
-| User Comments | Feature is expected to allow registered users to leave comments on blog posts. | Logged in and added comments to a blog post. | Comments were successfully added and marked as pending approval. | ![screenshot](documentation/defensive/add-comment.png) |
-| | Feature is expected to display a notification that comments are pending approval. | Added a comment and checked the notification message. | Notification was displayed as expected. | ![screenshot](documentation/defensive/pending-approval.png) |
-| | Feature is expected to allow users to edit their own comments. | Edited personal comments. | Comments were updated as expected. | ![screenshot](documentation/defensive/edit-user-comments.png) |
-| | Feature is expected to allow users to delete their own comments. | Deleted personal comments. | Comments were removed as expected. | ![screenshot](documentation/defensive/delete-user-comments.png) |
-| Guest Features | Feature is expected to allow guest users to read blog posts without registering. | Opened blog posts as a guest user. | Blog posts were fully accessible without logging in. | ![screenshot](documentation/defensive/view-posts-guest.png) |
-| | Feature is expected to display the names of other commenters on posts. | Checked the names of commenters on posts as a guest user. | Commenter names were displayed as expected. | ![screenshot](documentation/defensive/commenter-names.png) |
-| | Feature is expected to block standard users from brute-forcing admin pages. | Attempted to navigate to admin-only pages by manipulating the URL (e.g., `/admin`). | Access was blocked, and a message was displayed showing denied access. | ![screenshot](documentation/defensive/brute-force.png) |
-| 404 Error Page | Feature is expected to display a 404 error page for non-existent pages. | Navigated to an invalid URL (e.g., `/test`). | A custom 404 error page was displayed as expected. | ![screenshot](documentation/defensive/404.png) |
+---
 
 ## User Story Testing
 
-⚠️ INSTRUCTIONS ⚠️
+All user stories listed in the README were manually tested to ensure the final deployed version of GitShowcase.dev meets the expectations of developers, visitors, and administrators. Each user story was tested as the correct user type (guest, authenticated GitHub user, or admin), and the behaviour of each feature was compared against the acceptance criteria.
 
-Testing User Stories is actually quite simple, once you've already got the stories defined on your README.
+The table below documents the expected outcomes, how the story was tested, and the final results.
 
-Most of your project's **Features** should already align with the **User Stories**, so this should be as simple as creating a table with the User Story, matching with the re-used screenshot from the respective Feature.
+### Developer User Stories
 
-⚠️ --- END --- ⚠️
+| User Story | Expectation | Test | Result | Screenshot |
+|-----------|-------------|------|--------|------------|
+| As a developer, I want to log in with GitHub OAuth | User should authenticate securely through GitHub | Clicked *Login with GitHub* and completed OAuth flow | Logged in successfully and redirected to Home | ![screenshot](documentation/userstories/login.jpg) |
+| As a developer, I want to browse all of my GitHub repositories | Homepage should list authenticated user's repos | Logged in and viewed home page | All public repositories loaded correctly via GitHub API | ![screenshot](documentation/userstories/repos.jpg) |
+| As a developer, I want to view more details about each repository | Repo view button should bring user repos github page. | Clicked on repo card view button | Brought me to the repos github page | ![screenshot](documentation/userstories/repo-detail.jpg) |
+| As a developer, I want to bookmark repositories | Clicking bookmark saves repo to user profile | Clicked bookmark icon on repo | Bookmark saved and appears in Bookmarks page | ![screenshot](documentation/userstories/bookmark.jpg) |
+| As a developer, I want to remove bookmarks | Removing a bookmark deletes it from DB | Clicked remove bookmark | Bookmark removed and UI updated | ![screenshot](documentation/userstories/unbookmark.jpg) |
+| As a developer, I want to comment on repositories | Form should allow authenticated users to add comments | Added comment to a repo | Comment saved, displayed, and linked to user | ![screenshot](documentation/userstories/comment.jpg) |
+| As a developer, I want to edit and delete my own comments | Only comment owner can edit/delete | edit and delete buttons appear and function | Access allowed; changes updated | ![screenshot](documentation/userstories/comment-edit.jpg) |
+| As a developer, I want to star/unstar a repository | Clicking button triggers GitHub star API | Starred and unstarred repo | GitHub API responded and UI updated accordingly | ![screenshot](documentation/userstories/star.jpg) |
+| As a developer, I want to download a ZIP of repos | ZIP download button should work for all repos | Clicked download ZIP on repo | ZIP downloaded via GitHub API | ![screenshot](documentation/userstories/zip.jpg) |
 
-| Target | Expectation | Outcome | Screenshot |
-| --- | --- | --- | --- |
-| As a blog owner | I would like to create new blog posts with a title, featured image, and content | so that I can share my experiences with my audience. | ![screenshot](documentation/features/feature01.png) |
-| As a blog owner | I would like to update existing blog posts | so that I can correct or add new information to my previous stories. | ![screenshot](documentation/features/feature02.png) |
-| As a blog owner | I would like to delete blog posts | so that I can remove outdated or irrelevant content from my blog. | ![screenshot](documentation/features/feature03.png) |
-| As a blog owner | I would like to retrieve a list of all my published blog posts | so that I can manage them from a central dashboard. | ![screenshot](documentation/features/feature04.png) |
-| As a blog owner | I would like to preview a post as draft before publishing it | so that I can ensure formatting and content appear correctly. | ![screenshot](documentation/features/feature05.png) |
-| As a blog owner | I would like to review comments before they are published | so that I can filter out spam or inappropriate content. | ![screenshot](documentation/features/feature06.png) |
-| As a blog owner | I would like to approve or reject comments from users | so that I can maintain control over the discussion on my posts. | ![screenshot](documentation/features/feature07.png) |
-| As a blog owner | I would like to view a list of all comments (both approved and pending) | so that I can manage user engagement effectively. | ![screenshot](documentation/features/feature08.png) |
-| As a blog owner | I would like to edit or delete user comments | so that I can clean up or remove inappropriate responses after they've been posted. | ![screenshot](documentation/features/feature09.png) |
-| As a registered user | I would like to log in to the site | so that I can leave comments on blog posts. | ![screenshot](documentation/features/feature10.png) |
-| As a registered user | I would like to register for an account | so that I can become part of the community and engage with the blog. | ![screenshot](documentation/features/feature11.png) |
-| As a registered user | I would like to leave a comment on a blog post | so that I can share my thoughts or ask questions about the owner's experiences. | ![screenshot](documentation/features/feature12.png) |
-| As a registered user | I would like my comment to show my name and the timestamp | so that others can see who I am and when I left the comment. | ![screenshot](documentation/features/feature13.png) |
-| As a registered user | I would like to receive a notification or message saying my comment is pending approval | so that I understand it hasn't been posted immediately. | ![screenshot](documentation/features/feature14.png) |
-| As a registered user | I would like to edit or delete my own comments | so that I can fix mistakes or retract my statement. | ![screenshot](documentation/features/feature15.png) |
-| As a guest user | I would like to read blog posts without registering | so that I can enjoy the content without needing to log in. | ![screenshot](documentation/features/feature16.png) |
-| As a guest user | I would like to browse past posts | so that I can explore the blog's full content history. | ![screenshot](documentation/features/feature17.png) |
-| As a guest user | I would like to register for an account | so that I can participate in the community by leaving comments on posts. | ![screenshot](documentation/features/feature18.png) |
-| As a guest user | I would like to see the names of other commenters on posts | so that I can get a sense of community interaction before registering. | ![screenshot](documentation/features/feature19.png) |
-| As a user | I would like to see a 404 error page if I get lost | so that it's obvious that I've stumbled upon a page that doesn't exist. | ![screenshot](documentation/features/feature20.png) |
+---
+
+### Visitor / Guest User Stories
+
+| User Story | Expectation | Test | Result | Screenshot |
+|-----------|-------------|------|--------|------------|
+| As a visitor, I want to search GitHub users | Search page should accept username and show repos | Searched for public GitHub user | User info and repos displayed | ![screenshot](documentation/userstories/search.jpg) |
+| As a visitor, I want to view other users’ repositories | Should be able to open profiles without login | Viewed another user's repos | Repos displayed correctly | ![screenshot](documentation/userstories/search-repos.jpg) |
+| As a visitor, I want to view repository details | Repo details should show metadata but no interactions | Opened repo detail page as guest | Metadata visible; comment/bookmark actions hidden | ![screenshot](documentation/userstories/guest-repo-detail.jpg) |
+| As a visitor, I want to read repository comments | Comments section should be publicly visible | Viewed repo comments as guest | Comments visible and paginated | ![screenshot](documentation/userstories/guest-comments.jpg) |
+| As a visitor, I want an About page | About page explains the purpose of the platform | Opened `/about` | Page displays correctly | ![screenshot](documentation/userstories/about.jpg) |
+| As a visitor, I want to submit a contact form | Contact form should validate input and submit | Submitted valid contact message | Message stored and success page displayed | ![screenshot](documentation/userstories/contact.jpg) |
+| As any user, I want a custom 404 page | Invalid URL should show branded 404 | Opened random invalid URL | Custom 404 displayed | ![screenshot](documentation/userstories/404.jpg) |
+
+---
+
+### Admin / Superuser Stories
+
+| User Story | Expectation | Test | Result | Screenshot |
+|-----------|-------------|------|--------|------------|
+| As an admin, I want to view contact messages | Django admin should show stored messages | Logged into /admin and checked Contact model | Messages displayed correctly with timestamps | ![screenshot](documentation/userstories/admin-contact.jpg) |
+| As an admin, I want to manage user comments | Admin panel should show all comment entries | Viewed Comments model in admin | All user comments visible and editable | ![screenshot](documentation/userstories/admin-comments.jpg) |
+
+---
+
+### Summary
+
+All user stories were fully satisfied.  
+GitShowcase.dev behaves exactly as expected for:
+
+- Guests  
+- Authenticated GitHub users  
+- Admin/superusers  
+
+Each feature was tested for correct flow, incorrect use, and edge cases, confirming that every story’s acceptance criteria has been successfully met.
+
+---
+
+## Manual Feature Testing
+
+Each feature in GitShowcase.dev was manually tested to ensure correct behaviour, error handling, and edge-case safety. Tests were carried out on the deployed site using both authenticated and guest users. Expected behaviour was compared with actual results for accuracy.
+
+### Feature Testing Table
+
+| Feature | Expected Behaviour | Test Performed | Result | Screenshot |
+|--------|---------------------|----------------|--------|------------|
+| GitHub OAuth Login | User is redirected to GitHub and authenticated | Clicked Login button | Successful login and redirect to home | ![screenshot](documentation/manual/login.jpg) |
+| Logout | Logs user out and ends session | Clicked Logout | Returned to visitor mode; restricted pages inaccessible | ![screenshot](documentation/manual/logout.jpg) |
+| Repository Listing | Display all public repos from authenticated user | Logged in and viewed home page | All repos displayed correctly with metadata | ![screenshot](documentation/manual/repos.jpg) |
+| Repository Detail View | Show metadata, buttons, and comments | Opened repo detail page | Page loaded with repo info and actions | ![screenshot](documentation/manual/repo-detail.jpg) |
+| Bookmark Repo | Add selected repo to user bookmarks | Clicked Bookmark | Repo saved and shown in Bookmarks page | ![screenshot](documentation/manual/bookmark.jpg) |
+| Remove Bookmark | Remove bookmark from user list | Clicked Remove button | Repo removed from Bookmarks | ![screenshot](documentation/manual/unbookmark.jpg) |
+| View Bookmarks | Display all bookmarked repos for logged-in user | Opened `/bookmarks/` | Correct repos displayed for user | ![screenshot](documentation/manual/bookmarks.jpg) |
+| Star Repo | Star/unstar repo using GitHub API | Clicked Star button | GitHub API responded; UI updated | ![screenshot](documentation/manual/star.jpg) |
+| Download ZIP | Download zip archive from GitHub | Clicked Download Zip | File downloaded successfully | ![screenshot](documentation/manual/zip.jpg) |
+| Add Comment | Authenticated users can post comments | Submitted comment form | Comment appears under repo | ![screenshot](documentation/manual/comment-add.jpg) |
+| Edit Comment | Only owner can edit own comment | Edited submitted comment | Edited successfully | ![screenshot](documentation/manual/comment-edit.jpg) |
+| Delete Comment | Only owner can delete own comment | Clicked delete on own comment | Comment removed | ![screenshot](documentation/manual/comment-delete.jpg) |
+| Search GitHub Users | Search for any GitHub username | Entered existing usernames | Results and repos displayed | ![screenshot](documentation/manual/search.jpg) |
+| Invalid Search | Invalid usernames return safe message | Entered random/invalid string | “No user found” message displayed | ![screenshot](documentation/manual/search-invalid.jpg) |
+| Contact Form | Validate and submit messages | Entered valid form data | Redirected to success page | ![screenshot](documentation/manual/contact.jpg) |
+| Contact Form Validation | Form rejects invalid or empty fields | Submitted empty/invalid email | Errors displayed; no submission | ![screenshot](documentation/manual/contact-error.jpg) |
+| 404 Page | Display custom 404 page | Visited invalid URL | Custom 404 page shown | ![screenshot](documentation/manual/404.jpg) |
+| Navbar State | Navbar updates based on authentication | Compared logged-in vs guest view | Correct links appear in each mode | ![screenshot](documentation/manual/navbar.jpg) |
+
+### Summary
+
+All features performed as expected with no broken flows or incorrect behaviour.  
+Both happy-path and negative-path testing confirmed stable and correct functionality.
+
+---
+
 
 ## Automated Testing
 
-I have conducted a series of automated tests on my application.
+For this milestone, I did not implement automated tests for JavaScript or Python.  
+The application was instead tested thoroughly using manual testing, defensive programming checks, and user story validation.  
 
-> [!NOTE]  
-> I fully acknowledge and understand that, in a real-world scenario, an extensive set of additional tests would be more comprehensive.
+I understand that in a real-world project, automated tests would play a vital role in guaranteeing long-term stability, preventing regressions, and improving confidence when refactoring. Automated testing is something I plan to introduce in future versions of GitShowcase.dev.
 
-### JavaScript (Jest Testing)
+---
 
-⚠️ INSTRUCTIONS ⚠️
+### JavaScript Automated Testing (Jest)
 
-Adjust the code below (file names, function names, etc.) to match your own project files/folders. Use these notes loosely when documenting your own Jest procedures, and remove/adjust where applicable.
+Although the project contains small JavaScript files (`comment.js` and `star.js`), no Jest tests were written for this release.
 
-- Installing Node.js (**Windows**)
-  - https://codeinstitute.s3.eu-west-1.amazonaws.com/nodejs-installation-guides/Installing+and+maintaining+NodeJS+(Windows).pdf
-- Installing Node.js (**MacOS**)
-  - https://codeinstitute.s3.eu-west-1.amazonaws.com/nodejs-installation-guides/Installing+and+maintaining+NodeJS+(MacOS).pdf
+If Jest testing were to be implemented in the future, it would involve:
 
-⚠️ SAMPLE ⚠️
+- Initialising an NPM test environment  
+- Installing Jest and jsdom  
+- Exporting functions for testing  
+- Writing `.test.js` files for UI behaviour such as:  
+  - Star/unstar button logic  
+  - Comment edit/delete interactions  
+  - Bookmark icon toggling  
 
-I have used the [Jest](https://jestjs.io) JavaScript testing framework to test the application functionality. In order to work with Jest, I first had to initialize NPM.
+These tests would then be run using:
 
-- `npm init`
-- Hit `<enter>` for all options, except for **test command:**, just type `jest`.
+- `npm test`  
+- `npm test --coverage` (optional for coverage reports)
 
-Add Jest to a list called **Dev Dependencies** in a dev environment:
+#### Jest Test Results  
+_No Jest test files are present in this project, therefore no automated JS test results or coverage reports were generated._
 
-- `npm install --save-dev jest`
+---
 
-**IMPORTANT**: Initial configurations
+### Python Automated Testing (Django Unit Tests)
 
-When creating test files, the name of the file needs to be `file-name.test.js` in order for Jest to properly work. Without the following, Jest won't properly run the tests:
+Django provides a comprehensive built-in testing framework using:
 
-- `npm install -D jest-environment-jsdom`
+- `TestCase`  
+- The Django test client  
+- Assertion-based validation  
+- URL, form, and model testing  
 
-Due to a change in Jest's default configuration, you'll need to add the following code to the top of the `.test.js` file:
+However, no Django unit tests were implemented during this milestone.
 
-```js
-/**
- * @jest-environment jsdom
- */
+If implemented in future, the tests would cover:
 
-/* jshint esversion: 11, jquery: true */
-/* global jest, require, describe, beforeEach, afterEach, test, expect, global */
+- View permissions  
+- Form validation  
+- Model relationships  
+- URL routing  
+- Mocked GitHub API responses  
 
-const { test, expect } = require("@jest/globals");
-const { function1, function2, function3, etc. } = require("../script-name");
+Coverage testing would normally use:
 
-beforeAll(() => {
-    let fs = require("fs");
-    let fileContents = fs.readFileSync("index.html", "utf-8");
-    document.open();
-    document.write(fileContents);
-    document.close();
-});
-```
-
-Remember to adjust the `fs.readFileSync()` to the specific file you'd like you test. The example above is testing the `index.html` file.
-
-Finally, at the bottom of the script file where your primary scripts are written, include the following at the very bottom of the file. Make sure to include the name of all of your functions that are being tested in the `.test.js` file.
-
-```js
-/* jshint esversion: 11, jquery: true */
-/* global module */
-if (typeof module !== "undefined") module.exports = {
-    function1, function2, function3, etc
-};
-```
-
-Now that these steps have been undertaken, further tests can be written, and be expected to fail initially. Write JS code that can get the tests to pass as part of the Red-Green refactor process. Once ready, to run the tests, use this command:
-
-- `npm test`
-
-**NOTE**: To obtain a coverage report, use the following command:
-
-- `npm test --coverage`
-
-Below are the results from the tests that I've written for this application:
-
-| Test Suites | Tests | Screenshot |
-| --- | --- | --- |
-| 1 passed | 16 passed | ![screenshot](documentation/automation/jest-coverage.png) |
-
-#### Jest Test Issues
-
-⚠️ INSTRUCTIONS ⚠️
-
-Use this section to list any known issues you ran into while writing your Jest tests. Remember to include screenshots (where possible), and a solution to the issue (if known). This can be used for both "fixed" and "unresolved" issues. Remove this sub-section entirely if you somehow didn't run into any issues while working with Jest.
-
-⚠️ --- END --- ⚠️
-
-### Python (Unit Testing)
-
-⚠️ INSTRUCTIONS ⚠️
-
-Adjust the code below (file names, function names, etc.) to match your own project files/folders. Use these notes loosely when documenting your own Python Unit tests, and remove/adjust where applicable.
-
-⚠️ SAMPLE ⚠️
-
-I have used Django's built-in unit testing framework to test the application functionality. In order to run the tests, I ran the following command in the terminal each time:
-
-- `python3 manage.py test name-of-app`
-
-To create the coverage report, I would then run the following commands:
-
-- `pip3 install coverage`
-- `pip3 freeze --local > requirements.txt`
-- `coverage run --omit="*/site-packages/*,*/migrations/*,*/__init__.py,env.py,.env" manage.py test`
-- `coverage report`
-
-To see the HTML version of the reports, and find out whether some pieces of code were missing, I ran the following commands:
-
+- `coverage run manage.py test`  
+- `coverage report`  
 - `coverage html`
-- `python3 -m http.server`
 
-Below are the results from the full coverage report on my application that I've tested:
+#### Unit Test Results  
+_No Django unit tests or coverage reports were created for this project._
 
-![screenshot](documentation/automation/html-coverage.png)
+### Future Plans for Automated Testing
 
-#### Unit Test Issues
+I intend to expand GitShowcase.dev with automated tests in future development, focusing on:
 
-⚠️ INSTRUCTIONS ⚠️
+- Jest tests for interactive UI behaviour  
+- Comprehensive Django test suite (views, forms, models, permissions)  
+- Mocked GitHub API responses for reliable automated testing  
 
-Use this section to list any known issues you ran into while writing your Python unit tests. Remember to include screenshots (where possible), and a solution to the issue (if known). This can be used for both "fixed" and "unresolved" issues. Remove this sub-section entirely if you somehow didn't run into any issues while working with your tests.
+This will ensure the platform remains stable and scalable as more features are added.
 
-⚠️ --- END --- ⚠️
+---
+
 
 ## Bugs
 
-⚠️ INSTRUCTIONS ⚠️
+During development of GitShowcase.dev, several issues were identified and resolved.  
+All bugs were tracked using the **GitHub Issues** system, allowing for clear documentation, screenshots, tagging, and progress tracking throughout the debugging process.
 
-Nobody likes bugs,... except the assessors! Projects seem more suspicious if a student doesn't properly track their bugs. If you're about to submit your project without any bugs listed below, you should ask yourself why you're doing this course in the first place, if you're able to build this entire application without running into any bugs. The best thing you can do for any project is to document your bugs! Not only does it show the true stages of development, but think of it as breadcrumbs for yourself in the future, should you encounter the same/similar bug again, it acts as a gentle reminder on what you did to fix the bug.
+Using GitHub Issues ensured that every bug was documented with:
 
-If/when you encounter bugs during the development stages of your project, you should document them here, ideally with a screenshot explaining what the issue was, and what you did to fix the bug.
+- A clear description  
+- Steps to reproduce  
+- Screenshots  
+- Labels (e.g., `bug`)  
+- Status (open/closed)  
+- Developer comments and fixes  
 
-Alternatively, an improved way to manage bugs is to use the built-in **[Issues](https://www.github.com/colmwoods/GitShowcase.dev/issues)** tracker on your GitHub repository. This can be found at the top of your repository, the tab called "Issues".
+This approach also provides long-term traceability for future updates or refactors.
 
-If using the Issues tracker for bug management, you can simplify the documentation process for testing. Issues allow you to directly paste screenshots into the issue page without having to first save the screenshot locally. You can add labels to your issues (e.g. `bug`), assign yourself as the owner, and add comments/updates as you progress with fixing the issue(s). Once you've solved the issue/bug, you should then "Close" it.
+---
 
-When showcasing your bug tracking for assessment, you can use the following examples below.
-
-⚠️ --- END --- ⚠️
-
-### Fixed Bugs
+## Fixed Bugs
 
 [![GitHub issue custom search](https://img.shields.io/github/issues-search/colmwoods/GitShowcase.dev?query=is%3Aissue%20is%3Aclosed%20label%3Abug&label=Fixed%20Bugs&color=green)](https://www.github.com/colmwoods/GitShowcase.dev/issues?q=is%3Aissue+is%3Aclosed+label%3Abug)
 
-I've used [GitHub Issues](https://www.github.com/colmwoods/GitShowcase.dev/issues) to track and manage bugs and issues during the development stages of my project.
+All bugs resolved during development can be viewed directly using the GitHub Issues tracker:
 
-All previously closed/fixed bugs can be tracked [here](https://www.github.com/colmwoods/GitShowcase.dev/issues?q=is%3Aissue+is%3Aclosed+label%3Abug).
+🔗 **Closed Bugs:**  
+https://www.github.com/colmwoods/GitShowcase.dev/issues?q=is%3Aissue+is%3Aclosed+label%3Abug
 
-![screenshot](documentation/bugs/gh-issues-closed.png)
+Below is a snapshot of some of the resolved issues:
 
-### Unfixed Bugs
+![screenshot](documentation/bugs/gh-issues-closed.jpg)
 
-⚠️ INSTRUCTIONS ⚠️
+These include fixes for:
 
-You will need to mention any unfixed bugs and why they are not fixed upon submission of your project. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed. Where possible, you must fix all outstanding bugs, unless outside of your control.
+- Unexpected API errors when fetching GitHub repositories  
+- Star/unstar button not updating visually  
+- Bookmark icon state inconsistencies  
+- Comments not displaying after being submitted  
+- User search query failures under invalid input  
+- Minor layout inconsistencies on small devices  
+- 404 page not triggering correctly in early versions  
 
-If you've identified any unfixed bugs, no matter how small, be sure to list them here! It's better to be honest and list them, because if it's not documented and an assessor finds the issue, they need to know whether or not you're aware of them as well, and why you've not corrected/fixed them.
+All of these issues have been fully resolved.
 
-⚠️ --- END --- ⚠️
+---
+
+## Unfixed Bugs
 
 [![GitHub issue custom search](https://img.shields.io/github/issues-search/colmwoods/GitShowcase.dev?query=is%3Aissue%2Bis%3Aopen%2Blabel%3Abug&label=Unfixed%20Bugs&color=red)](https://www.github.com/colmwoods/GitShowcase.dev/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
 
-Any remaining open issues can be tracked [here](https://www.github.com/colmwoods/GitShowcase.dev/issues?q=is%3Aissue+is%3Aopen+label%3Abug).
+At the time of submission, no major unfixed bugs remain that would affect core functionality of GitShowcase.dev.
 
-![screenshot](documentation/bugs/gh-issues-open.png)
+Any currently open issues can be viewed here:
 
-### Known Issues
+🔗 **Open Bugs:**  
+https://www.github.com/colmwoods/GitShowcase.dev/issues?q=is%3Aissue+is%3Aopen+label%3Abug
+
+![screenshot](documentation/bugs/gh-issues-open.jpg)
+
+These open issues are minor, non-breaking observations and do not affect the overall usability of the platform.
+
+---
+
+## Known Issues
+
+The following issues are known and documented, but fall outside the project’s scope or are considered acceptable based on industry standards and Code Institute guidelines:
 
 | Issue | Screenshot |
 | --- | --- |
-| The project is designed to be responsive from `375px` and upwards, in line with the material taught on the course LMS. Minor layout inconsistencies may occur on extra-wide (e.g. 4k/8k monitors), or smart-display devices (e.g. Nest Hub, Smart Watches, Gameboy Color, etc.), as these resolutions are outside the project’s scope, as taught by Code Institute. | ![screenshot](documentation/issues/poor-responsiveness.png) |
-| When validating HTML with a semantic `<section>` element, the validator warns about lacking a header `h2-h6`. This is acceptable. | ![screenshot](documentation/issues/section-header.png) |
-| Validation errors on "signup.html" coming from the Django Allauth package. | ![screenshot](documentation/issues/allauth.png) |
+| The project is designed to be responsive from `375px` and upwards. Extremely wide resolutions (4k/8k displays, ultra-wide monitors) may show minor spacing variations. This is normal and outside the CI design scope. | ![screenshot](documentation/issues/poor-responsiveness.jpg) |
+| The W3C HTML validator sometimes flags warnings on `<section>` elements without `h2–h6` headings. This is acceptable, as the design uses custom layout structures rather than semantic headings inside every section. | ![screenshot](documentation/issues/section-header.jpg) |
+| Some validation warnings appear on Django Allauth template pages. These templates are third-party and not modified by me, so the warnings are beyond my control. | ![screenshot](documentation/issues/allauth.jpg) |
 
-> [!IMPORTANT]  
-> There are no remaining bugs that I am aware of, though, even after thorough testing, I cannot rule out the possibility.
+---
+
+### Final Bug Summary
+
+At the time of submission:
+
+- ✔ All **major functional bugs** have been resolved.  
+- ✔ No bugs exist that block a user from browsing repositories, starring, bookmarking, commenting, or using GitHub OAuth.  
+- ✔ All known issues have been documented transparently.  
+- ✔ Minor visual inconsistencies do not affect overall application use.  
+
+While the application has undergone extensive manual testing, it is still possible that bugs exist which were not discovered. These will be addressed in future updates and noted via the GitHub Issues tracker.
