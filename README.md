@@ -171,7 +171,7 @@ To ensure consistent design and usability across all device sizes, wireframes we
 | Page | Mobile | Tablet | Desktop |
 | --- | --- | --- | --- |
 | **Home (Repo List)** | ![screenshot](documentation/wireframes/mobile-home.jpg) | ![screenshot](documentation/wireframes/tablet-home.jpg) | ![screenshot](documentation/wireframes/desktop-home.jpg) |
-| **Comments / Repo Detail** | ![screenshot](documentation/wireframes/mobile-repo-detail.jpg) | ![screenshot](documentation/wireframes/tablet-repo-detail.jpg) | ![screenshot](documentation/wireframes/desktop-repo-detail.jpg) |
+| **Comments / Repo Detail** | ![screenshot](documentation/wireframes/repo-detail.jpg) | ![screenshot](documentation/wireframes/repo-detail.jpg) | ![screenshot](documentation/wireframes/repo-detail.jpg) |
 | **Bookmarks** | ![screenshot](documentation/wireframes/mobile-bookmarks.jpg) | ![screenshot](documentation/wireframes/tablet-bookmarks.jpg) | ![screenshot](documentation/wireframes/desktop-bookmarks.jpg) |
 | **Search Users** | ![screenshot](documentation/wireframes/mobile-search.jpg) | ![screenshot](documentation/wireframes/tablet-search.jpg) | ![screenshot](documentation/wireframes/desktop-search.jpg) |
 | **Login** | ![screenshot](documentation/wireframes/mobile-login.jpg) | ![screenshot](documentation/wireframes/tablet-login.jpg) | ![screenshot](documentation/wireframes/desktop-login.jpg) |
