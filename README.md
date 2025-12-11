@@ -148,7 +148,7 @@ Palette Example:
 - **Info:** `#6f42c1`  
 - **Danger:** `#dc3545`   
 
-![screenshot](documentation/coolors.png)
+![screenshot](documentation/coolors.jpg)
 
 ---------
 
@@ -170,14 +170,14 @@ To ensure consistent design and usability across all device sizes, wireframes we
 
 | Page | Mobile | Tablet | Desktop |
 | --- | --- | --- | --- |
-| **Home (Repo List)** | ![screenshot](documentation/wireframes/mobile-home.png) | ![screenshot](documentation/wireframes/tablet-home.png) | ![screenshot](documentation/wireframes/desktop-home.png) |
-| **Comments / Repo Detail** | ![screenshot](documentation/wireframes/mobile-repo-detail.png) | ![screenshot](documentation/wireframes/tablet-repo-detail.png) | ![screenshot](documentation/wireframes/desktop-repo-detail.png) |
-| **Bookmarks** | ![screenshot](documentation/wireframes/mobile-bookmarks.png) | ![screenshot](documentation/wireframes/tablet-bookmarks.png) | ![screenshot](documentation/wireframes/desktop-bookmarks.png) |
-| **Search Users** | ![screenshot](documentation/wireframes/mobile-search.png) | ![screenshot](documentation/wireframes/tablet-search.png) | ![screenshot](documentation/wireframes/desktop-search.png) |
-| **Login** | ![screenshot](documentation/wireframes/mobile-login.png) | ![screenshot](documentation/wireframes/tablet-login.png) | ![screenshot](documentation/wireframes/desktop-login.png) |
-| **About** | ![screenshot](documentation/wireframes/mobile-about.png) | ![screenshot](documentation/wireframes/tablet-about.png) | ![screenshot](documentation/wireframes/desktop-about.png) |
-| **Contact** | ![screenshot](documentation/wireframes/mobile-contact.png) | ![screenshot](documentation/wireframes/tablet-contact.png) | ![screenshot](documentation/wireframes/desktop-contact.png) |
-| **404** | ![screenshot](documentation/wireframes/mobile-404.png) | ![screenshot](documentation/wireframes/tablet-404.png) | ![screenshot](documentation/wireframes/desktop-404.png) |
+| **Home (Repo List)** | ![screenshot](documentation/wireframes/mobile-home.jpg) | ![screenshot](documentation/wireframes/tablet-home.jpg) | ![screenshot](documentation/wireframes/desktop-home.jpg) |
+| **Comments / Repo Detail** | ![screenshot](documentation/wireframes/mobile-repo-detail.jpg) | ![screenshot](documentation/wireframes/tablet-repo-detail.jpg) | ![screenshot](documentation/wireframes/desktop-repo-detail.jpg) |
+| **Bookmarks** | ![screenshot](documentation/wireframes/mobile-bookmarks.jpg) | ![screenshot](documentation/wireframes/tablet-bookmarks.jpg) | ![screenshot](documentation/wireframes/desktop-bookmarks.jpg) |
+| **Search Users** | ![screenshot](documentation/wireframes/mobile-search.jpg) | ![screenshot](documentation/wireframes/tablet-search.jpg) | ![screenshot](documentation/wireframes/desktop-search.jpg) |
+| **Login** | ![screenshot](documentation/wireframes/mobile-login.jpg) | ![screenshot](documentation/wireframes/tablet-login.jpg) | ![screenshot](documentation/wireframes/desktop-login.jpg) |
+| **About** | ![screenshot](documentation/wireframes/mobile-about.jpg) | ![screenshot](documentation/wireframes/tablet-about.jpg) | ![screenshot](documentation/wireframes/desktop-about.jpg) |
+| **Contact** | ![screenshot](documentation/wireframes/mobile-contact.jpg) | ![screenshot](documentation/wireframes/tablet-contact.jpg) | ![screenshot](documentation/wireframes/desktop-contact.jpg) |
+| **404** | ![screenshot](documentation/wireframes/mobile-404.jpg) | ![screenshot](documentation/wireframes/tablet-404.jpg) | ![screenshot](documentation/wireframes/desktop-404.jpg) |
 
 ---
 
@@ -265,22 +265,22 @@ GitShowcase.dev user stories are divided into developer (site user), visitors, a
 
 | Feature | Notes | Screenshot |
 | --- | --- | --- |
-| Login with GitHub | OAuth-only login flow | ![screenshot](documentation/features/login.png) |
-| Logout | Ends authenticated session | ![screenshot](documentation/features/logout.png) |
-| Repository List | Shows all repos from GitHub API | ![screenshot](documentation/features/repo-list.png) |
-| Repo Detail View | Metadata, actions, comments | ![screenshot](documentation/features/repo-detail.png) |
-| Bookmark Repo | Saves to DB | ![screenshot](documentation/features/bookmark.png) |
-| Remove Bookmark | Removes from DB | ![screenshot](documentation/features/unbookmark.png) |
-| Add Comment | Add repo comments | ![screenshot](documentation/features/add-comment.png) |
-| Edit Comment | Edit your own comments | ![screenshot](documentation/features/edit-comment.png) |
-| Delete Comment | Delete your own comments | ![screenshot](documentation/features/delete-comment.png) |
-| Star Repo | GitHub API star | ![screenshot](documentation/features/star.png) |
-| Unstar Repo | GitHub API unstar | ![screenshot](documentation/features/unstar.png) |
-| Download ZIP | Gets ZIP from GitHub | ![screenshot](documentation/features/download.png) |
-| Search GitHub Users | Explore other developers | ![screenshot](documentation/features/search.png) |
-| About Page | Info about site | ![screenshot](documentation/features/about.png) |
-| Contact Form | Messages stored in DB | ![screenshot](documentation/features/contact.png) |
-| Custom 404 | Styled error page | ![screenshot](documentation/features/404.png) |
+| Login with GitHub | OAuth-only login flow | ![screenshot](documentation/features/login.jpg) |
+| Logout | Ends authenticated session | ![screenshot](documentation/features/logout.jpg) |
+| Repository List | Shows all repos from GitHub API | ![screenshot](documentation/features/repo-list.jpg) |
+| Repo Detail View | Metadata, actions, comments | ![screenshot](documentation/features/repo-detail.jpg) |
+| Bookmark Repo | Saves to DB | ![screenshot](documentation/features/bookmark.jpg) |
+| Remove Bookmark | Removes from DB | ![screenshot](documentation/features/unbookmark.jpg) |
+| Add Comment | Add repo comments | ![screenshot](documentation/features/add-comment.jpg) |
+| Edit Comment | Edit your own comments | ![screenshot](documentation/features/edit-comment.jpg) |
+| Delete Comment | Delete your own comments | ![screenshot](documentation/features/delete-comment.jpg) |
+| Star Repo | GitHub API star | ![screenshot](documentation/features/star.jpg) |
+| Unstar Repo | GitHub API unstar | ![screenshot](documentation/features/unstar.jpg) |
+| Download ZIP | Gets ZIP from GitHub | ![screenshot](documentation/features/download.jpg) |
+| Search GitHub Users | Explore other developers | ![screenshot](documentation/features/search.jpg) |
+| About Page | Info about site | ![screenshot](documentation/features/about.jpg) |
+| Contact Form | Messages stored in DB | ![screenshot](documentation/features/contact.jpg) |
+| Custom 404 | Styled error page | ![screenshot](documentation/features/404.jpg) |
 
 ## Future Features
 
@@ -462,16 +462,16 @@ Steps followed:
     ```
 5. Generate ERD:
     ```bash
-    python3 manage.py graph_models -a -o erd.png
+    python3 manage.py graph_models -a -o erd.jpg
     ```
-6. Move `erd.png` into `documentation/`.
+6. Move `erd.jpg` into `documentation/`.
 7. Remove django-extensions from installed apps.
 8. Uninstall:
     ```bash
     pip3 uninstall django-extensions pygraphviz -y
     ```
 
-![screenshot](documentation/advanced-erd.png)
+![screenshot](documentation/advanced-erd.jpg)
 
 # Agile Development Process
 
@@ -494,7 +494,7 @@ These items were organised using a Kanban workflow with the following columns:
 
 This system helped track progress throughout development and kept the project aligned with Agile best practices.
 
-![screenshot](documentation/gh-projects.png)
+![screenshot](documentation/gh-projects.jpg)
 
 **Project Board:**  
 https://github.com/users/colmwoods/projects/10
@@ -513,8 +513,8 @@ GitHub Issues served as the home for:
 
 | Link | Screenshot |
 | --- | --- |
-| [![GitHub issues](https://img.shields.io/github/issues-search/colmwoods/GitShowcase.dev?query=is%3Aissue%20is%3Aopen%20-label%3Abug&label=Open%20Issues&color=yellow)](https://www.github.com/colmwoods/GitShowcase.dev/issues?q=is%3Aissue%20is%3Aopen%20-label%3Abug) | ![screenshot](documentation/gh-issues-open.png) |
-| [![GitHub closed issues](https://img.shields.io/github/issues-search/colmwoods/GitShowcase.dev?query=is%3Aissue%20is%3Aclosed%20-label%3Abug&label=Closed%20Issues&color=green)](https://www.github.com/colmwoods/GitShowcase.dev/issues?q=is%3Aissue%20is%3Aclosed%20-label%3Abug) | ![screenshot](documentation/gh-issues-closed.png) |
+| [![GitHub issues](https://img.shields.io/github/issues-search/colmwoods/GitShowcase.dev?query=is%3Aissue%20is%3Aopen%20-label%3Abug&label=Open%20Issues&color=yellow)](https://www.github.com/colmwoods/GitShowcase.dev/issues?q=is%3Aissue%20is%3Aopen%20-label%3Abug) | ![screenshot](documentation/gh-issues-open.jpg) |
+| [![GitHub closed issues](https://img.shields.io/github/issues-search/colmwoods/GitShowcase.dev?query=is%3Aissue%20is%3Aclosed%20-label%3Abug&label=Closed%20Issues&color=green)](https://www.github.com/colmwoods/GitShowcase.dev/issues?q=is%3Aissue%20is%3Aclosed%20-label%3Abug) | ![screenshot](documentation/gh-issues-closed.jpg) |
 
 ---
 
