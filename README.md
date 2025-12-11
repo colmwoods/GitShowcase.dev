@@ -47,7 +47,7 @@ I wanted to build something useful for myself and for other developers — a too
 
 ---------
 
-![screenshot](documentation/mockup.png)
+![screenshot](documentation/mockup.jpg)
 
 Source:  
 [GitShowcase.dev amiresponsive](https://ui.dev/amiresponsive?url=https://gitshowcase-dev-a0b7673e36ce.herokuapp.com)
