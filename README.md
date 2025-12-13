@@ -346,158 +346,110 @@ GitShowcase.dev user stories are divided into developer (site user), visitors, a
 
 ---
 
-# Database Design
+## Database Design
 
-## Data Model
+GitShowcase.dev uses a relational database powered by PostgreSQL and Django’s ORM.
 
-GitShowcase.dev uses a relational database powered by **PostgreSQL**, following a clean and maintainable schema aligned with Django’s ORM conventions.
+The application stores only user-generated content locally.  
+Repository data is retrieved dynamically from the GitHub API and is not persisted in the database.
 
-The core data structure consists of several Django models that handle:
-- User accounts (via GitHub OAuth)
-- Repository metadata (cached from the GitHub API)
-- User comments on repositories
-- Bookmark functionality
-- Contact form submissions
+### Models
 
-These models were planned, structured, and interconnected to ensure efficient queries, scalable growth, and intuitive data relationships throughout the project.
+**User (Django built-in)**
+- Username
+- GitHub OAuth data
 
-### **User**  
-- Username  
-- GitHub ID  
-- Avatar URL  
-- OAuth token (secured)
+**Bookmark**
+- ForeignKey → User
+- Repository name
+- Repository URL
+- Metadata (language, stars, forks)
+- Notes
+- Created date
 
-### **Repository**  
-- GitHub repo ID  
-- Name  
-- Owner  
-- Description  
-- Stars  
-- Forks  
-- Language  
-- HTML URL  
-- ZIP URL  
-- Last updated date  
+**Comment**
+- ForeignKey → User
+- Repository name
+- Repository URL
+- Comment body
+- Approved status
+- Created date
 
-### **Comment**  
-- ForeignKey → Repository  
-- ForeignKey → User  
-- Body  
-- Created date  
-- Updated date  
+**ContactMessage**
+- Name
+- Email
+- Message
+- Timestamp
 
-### **Bookmark**  
-- ForeignKey → User  
-- ForeignKey → Repository  
-- Created date  
-
-### **Contact**  
-- Name  
-- Email  
-- Message  
-- Timestamp  
-
----
-
-## Mermaid ERD
-
-Below is the interactive ERD generated using Mermaid:
-
-```mermaid
 erDiagram
-    USER ||--o{ REPOSITORY : "owns"
-    USER ||--o{ COMMENT : "writes"
-    USER ||--o{ BOOKMARK : "saves"
-    REPOSITORY ||--o{ COMMENT : "has"
-    REPOSITORY ||--o{ BOOKMARK : "bookmarked"
-    CONTACT {
-        string name
-        string email
-        text message
-        datetime created_on
-    }
+    USER ||--o{ BOOKMARK : saves
+    USER ||--o{ COMMENT : writes
+
     USER {
         string username
-        string github_id
-        string avatar_url
-        string oauth_token
     }
-    REPOSITORY {
-        string name
-        string description
-        string language
-        int stars
-        int forks
-        string html_url
-        string zip_url
-        datetime updated_on
-    }
-    COMMENT {
-        text body
-        datetime created_on
-        datetime updated_on
-    }
+
     BOOKMARK {
-        datetime created_on
+        string repo_name
+        string repo_url
+        string language
+        int stargazers_count
+        int forks_count
+        text notes
+        datetime created_at
     }
-```
+
+    COMMENT {
+        string repo_name
+        string repo_url
+        text body
+        boolean approved
+        datetime created_at
+    }
+
+    CONTACTMESSAGE {
+        string first_name
+        string last_name
+        string email
+        string phone
+        text message
+        datetime created_at
+    }
 
 Source:  
 https://mermaid.live/
 
 ---
 
-## Advanced ERD Generation (Optional)
+## Agile Development Process
 
-To generate an advanced system-wide ERD automatically:
+### GitHub Projects
 
-Steps followed:
+GitHub Projects was used as the primary Agile project management tool for this application.  
+It was used to plan, track, and evidence progress against the Code Institute learning outcomes throughout development.
 
-1. `sudo apt update`  
-2. `sudo apt-get install python3-dev graphviz libgraphviz-dev pkg-config`  
-3. `pip3 install django-extensions pygraphviz`  
-4. Add to `INSTALLED_APPS`:
-    ```python
-    'django_extensions',
-    ```
-5. Generate ERD:
-    ```bash
-    python3 manage.py graph_models -a -o erd.jpg
-    ```
-6. Move `erd.jpg` into `documentation/`.
-7. Remove django-extensions from installed apps.
-8. Uninstall:
-    ```bash
-    pip3 uninstall django-extensions pygraphviz -y
-    ```
+Work items were structured as:
+- **Learning Outcome tickets** (Pass, Merit, and Distinction criteria)
+- **Refinement tasks** to improve design, UX, documentation, and code quality
 
-![screenshot](documentation/advanced-erd.jpg)
+These items were organised using a Kanban-style workflow with the following columns:
 
-# Agile Development Process
+- **To Do** – Learning outcomes and tasks that had not yet been started  
+- **In Progress** – Items actively being worked on during development  
+- **Done** – Completed learning outcomes and tasks  
 
-## GitHub Projects
+Additional columns were used to clearly track assessment goals:
 
-GitHub Projects was used as the primary Agile management tool for this project.  
-It allowed the work to be broken down into clearly structured Agile components:
+- **Merit** – Refinements completed to improve design, documentation, and code quality beyond pass criteria  
+- **Distinction** – Advanced refinements demonstrating professionalism, UX quality, real-world relevance, and overall application polish  
 
-- **Epics**  
-- **User Stories**  
-- **Tasks**  
-- **Bugs**
-
-These items were organised using a Kanban workflow with the following columns:
-
-- **To Do**  
-- **In Progress**  
-- **In Review**  
-- **Done**
-
-This system helped track progress throughout development and kept the project aligned with Agile best practices.
+This approach allowed progress to be tracked incrementally while ensuring the project aligned closely with assessment criteria and Agile best practices.
 
 ![screenshot](documentation/gh-projects.jpg)
 
 **Project Board:**  
 https://github.com/users/colmwoods/projects/10
+
 
 ---
 
