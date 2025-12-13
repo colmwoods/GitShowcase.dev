@@ -381,6 +381,7 @@ Repository data is retrieved dynamically from the GitHub API and is not persiste
 - Message
 - Timestamp
 
+```mermaid
 erDiagram
     USER ||--o{ BOOKMARK : saves
     USER ||--o{ COMMENT : writes
@@ -415,6 +416,8 @@ erDiagram
         text message
         datetime created_at
     }
+```
+
 
 Source:  
 https://mermaid.live/
