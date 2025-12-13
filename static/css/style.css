@@ -622,3 +622,42 @@ footer {
 section#alerts {
     margin-top: 5em;
 }
+
+/* -------------------- 404 PAGE -------------------- */
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 4rem 1rem;
+}
+
+.error-card {
+    background: #ffffff;
+    padding: 3rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    color: #333;
+    animation: fadeIn 1s ease forwards;
+}
+
+.error-card h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #0077ff;
+    margin-bottom: 0.5rem;
+}
+
+.error-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #141e30;
+}
+
+.error-card p {
+    margin-bottom: 1.5rem;
+    color: #555;
+}
