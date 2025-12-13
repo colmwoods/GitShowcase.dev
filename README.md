@@ -166,7 +166,7 @@ GitShowcase.dev uses the following:
 ---
 
 ## Wireframes
-To ensure consistent design and usability across all device sizes, wireframes were created for **mobile**, **tablet**, and **desktop** using [Balsamiq](https://balsamiq.com/wireframes).
+To ensure consistent design and usability across all device sizes, wireframes were created for **mobile**, **tablet**, and **desktop** using [Figma](https://www.figma.com/).
 
 | Page | Mobile | Tablet | Desktop |
 | --- | --- | --- | --- |
