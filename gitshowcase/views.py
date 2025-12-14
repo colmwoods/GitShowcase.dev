@@ -207,7 +207,11 @@ def search(request):
 
     if query:
         user_url = f"https://api.github.com/users/{query}"
-        repos_url = f"https://api.github.com/users/{query}/repos?per_page=100&sort=updated&direction=desc"
+        repos_url = (
+    f"https://api.github.com/users/{query}/repos"
+    "?per_page=100&sort=updated&direction=desc"
+)
+
         headers = {"Accept": "application/vnd.github+json"}
 
         user_response = requests.get(user_url, headers=headers)
@@ -266,8 +270,11 @@ def search(request):
                     except Exception as e:
                         print("⚠️ Error parsing starred repos:", str(e))
                 else:
-                    print("⚠️ GitHub API star fetch failed:",
-                          star_response.text[:200])
+                    print(
+    "⚠️ GitHub API star fetch failed:",
+    star_response.text[:200]
+)
+
 
     # Return Rendered Search Page
     return render(
@@ -337,8 +344,9 @@ def bookmark_list(request):
                     b.forks_count = data.get("forks_count", b.forks_count)
             except Exception as e:
                 print(
-                    f"⚠️ Could not update counts for {
-                        b.repo_full_name}: {e}")
+    f"⚠️ Could not update counts for {b.repo_full_name}: {e}"
+)
+
         else:
             b.repo_full_name = ""
     starred_repos = []
@@ -422,7 +430,7 @@ def edit_comment(request, comment_id):
     else:
         messages.error(request, "❌ Invalid request.")
 
-  # return HttpResponseRedirect(request.META.get("HTTP_REFERER", "/"))
+    # return HttpResponseRedirect(request.META.get("HTTP_REFERER", "/"))
     return redirect(home)
 
 # ---------------- DELETE COMMENT ----------------

@@ -91,8 +91,7 @@ Where Django’s default configuration resulted in very long lines (for example,
 
 | Directory | File | URL | Screenshot | Notes |
 |----------|------|-----|-----------|-------|
-| gitshowcase | extra_tags.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/extra_tags.py) | ![screenshot](documentation/validation/py-extra-tags.jpg) | Custom Django template filter used to safely access dictionary values in templates |
-
+| gitshowcase/templatetags | extra_tags.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/extra_tags.py) | ![screenshot](documentation/validation/py-extra-tags.jpg) | Custom Django template filter used to safely access dictionary values in templates |
 | gitshowcase | admin.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/admin.py) | ![screenshot](documentation/validation/py-admin.jpg) | Registers models with the Django admin interface |
 | gitshowcase | asgi.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/asgi.py) | ![screenshot](documentation/validation/py-asgi.jpg) | Standard ASGI configuration for async deployment |
 | gitshowcase | forms.py | [PEP8 CI Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/colmwoods/GitShowcase.dev/main/gitshowcase/forms.py) | ![screenshot](documentation/validation/py-forms.jpg) | Contains the contact form and any related form logic |
