@@ -91,12 +91,17 @@ def home(request):
                 try:
                     api_data = starred_response.json()
                     starred_repos = {r["full_name"].lower() for r in api_data}
-                    print("⭐ Starred repos returned:", list(starred_repos)[:5])
+                    print(
+                        "⭐ Starred repos returned:",
+                        list(starred_repos)[:5]
+                    )
                 except Exception as e:
                     print("⚠️ Error parsing starred repos:", str(e))
             else:
-                print("⚠️ GitHub API star fetch failed:",
-                      starred_response.text[:200])
+                print(
+                    "⚠️ GitHub API star fetch failed:",
+                    starred_response.text[:200]
+                )
 
         except Exception as e:
             print("💥 GitHub API exception:", e)
