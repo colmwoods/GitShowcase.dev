@@ -11,6 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+# Set The Default Django Settings Module For The 'gitshowcase' Project
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gitshowcase.settings')
 
+# Get The WSGI Application
 application = get_wsgi_application()

@@ -26,7 +26,7 @@ def home(request):
             token = SocialToken.objects.get(
                 account=social_account, account__user=request.user)
 
-            # ✅ Fetch user repos
+            # Fetch User Repos
             url = (
                 "https://api.github.com/user/repos"
                 "?visibility=all"
@@ -59,7 +59,7 @@ def home(request):
                       response.status_code,
                       response.text[:300])
 
-            # ✅ Collect comments for displayed repos
+            # Collect Comments For Displayed Repos
             repo_names = [r.get("name") for r in repos if "name" in r]
             if repo_names:
                 comments = Comment.objects.filter(repo_name__in=repo_names)
@@ -67,14 +67,14 @@ def home(request):
                     comments_by_repo.setdefault(
                         comment.repo_name, []).append(comment)
 
-            # ✅ Get user's bookmarked repos
+            # Get User's Bookmarked Repo URLs
             bookmarked_urls = list(
                 Bookmark.objects.filter(
                     user=request.user).values_list(
                     "repo_url",
                     flat=True))
 
-            # ✅ Fetch user's starred repos
+            # Fetch Starred Repos
             starred_response = requests.get(
                 "https://api.github.com/user/starred?per_page=100",
                 headers={
@@ -133,6 +133,7 @@ def star_repo(request):
             account=social_account,
             account__user=request.user)
 
+        # Perform Star/Unstar Action
         url = f"https://api.github.com/user/starred/{repo_full_name}"
         headers = {
             "Authorization": f"token {token.token}",
@@ -201,7 +202,8 @@ def search(request):
     bookmarked_urls = []
     query = request.GET.get("q", "").strip()
 
-    starred_repos = set()  # Always define it
+    # Always Initialize
+    starred_repos = set()
 
     if query:
         user_url = f"https://api.github.com/users/{query}"
@@ -211,11 +213,11 @@ def search(request):
         user_response = requests.get(user_url, headers=headers)
         repos_response = requests.get(repos_url, headers=headers)
 
-        # ✅ Fetch GitHub user info
+        # Fetch User Information
         if user_response.status_code == 200:
             user_data = user_response.json()
 
-        # ✅ Fetch repositories
+        # Fetch User Repositories
         if repos_response.status_code == 200:
             repos = repos_response.json()
 
@@ -228,7 +230,7 @@ def search(request):
                     except ValueError:
                         repo["updated_at"] = None
 
-            # ✅ Collect comments for repos found
+            # Collect Comments For Repos Found
             repo_names = [r.get("name") for r in repos if "name" in r]
             if repo_names:
                 comments = Comment.objects.filter(repo_name__in=repo_names)
@@ -236,7 +238,7 @@ def search(request):
                     comments_by_repo.setdefault(
                         comment.repo_name, []).append(comment)
 
-    # ✅ Fetch starred repos for authenticated users
+    # Fetch Starred Repos If Authenticated
     if request.user.is_authenticated:
         social_account = SocialAccount.objects.filter(
             user=request.user, provider='github').first()
@@ -267,7 +269,7 @@ def search(request):
                     print("⚠️ GitHub API star fetch failed:",
                           star_response.text[:200])
 
-    # ✅ Return everything to the template
+    # Return Rendered Search Page
     return render(
         request,
         "search.html",
@@ -293,7 +295,7 @@ def add_bookmark(request):
         stargazers_count = request.POST.get('stargazers_count', 0)
         forks_count = request.POST.get('forks_count', 0)
 
-        # Extract full repo name (user/repo) from URL
+        # Extract Full Repo Name From URL
         repo_full_name = repo_url.replace("https://github.com/", "")
 
         if not Bookmark.objects.filter(
@@ -317,7 +319,7 @@ def bookmark_list(request):
     bookmarks = Bookmark.objects.filter(
         user=request.user).order_by('-created_at')
 
-    # ✅ Update counts dynamically before rendering
+    # Update Counts From GitHub
     for b in bookmarks:
         if b.repo_url:
             b.repo_full_name = (
@@ -352,7 +354,7 @@ def bookmark_list(request):
             starred_repos = [repo["full_name"].lower()
                              for repo in response.json()]
 
-    # 💬 Comments
+    # Comments
     comments = Comment.objects.all().order_by('-created_at')
     comments_by_repo = {}
     for comment in comments:
@@ -413,7 +415,7 @@ def edit_comment(request, comment_id):
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
-            form.save()  # ✅ simplified — no extra logic
+            form.save()
             messages.success(request, "✏️ Comment updated successfully!")
         else:
             messages.error(request, "❌ Failed to update comment.")
@@ -422,6 +424,8 @@ def edit_comment(request, comment_id):
 
   # return HttpResponseRedirect(request.META.get("HTTP_REFERER", "/"))
     return redirect(home)
+
+# ---------------- DELETE COMMENT ----------------
 
 
 @login_required

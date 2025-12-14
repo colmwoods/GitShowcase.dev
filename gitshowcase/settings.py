@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 
+# Build Path Inside The Project Like This: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -35,8 +36,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 
-# Application definition
-
+# Application Definition
 INSTALLED_APPS = [
     'gitshowcase',
     'django.contrib.admin',
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
 
-    # Allauth apps
+    # Allauth Apps
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
 ]
 
-# Allauth configuration
+# Allauth Configuration
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
@@ -63,19 +63,20 @@ ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-# Keep a valid value — doesn't matter since we’re using GitHub OAuth
+# Keep This To Allow Login Via Either Username Or Email Using Allauth Anyways
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
 ACCOUNT_LOGOUT_ON_GET = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
-
+# Authentication Backends
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+# Middleware Configuration
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -88,10 +89,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# HTTPs Behind A Proxy (e.g. On Heroku)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ROOT_URLCONF = 'gitshowcase.urls'
 
+# Template Configuration
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -123,7 +126,7 @@ if 'DATABASE_URL' in os.environ:
             ssl_require=True,
         )
     }
-    # Explicitly ensure SSL mode for extra stability
+    # Explicitly Ensure SSL Mode Is Required
     DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
 else:
     DATABASES = {
@@ -165,7 +168,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Static Files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
@@ -174,7 +177,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-# Default primary key field type
+# Default Primary Key Field Type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -198,5 +201,5 @@ SOCIALACCOUNT_PROVIDERS = {
 
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
-# Make Django Allauth save OAuth tokens (GitHub access tokens)
+# Make Django Allauth Save OAuth Tokens (GitHub Access Token)
 SOCIALACCOUNT_STORE_TOKENS = True

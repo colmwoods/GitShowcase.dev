@@ -2,6 +2,8 @@ from django.contrib import admin
 from .models import Bookmark, Comment, ContactMessage
 import requests
 
+# Admin Customizations For GitShowcase Models
+
 
 @admin.register(Bookmark)
 class BookmarkAdmin(admin.ModelAdmin):
@@ -13,6 +15,7 @@ class BookmarkAdmin(admin.ModelAdmin):
         "stargazers_count",
         "forks_count")
 
+# Allow Searching By Repo Name and User
     def save_model(self, request, obj, form, change):
         """Auto-fill all bookmark info from GitHub when only repo_url is given."""
         if obj.repo_url:
@@ -37,6 +40,8 @@ class BookmarkAdmin(admin.ModelAdmin):
 
         super().save_model(request, obj, form, change)
 
+# Admin Customizations For Comments
+
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
@@ -48,6 +53,8 @@ class CommentAdmin(admin.ModelAdmin):
         return f'<a href="{obj.repo_url}" target="_blank">{obj.repo_url}</a>'
     repo_link.allow_tags = True
     repo_link.short_description = "Repository URL"
+
+# Admin Customizations For Contact Messages
 
 
 @admin.register(ContactMessage)

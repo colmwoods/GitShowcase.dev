@@ -11,6 +11,8 @@ import os
 
 from django.core.asgi import get_asgi_application
 
+# Set The Default Django Settings Module For The 'gitshowcase' Project
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gitshowcase.settings')
 
+# Get The ASGI Application
 application = get_asgi_application()
