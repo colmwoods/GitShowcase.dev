@@ -20,18 +20,58 @@ from .views import home
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    path('', home, name='home'),
-    path('about/', views.about, name='about'),
-    path("api/star/", views.star_repo, name="star_repo"),
-    path("search/", views.search, name="search"),
-    path("add_bookmark/", views.add_bookmark, name="add_bookmark"),
-    path('bookmarks/', views.bookmark_list, name='bookmarks'),
-    path('delete_bookmark/<int:bookmark_id>/', views.delete_bookmark, name='delete_bookmark'),
-    path("comment/add/", views.add_comment, name="add_comment"),
-    path("comment/edit/<int:comment_id>/", views.edit_comment, name="edit_comment"),
-    path("comment/delete/<int:comment_id>/", views.delete_comment, name="delete_comment"),
-    path('contact/', views.contact, name='contact'),
-    path('success/', views.success, name='success'),
+    path(
+        'admin/',
+        admin.site.urls),
+    path(
+        'accounts/',
+        include('allauth.urls')),
+    path(
+        '',
+        home,
+        name='home'),
+    path(
+        'about/',
+        views.about,
+        name='about'),
+    path(
+        "api/star/",
+        views.star_repo,
+        name="star_repo"),
+    path(
+        "search/",
+        views.search,
+        name="search"),
+    path(
+        "add_bookmark/",
+        views.add_bookmark,
+        name="add_bookmark"),
+    path(
+        'bookmarks/',
+        views.bookmark_list,
+        name='bookmarks'),
+    path(
+        'delete_bookmark/<int:bookmark_id>/',
+        views.delete_bookmark,
+        name='delete_bookmark'),
+    path(
+        "comment/add/",
+        views.add_comment,
+        name="add_comment"),
+    path(
+        "comment/edit/<int:comment_id>/",
+        views.edit_comment,
+        name="edit_comment"),
+    path(
+        "comment/delete/<int:comment_id>/",
+        views.delete_comment,
+        name="delete_comment"),
+    path(
+        'contact/',
+        views.contact,
+        name='contact'),
+    path(
+        'success/',
+        views.success,
+        name='success'),
 ]

@@ -6,14 +6,21 @@ import requests
 @admin.register(Bookmark)
 class BookmarkAdmin(admin.ModelAdmin):
     fields = ("user", "repo_url")
-    list_display = ("user", "repo_name", "language", "stargazers_count", "forks_count")
+    list_display = (
+        "user",
+        "repo_name",
+        "language",
+        "stargazers_count",
+        "forks_count")
 
     def save_model(self, request, obj, form, change):
         """Auto-fill all bookmark info from GitHub when only repo_url is given."""
         if obj.repo_url:
             try:
-                repo_full_name = obj.repo_url.replace("https://github.com/", "").strip("/")
-                response = requests.get(f"https://api.github.com/repos/{repo_full_name}")
+                repo_full_name = obj.repo_url.replace(
+                    "https://github.com/", "").strip("/")
+                response = requests.get(
+                    f"https://api.github.com/repos/{repo_full_name}")
                 if response.status_code == 200:
                     data = response.json()
                     obj.repo_name = data.get("name", "")
@@ -22,7 +29,9 @@ class BookmarkAdmin(admin.ModelAdmin):
                     obj.stargazers_count = data.get("stargazers_count", 0)
                     obj.forks_count = data.get("forks_count", 0)
                 else:
-                    print(f"⚠️ GitHub API returned {response.status_code} for {repo_full_name}")
+                    print(
+                        f"⚠️ GitHub API returned {
+                            response.status_code} for {repo_full_name}")
             except Exception as e:
                 print("⚠️ Error fetching GitHub repo data:", e)
 

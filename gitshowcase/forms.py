@@ -1,6 +1,7 @@
 from django import forms
 from .models import Comment, ContactMessage
 
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
@@ -12,6 +13,7 @@ class CommentForm(forms.ModelForm):
                 'class': 'form-control'
             }),
         }
+
 
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -26,7 +28,8 @@ class ContactForm(forms.ModelForm):
             }),
             'email': forms.EmailInput(attrs={
                 'placeholder': 'Enter your email',
-                'pattern': r'^[^@]+@[^@]+\.[a-zA-Z]{2,}$',  # ✅ Requires full domain (.com, .net, etc.)
+                # ✅ Requires full domain (.com, .net, etc.)
+                'pattern': r'^[^@]+@[^@]+\.[a-zA-Z]{2,}$',
                 'title': 'Please include a full email domain, like example.com or example.net',
             }),
             'phone': forms.TextInput(attrs={
