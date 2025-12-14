@@ -127,7 +127,9 @@ def about(request):
 @login_required
 @require_POST
 def star_repo(request):
-    """Star or unstar a GitHub repository using the authenticated user's token."""
+    """
+    Star or unstar a GitHub repository using the authenticated user's token.
+    """
     try:
         data = json.loads(request.body.decode())
         repo_full_name = data.get("repo")
@@ -162,7 +164,11 @@ def star_repo(request):
             return JsonResponse({"ok": True, "starred": starred})
         else:
             return JsonResponse(
-                {"ok": False, "status": response.status_code, "body": response.text[:200]},
+                {
+                    "ok": False,
+                    "status": response.status_code,
+                    "body": response.text[:200],
+                },
                 status=400,
             )
 
