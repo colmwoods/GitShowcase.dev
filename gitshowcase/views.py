@@ -14,6 +14,9 @@ from .forms import CommentForm, ContactForm
 
 
 def home(request):
+    """
+    Home Page View
+    """
     repos = []
     comments_by_repo = {}
     bookmarked_urls = []
@@ -196,6 +199,9 @@ def get_starred_repos(user):
 
 
 def search(request):
+    """
+    Search GitHub for a user's repositories
+    """
     repos = []
     user_data = None
     comments_by_repo = {}
@@ -208,9 +214,9 @@ def search(request):
     if query:
         user_url = f"https://api.github.com/users/{query}"
         repos_url = (
-    f"https://api.github.com/users/{query}/repos"
-    "?per_page=100&sort=updated&direction=desc"
-)
+            f"https://api.github.com/users/{query}/repos"
+            "?per_page=100&sort=updated&direction=desc"
+        )
 
         headers = {"Accept": "application/vnd.github+json"}
 
@@ -271,10 +277,9 @@ def search(request):
                         print("⚠️ Error parsing starred repos:", str(e))
                 else:
                     print(
-    "⚠️ GitHub API star fetch failed:",
-    star_response.text[:200]
-)
-
+                        "⚠️ GitHub API star fetch failed:",
+                        star_response.text[:200]
+                    )
 
     # Return Rendered Search Page
     return render(
@@ -294,6 +299,9 @@ def search(request):
 # ---------------- BOOKMARKS ----------------
 @login_required(login_url='/accounts/login/')
 def add_bookmark(request):
+    """
+    Add a new bookmark.
+    """
     if request.method == 'POST':
         repo_name = request.POST.get('repo_name')
         repo_url = request.POST.get('repo_url')
@@ -323,6 +331,9 @@ def add_bookmark(request):
 
 @login_required(login_url='/accounts/login/')
 def bookmark_list(request):
+    """
+    Bookmark List Page
+    """
     bookmarks = Bookmark.objects.filter(
         user=request.user).order_by('-created_at')
 
@@ -344,8 +355,8 @@ def bookmark_list(request):
                     b.forks_count = data.get("forks_count", b.forks_count)
             except Exception as e:
                 print(
-    f"⚠️ Could not update counts for {b.repo_full_name}: {e}"
-)
+                    f"⚠️ Could not update counts for {b.repo_full_name}: {e}"
+                )
 
         else:
             b.repo_full_name = ""
@@ -378,6 +389,9 @@ def bookmark_list(request):
 
 @login_required(login_url='/accounts/login/')
 def delete_bookmark(request, bookmark_id):
+    """
+    Delete a bookmark.
+    """
     bookmark = get_object_or_404(Bookmark, id=bookmark_id, user=request.user)
     bookmark.delete()
     return redirect('bookmarks')
@@ -454,6 +468,9 @@ def delete_comment(request, comment_id):
 
 # ---------------- CONTACT PAGE ----------------
 def contact(request):
+    """
+    Handle contact form submissions.
+    """
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -471,4 +488,7 @@ def contact(request):
 
 
 def success(request):
+    """
+    Render success page after contact form submission.
+    """
     return render(request, 'form/success.html')

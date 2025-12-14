@@ -34,7 +34,10 @@ class ContactForm(forms.ModelForm):
                 'placeholder': 'Enter your email',
                 # Requires Full Domain (.com, .net, etc.)
                 'pattern': r'^[^@]+@[^@]+\.[a-zA-Z]{2,}$',
-                'title': 'Please include a full email domain, like example.com or example.net',
+                'title': (
+                    'Please include a full email domain, '
+                    'like example.com or example.net'
+                ),
             }),
             'phone': forms.TextInput(attrs={
                 'placeholder': 'Optional phone number'

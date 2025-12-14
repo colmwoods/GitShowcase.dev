@@ -17,7 +17,10 @@ class BookmarkAdmin(admin.ModelAdmin):
 
 # Allow Searching By Repo Name and User
     def save_model(self, request, obj, form, change):
-        """Auto-fill all bookmark info from GitHub when only repo_url is given."""
+        """
+Auto-fill all bookmark info from GitHub
+when only repo_url is given.
+"""
         if obj.repo_url:
             try:
                 repo_full_name = obj.repo_url.replace(
