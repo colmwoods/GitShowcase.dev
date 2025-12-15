@@ -128,7 +128,7 @@ Every page was verified for:
 
 To visually demonstrate how GitShowcase.dev appears across multiple devices, I generated a responsive mockup using **ami.responsivedesign.is**.
 
-![screenshot](documentation/responsiveness/mockup.jpg)
+![screenshot](documentation/mockup.jpg)
 
 *Note: This mockup is for presentation only. All formal responsiveness testing was carried out using physical devices and developer tools, as shown in the table below.*
 
