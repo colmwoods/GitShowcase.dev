@@ -33,6 +33,8 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com', 'gitshowcase.dev', 
 
 CSRF_TRUSTED_ORIGINS = [
     "https://gitshowcase-dev-a0b7673e36ce.herokuapp.com",
+    "https://gitshowcase.dev",
+    "https://www.gitshowcase.dev",
 ]
 
 
