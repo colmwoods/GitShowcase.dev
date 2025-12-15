@@ -276,7 +276,7 @@ The table below documents the expected outcomes, how the story was tested, and t
 |-----------|-------------|------|--------|------------|
 | As a visitor, I want to search GitHub users | Search page should accept username and show repos | Searched for public GitHub user | User info and repos displayed | ![screenshot](documentation/userstories/search.jpg) |
 | As a visitor, I want to view other users’ repositories | Should be able to open profiles without login | Viewed another user's repos | Repos displayed correctly | ![screenshot](documentation/userstories/search-repos.jpg) |
-| As a visitor, I want to view repository details | Repo details should show metadata but no interactions | Opened repo detail page as guest | Metadata visible; comment/bookmark actions hidden | ![screenshot](documentation/userstories/guest-repo-detail.jpg) |
+| As a visitor, I want to view repository details | Repo details should show metadata but no interactions | Opened repo detail page as guest | Metadata visible; comments actions hidden | ![screenshot](documentation/userstories/guest-repo-detail.jpg) |
 | As a visitor, I want to read repository comments | Comments section should be publicly visible | Viewed repo comments as guest | Comments visible and paginated | ![screenshot](documentation/userstories/guest-comments.jpg) |
 | As a visitor, I want an About page | About page explains the purpose of the platform | Opened `/about` | Page displays correctly | ![screenshot](documentation/userstories/about.jpg) |
 | As a visitor, I want to submit a contact form | Contact form should validate input and submit | Submitted valid contact message | Message stored and success page displayed | ![screenshot](documentation/userstories/contact.jpg) |
