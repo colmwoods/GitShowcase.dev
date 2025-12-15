@@ -317,7 +317,7 @@ Each feature in GitShowcase.dev was manually tested to ensure correct behaviour,
 | GitHub OAuth Login | User is redirected to GitHub and authenticated | Clicked Login button | Successful login and redirect to home | ![screenshot](documentation/manual/login.jpg) |
 | Logout | Logs user out and ends session | Clicked Logout | Returned to visitor mode; restricted pages inaccessible | ![screenshot](documentation/manual/logout.jpg) |
 | Repository Listing | Display all public repos from authenticated user | Logged in and viewed home page | All repos displayed correctly with metadata | ![screenshot](documentation/manual/repos.jpg) |
-| Repository Detail View | Show metadata, buttons, and comments | Opened repo detail page | Page loaded with repo info and actions | ![screenshot](documentation/manual/repo-detail.jpg) |
+| Repository Detail View | Show metadata, buttons, and comments | Opened repo detail page by clicking view buttom | Page loaded with repo info and actions | ![screenshot](documentation/manual/repo-detail.jpg) |
 | Bookmark Repo | Add selected repo to user bookmarks | Clicked Bookmark | Repo saved and shown in Bookmarks page | ![screenshot](documentation/manual/bookmark.jpg) |
 | Remove Bookmark | Remove bookmark from user list | Clicked Remove button | Repo removed from Bookmarks | ![screenshot](documentation/manual/unbookmark.jpg) |
 | View Bookmarks | Display all bookmarked repos for logged-in user | Opened `/bookmarks/` | Correct repos displayed for user | ![screenshot](documentation/manual/bookmarks.jpg) |
