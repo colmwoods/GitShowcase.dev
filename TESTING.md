@@ -483,9 +483,8 @@ The following issues are known and documented, but fall outside the project’s 
 
 | Issue | Screenshot |
 | --- | --- |
-| The project is designed to be responsive from `375px` and upwards. Extremely wide resolutions (4k/8k displays, ultra-wide monitors) may show minor spacing variations. This is normal and outside the CI design scope. | ![screenshot](documentation/issues/poor-responsiveness.jpg) |
-| The W3C HTML validator sometimes flags warnings on `<section>` elements without `h2–h6` headings. This is acceptable, as the design uses custom layout structures rather than semantic headings inside every section. | ![screenshot](documentation/issues/section-header.jpg) |
-| Some validation warnings appear on Django Allauth template pages. These templates are third-party and not modified by me, so the warnings are beyond my control. | ![screenshot](documentation/issues/allauth.jpg) |
+| The project is designed to be responsive from `375px` and upwards. Extremely wide resolutions (8k displays, ultra-wide monitors) may show container not grow any bigger in center. This is normal and outside the CI design scope. | ![screenshot](documentation/issues/poor-responsiveness.jpg) |
+| The W3C HTML validator flags warnings when validating Django templates that use `<section>` elements for layout without `h2–h6` headings. These warnings occur because sections are used as structural containers rather than semantic content areas and because the validator does not process Django template syntax. This behaviour is expected and acceptable. | ![screenshot](documentation/issues/html-django-issue.jpg) |
 
 ---
 
