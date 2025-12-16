@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get(
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com', 'gitshowcase.dev', 'www.gitshowcase.dev']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com', '.gitshowcase.dev']
 
 
 CSRF_TRUSTED_ORIGINS = [
@@ -72,6 +72,11 @@ ACCOUNT_LOGOUT_ON_GET = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
+# Cookie SameSite Settings
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = 'Lax'
+
+
 # Authentication Backends
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -93,6 +98,7 @@ MIDDLEWARE = [
 
 # HTTPs Behind A Proxy (e.g. On Heroku)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 
 ROOT_URLCONF = 'gitshowcase.urls'
 
