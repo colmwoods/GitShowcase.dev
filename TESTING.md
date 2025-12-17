@@ -51,7 +51,7 @@ This ensured every template was validated in its final rendered form, free of Dj
 | templates/account | login.html | https://www.gitshowcase.dev/accounts/login | ![screenshot](documentation/validation/html-login.jpg) | GitHub OAuth login page |
 | templates/form | contact.html | https://www.gitshowcase.dev/contact | ![screenshot](documentation/validation/html-contact.jpg) | Contact form that stores messages in the database |
 | templates/form | success.html | https://www.gitshowcase.dev/success | ![screenshot](documentation/validation/html-success.jpg) | Confirmation page displayed after a successful contact form submission |
-
+| templates/socialaccount | login_cancelled.html | https://www.gitshowcase.dev/accounts/3rdparty/login/cancelled/ | ![screenshot](documentation/validation/html-login-cancelled.jpg) | Custom OAuth cancellation page providing clear user feedback and navigation back to the site |
 
 ## CSS Validation
 
