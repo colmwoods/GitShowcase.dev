@@ -40,7 +40,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Application Definition
 INSTALLED_APPS = [
-    'gitshowcase',
+    'gitshowcase.apps.GitshowcaseConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

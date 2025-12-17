@@ -7,13 +7,19 @@
     <div class="login-container">
         <div class="login-card">
             {% if user.is_authenticated %}
-            <h2>Welcome back, {{ user.username }} 👋</h2>
+            <h2>
+                Welcome back,
+                {% if user.first_name %}
+                {{ user.first_name }}
+                {% else %}
+                {{ user.username }}
+                {% endif %}
+                👋
+            </h2>
             {% if user.socialaccount_set.exists %}
             {% with github=user.socialaccount_set.first %}
             <img src="{{ github.extra_data.avatar_url }}" alt="Avatar"
                 style="border-radius:50%;width:80px;margin:1rem;">
-            <p>GitHub: {{ github.extra_data.login }}</p>
-            <p>Name: {{ github.extra_data.name }}</p>
             {% endwith %}
             {% endif %}
             <a href="{% url 'account_logout' %}" class="btn btn-logout">Log Out</a>
