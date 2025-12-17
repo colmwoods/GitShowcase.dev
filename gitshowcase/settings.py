@@ -223,3 +223,6 @@ SOCIALACCOUNT_LOGIN_ON_GET = True
 
 # Make Django Allauth Save OAuth Tokens (GitHub Access Token)
 SOCIALACCOUNT_STORE_TOKENS = True
+
+SOCIALACCOUNT_ADAPTER = "gitshowcase.adapters.GitHubUsernameAdapter"
+
