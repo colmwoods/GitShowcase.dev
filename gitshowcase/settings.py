@@ -100,8 +100,6 @@ MIDDLEWARE = [
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = not DEBUG
 
-SESSION_COOKIE_DOMAIN = ".gitshowcase.dev"
-CSRF_COOKIE_DOMAIN = ".gitshowcase.dev"
 
 ROOT_URLCONF = 'gitshowcase.urls'
 
