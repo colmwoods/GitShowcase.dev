@@ -5,6 +5,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from allauth.socialaccount.models import SocialAccount, SocialToken
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import csrf_protect
 import requests
 import json
 from datetime import datetime
@@ -127,6 +128,7 @@ def about(request):
 # ---------------- STAR REPO ENDPOINT ----------------
 @login_required
 @require_POST
+@csrf_protect
 def star_repo(request):
     """
     Star or unstar a GitHub repository using the authenticated user's token.

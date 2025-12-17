@@ -40,7 +40,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Application Definition
 INSTALLED_APPS = [
-    'gitshowcase',
+    'gitshowcase.apps.GitshowcaseConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,15 +62,15 @@ SITE_ID = 3
 LOGIN_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_REQUIRED = False
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Keep This To Allow Login Via Either Username Or Email Using Allauth Anyways
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
 ACCOUNT_LOGOUT_ON_GET = True
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
 
 # Cookie SameSite Settings
 CSRF_COOKIE_SAMESITE = 'Lax'
@@ -223,3 +223,6 @@ SOCIALACCOUNT_LOGIN_ON_GET = True
 
 # Make Django Allauth Save OAuth Tokens (GitHub Access Token)
 SOCIALACCOUNT_STORE_TOKENS = True
+
+SOCIALACCOUNT_ADAPTER = "gitshowcase.adapters.GitHubUsernameAdapter"
+
