@@ -466,7 +466,7 @@ All of these issues have been fully resolved.
 
 ## Unfixed Bugs
 
-[![GitHub issue custom search](https://img.shields.io/github/issues-search/colmwoods/GitShowcase.dev?query=is%3Aissue%2Bis%3Aopen%2Blabel%3Abug&label=Unfixed%20Bugs&color=red)](https://www.github.com/colmwoods/GitShowcase.dev/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
+[![GitHub issue custom search](https://img.shields.io/github/issues-search/colmwoods/GitShowcase.dev?query=is%3Aissue+is%3Aopen+label%3Abug&label=Unfixed%20Bugs&color=red)](https://www.github.com/colmwoods/GitShowcase.dev/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
 
 At the time of submission, no major unfixed bugs remain that would affect core functionality of GitShowcase.dev.
 
