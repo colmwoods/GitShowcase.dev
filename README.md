@@ -165,6 +165,37 @@ GitShowcase.dev uses the following:
 
 ---
 
+## Accessibility
+
+GitShowcase.dev was developed with accessibility as a priority and aims to meet **WCAG 2.1 AA** standards where reasonably possible.  
+Accessibility decisions were guided by the four WCAG principles: **Perceivable, Operable, Understandable, and Robust (POUR)**.
+
+### Perceivable
+- High-contrast colour palette to ensure text readability
+- Clear typography and spacing
+- Icons paired with text where appropriate
+- Content not reliant on colour alone to convey meaning
+
+### Operable
+- Full keyboard navigation across interactive elements
+- No mouse-only interactions
+- Accessible buttons and links with adequate click/tap targets
+
+### Understandable
+- Clear and consistent navigation structure
+- Descriptive labels on forms and inputs
+- Validation messages that explain errors clearly
+- Predictable page behaviour and layout
+
+### Robust
+- Semantic HTML to support screen readers and assistive technologies
+- Clean, standards-compliant markup
+- Cross-browser and cross-device compatibility testing
+
+Lighthouse accessibility audits were used throughout development to identify and resolve accessibility issues.
+
+---
+
 ## Wireframes
 To ensure consistent design and usability across all device sizes, wireframes were created for **mobile**, **tablet**, and **desktop** using [Figma](https://www.figma.com/).
 
@@ -448,7 +479,10 @@ Additional columns were used to clearly track assessment goals:
 
 This approach allowed progress to be tracked incrementally while ensuring the project aligned closely with assessment criteria and Agile best practices.
 
+### Start
 ![screenshot](documentation/gh-projects.jpg)
+### Finish
+![screenshot](documentation/gh-projects-finished.jpg)
 
 **Project Board:**  
 https://github.com/users/colmwoods/projects/10
@@ -522,6 +556,34 @@ This includes:
 - Manual test cases  
 - Automated test details  
 - Bugs and solutions  
+
+---
+
+## User Feedback & Progress Indicators
+
+GitShowcase.dev provides clear and consistent feedback to users for all key interactions, ensuring users always understand the outcome of their actions.
+
+### Authentication Feedback
+- Successful login and logout actions trigger immediate UI state changes and confirmation views.
+- Navigation updates dynamically based on authentication status.
+
+### Comment Feedback
+- Users receive immediate visual confirmation when comments are added, edited, or deleted.
+- Deleting a comment requires explicit user confirmation to prevent accidental data loss.
+- Success messages are displayed after comment deletion.
+
+### Form Feedback
+- All forms include validation feedback for missing or invalid input.
+- Successful form submissions redirect users to a dedicated success page.
+
+### Error Handling Feedback
+- Invalid routes display a custom 404 page.
+- Unauthorized actions redirect users to authentication pages.
+- Invalid search input and API failures are handled safely with user-facing feedback.
+
+### Progress Indicators
+- Immediate UI updates indicate successful actions.
+- Lightweight feedback mechanisms are used to maintain a clean interface while still clearly communicating system state.
 
 ---
 
