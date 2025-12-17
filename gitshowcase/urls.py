@@ -19,6 +19,7 @@ from django.urls import path, include
 from .views import home
 from . import views
 
+# URL Patterns For GitShowcase Application
 urlpatterns = [
     path(
         'admin/',
