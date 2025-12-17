@@ -4,6 +4,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from allauth.socialaccount.models import SocialAccount, SocialToken
+from django.views.decorators.csrf import ensure_csrf_cookie
 import requests
 import json
 from datetime import datetime
