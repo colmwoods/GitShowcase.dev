@@ -28,7 +28,11 @@ SECRET_KEY = os.environ.get(
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com', '.gitshowcase.dev']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.herokuapp.com',
+    '.gitshowcase.dev']
 
 
 CSRF_TRUSTED_ORIGINS = [
@@ -218,12 +222,9 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-
-
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
 # Make Django Allauth Save OAuth Tokens (GitHub Access Token)
 SOCIALACCOUNT_STORE_TOKENS = True
 
 SOCIALACCOUNT_ADAPTER = "gitshowcase.adapters.GitHubUsernameAdapter"
-

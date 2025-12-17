@@ -14,6 +14,7 @@ from .forms import CommentForm, ContactForm
 
 # ---------------- HOME PAGE ----------------
 
+
 @ensure_csrf_cookie
 def home(request):
     """
@@ -210,6 +211,7 @@ def get_starred_repos(user):
     return starred
 
 # ---------------- SEARCH PAGE ----------------
+
 
 @ensure_csrf_cookie
 def search(request):
