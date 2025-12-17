@@ -12,7 +12,7 @@ from .forms import CommentForm, ContactForm
 
 # ---------------- HOME PAGE ----------------
 
-
+@ensure_csrf_cookie
 def home(request):
     """
     Home Page View
@@ -208,7 +208,7 @@ def get_starred_repos(user):
 
 # ---------------- SEARCH PAGE ----------------
 
-
+@ensure_csrf_cookie
 def search(request):
     """
     Search GitHub for a user's repositories
