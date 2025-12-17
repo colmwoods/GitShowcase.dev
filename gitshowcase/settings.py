@@ -68,7 +68,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 # Keep This To Allow Login Via Either Username Or Email Using Allauth Anyways
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
-ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_LOGOUT_ON_GET = False
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
@@ -98,7 +98,10 @@ MIDDLEWARE = [
 
 # HTTPs Behind A Proxy (e.g. On Heroku)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = not DEBUG
+
+SESSION_COOKIE_DOMAIN = ".gitshowcase.dev"
+CSRF_COOKIE_DOMAIN = ".gitshowcase.dev"
 
 ROOT_URLCONF = 'gitshowcase.urls'
 
@@ -221,7 +224,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-SOCIALACCOUNT_LOGIN_ON_GET = True
+SOCIALACCOUNT_LOGIN_ON_GET = False
 
 # Make Django Allauth Save OAuth Tokens (GitHub Access Token)
 SOCIALACCOUNT_STORE_TOKENS = True
