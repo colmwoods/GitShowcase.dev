@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card text-center p-4 shadow-sm">
+                <h1 class="mb-3">Authentication Cancelled</h1>
+                <p>
+                    GitHub login was cancelled or failed. No changes were made.
+                </p>
+
+                <a href="{% url 'home' %}" class="btn btn-primary mt-3">
+                    Return to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
