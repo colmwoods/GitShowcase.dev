@@ -209,6 +209,7 @@ To ensure consistent design and usability across all device sizes, wireframes we
 | **About** | ![screenshot](documentation/wireframes/mobile-about.jpg) | ![screenshot](documentation/wireframes/tablet-about.jpg) | ![screenshot](documentation/wireframes/desktop-about.jpg) |
 | **Contact** | ![screenshot](documentation/wireframes/mobile-contact.jpg) | ![screenshot](documentation/wireframes/tablet-contact.jpg) | ![screenshot](documentation/wireframes/desktop-contact.jpg) |
 | **404** | ![screenshot](documentation/wireframes/mobile-404.jpg) | ![screenshot](documentation/wireframes/tablet-404.jpg) | ![screenshot](documentation/wireframes/desktop-404.jpg) |
+| **OAuth Failed** | ![screenshot](documentation/wireframes/mobile-oath-fail.jpg) | ![screenshot](documentation/wireframes/tablet-oath-fail.jpg) | ![screenshot](documentation/wireframes/desktop-oath-fail.jpg) |
 
 ---
 
