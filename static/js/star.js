@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 const response = await fetch("/api/star/", {
                     method: "POST",
+                    credentials: "same-origin",
                     headers: {
                         "Content-Type": "application/json",
                         "X-CSRFToken": getCookie("csrftoken"),
