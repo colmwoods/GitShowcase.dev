@@ -1,11 +1,11 @@
-# [GitShowcase.dev](https://gitshowcase-dev-a0b7673e36ce.herokuapp.com)
+# [GitShowcase.dev](https://www.gitshowcase.dev/)
 
 Developer: Colm Woods ([colmwoods](https://www.github.com/colmwoods))
 
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/t/colmwoods/GitShowcase.dev)](https://www.github.com/colmwoods/GitShowcase.dev/commits/main)
 [![GitHub last commit](https://img.shields.io/github/last-commit/colmwoods/GitShowcase.dev)](https://www.github.com/colmwoods/GitShowcase.dev/commits/main)
 [![GitHub repo size](https://img.shields.io/github/repo-size/colmwoods/GitShowcase.dev)](https://www.github.com/colmwoods/GitShowcase.dev)
-[![badge](https://img.shields.io/badge/deployment-Heroku-purple)](https://gitshowcase-dev-a0b7673e36ce.herokuapp.com)
+[![badge](https://img.shields.io/badge/deployment-Heroku-purple)](https://www.gitshowcase.dev/)
 
 # Table of Contents
 - [Project Introduction](#project-introduction-and-rationale)
@@ -50,7 +50,7 @@ I wanted to build something useful for myself and for other developers — a too
 ![screenshot](documentation/mockup.jpg)
 
 Source:  
-[GitShowcase.dev amiresponsive](https://ui.dev/amiresponsive?url=https://gitshowcase-dev-a0b7673e36ce.herokuapp.com)
+[GitShowcase.dev amiresponsive](https://ui.dev/amiresponsive?url=https://www.gitshowcase.dev/)
 
 ---------
 
@@ -529,7 +529,7 @@ This includes:
 
 The live deployed application is on **Heroku**:
 
-### 🔗 https://gitshowcase-dev-a0b7673e36ce.herokuapp.com
+### 🔗 https://www.gitshowcase.dev/
 
 ---
 
@@ -672,7 +672,7 @@ This allows users to quickly access the repository and clone it without navigati
 ### Steps:
 
 1. Open **GitShowcase.dev** and navigate to the search bar and type colmwoods:
-   https://gitshowcase-dev-a0b7673e36ce.herokuapp.com
+   https://www.gitshowcase.dev/
 
 2. Locate the project card for **GitShowcase.dev**.
 
@@ -721,7 +721,7 @@ GitShowcase.dev provides a direct GitHub link on each project card, making it ea
 ### Steps:
 
 1. Open **GitShowcase.dev** and navigate to the search bar and type colmwoods:  
-   https://gitshowcase-dev-a0b7673e36ce.herokuapp.com
+   https://www.gitshowcase.dev/
 
 2. Find the project card for **GitShowcase.dev**.
 

@@ -41,16 +41,16 @@ This ensured every template was validated in its final rendered form, free of Dj
 
 | Directory | File | URL | Screenshot | Notes |
 |----------|------|-----|-----------|-------|
-| templates | about.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/about | ![screenshot](documentation/validation/html-about.jpg) | Static About page describing the platform and its purpose |
-| templates | bookmarks.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/bookmarks | ![screenshot](documentation/validation/html-bookmarks.jpg) | Displays the authenticated user’s bookmarked repositories |
-| templates | home.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/ | ![screenshot](documentation/validation/html-home.jpg) | Main homepage showing repositories retrieved from the GitHub API |
-| templates | search.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/search | ![screenshot](documentation/validation/html-search.jpg) | GitHub user search page allowing exploration of other profiles |
+| templates | about.html | https://www.gitshowcase.dev/about | ![screenshot](documentation/validation/html-about.jpg) | Static About page describing the platform and its purpose |
+| templates | bookmarks.html | https://www.gitshowcase.dev/bookmarks | ![screenshot](documentation/validation/html-bookmarks.jpg) | Displays the authenticated user’s bookmarked repositories |
+| templates | home.html | https://www.gitshowcase.dev/ | ![screenshot](documentation/validation/html-home.jpg) | Main homepage showing repositories retrieved from the GitHub API |
+| templates | search.html | https://www.gitshowcase.dev/search | ![screenshot](documentation/validation/html-search.jpg) | GitHub user search page allowing exploration of other profiles |
 | templates | 404.html | Not accessible directly | ![screenshot](documentation/validation/html-404.jpg) | Custom 404 page; validated via “View Page Source” |
 | templates | base.html | No live link (layout template) | ![screenshot](documentation/validation/html-base.jpg) | Master base template providing layout, navigation, and footer for all pages, Tested by removing django blocks and pasting into validator |
 | templates/includes | repo_card.html | No live link (include file) | ![screenshot](documentation/validation/html-repo_card.jpg) | Reusable card component for displaying repository metadata, Tested by removing django blocks and pasting into validator |
-| templates/account | login.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/accounts/login | ![screenshot](documentation/validation/html-login.jpg) | GitHub OAuth login page |
-| templates/form | contact.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/contact | ![screenshot](documentation/validation/html-contact.jpg) | Contact form that stores messages in the database |
-| templates/form | success.html | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/success | ![screenshot](documentation/validation/html-success.jpg) | Confirmation page displayed after a successful contact form submission |
+| templates/account | login.html | https://www.gitshowcase.dev/accounts/login | ![screenshot](documentation/validation/html-login.jpg) | GitHub OAuth login page |
+| templates/form | contact.html | https://www.gitshowcase.dev/contact | ![screenshot](documentation/validation/html-contact.jpg) | Contact form that stores messages in the database |
+| templates/form | success.html | https://www.gitshowcase.dev/success | ![screenshot](documentation/validation/html-success.jpg) | Confirmation page displayed after a successful contact form submission |
 
 
 ## CSS Validation
@@ -63,7 +63,7 @@ The deployed CSS file was validated using the **Validate by URL** method to ensu
 
 | Directory | File | URL | Screenshot | Notes |
 |----------|------|-----|-----------|-------|
-| static/css | style.css | https://gitshowcase-dev-a0b7673e36ce.herokuapp.com/static/css/style.css | ![screenshot](documentation/validation/css-style.jpg) | Main custom stylesheet controlling layout, typography, colour scheme, and components across the site |
+| static/css | style.css | https://www.gitshowcase.dev/static/css/style.css | ![screenshot](documentation/validation/css-style.jpg) | Main custom stylesheet controlling layout, typography, colour scheme, and components across the site |
 
 
 ## JavaScript Validation
