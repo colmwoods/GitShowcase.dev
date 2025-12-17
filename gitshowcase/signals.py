@@ -3,18 +3,16 @@ from allauth.socialaccount.signals import social_account_added
 
 
 @receiver(social_account_added)
-def set_first_name_from_github(request, sociallogin, **kwargs):
-    """Set the user's first name from their GitHub profile upon social account addition."""
+def set_username_from_github(request, sociallogin, **kwargs):
+    """Set the user's username to their GitHub username upon social account addition."""
     user = sociallogin.user
     account = sociallogin.account
 
-    # Only run for GitHub
     if account.provider != "github":
         return
 
-    data = account.extra_data or {}
-    github_name = data.get("name")
+    github_username = account.extra_data.get("login")
 
-    if github_name and not user.first_name:
-        user.first_name = github_name.split()[0]
+    if github_username and user.username != github_username:
+        user.username = github_username
         user.save()
