@@ -9,9 +9,7 @@
             {% if user.is_authenticated %}
             <h2>
                 Welcome back,
-                {% if user.socialaccount_set.exists %}
-                {{ user.socialaccount_set.first.extra_data.login }}
-                {% elif user.first_name %}
+                {% if user.first_name %}
                 {{ user.first_name }}
                 {% else %}
                 {{ user.username }}

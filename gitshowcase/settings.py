@@ -62,7 +62,7 @@ SITE_ID = 3
 LOGIN_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_REQUIRED = False
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Keep This To Allow Login Via Either Username Or Email Using Allauth Anyways
