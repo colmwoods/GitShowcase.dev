@@ -68,7 +68,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 # Keep This To Allow Login Via Either Username Or Email Using Allauth Anyways
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
-ACCOUNT_LOGOUT_ON_GET = False
+ACCOUNT_LOGOUT_ON_GET = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
@@ -213,15 +213,10 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': [
             'read:user',
             'user:email',
-            'repo',
         ],
-        'APP': {
-            'client_id': os.environ.get('GITHUB_CLIENT_ID'),
-            'secret': os.environ.get('GITHUB_CLIENT_SECRET'),
-            'key': ''
-        }
     }
 }
+
 
 
 SOCIALACCOUNT_LOGIN_ON_GET = True
