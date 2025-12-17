@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get(
     'django-insecure-2aijh9qp!r_sems1v=lt*2jh7s&o-2-g7ewaspe!t_@sna@o1$'
 )
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com', '.gitshowcase.dev']
 
@@ -37,6 +37,9 @@ CSRF_TRUSTED_ORIGINS = [
     "https://www.gitshowcase.dev",
 ]
 
+CSRF_COOKIE_DOMAIN = ".gitshowcase.dev"
+CSRF_COOKIE_SAMESITE = "Lax"
+CSRF_COOKIE_SECURE = True
 
 # Application Definition
 INSTALLED_APPS = [
@@ -69,12 +72,10 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
 ACCOUNT_LOGOUT_ON_GET = True
-CSRF_COOKIE_SECURE = False
-SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = True
 
 # Cookie SameSite Settings
-CSRF_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = "Lax"
 
 
 # Authentication Backends
