@@ -5,7 +5,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from allauth.socialaccount.models import SocialAccount, SocialToken
 from django.views.decorators.csrf import ensure_csrf_cookie
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 import requests
 import json
 from datetime import datetime
@@ -43,7 +43,7 @@ def home(request):
             )
 
             headers = {
-                "Authorization": f"token {token.token}",
+                "Authorization": f"Bearer {token.token}",
                 "Accept": "application/vnd.github+json",
             }
 
@@ -84,7 +84,7 @@ def home(request):
             starred_response = requests.get(
                 "https://api.github.com/user/starred?per_page=100",
                 headers={
-                    "Authorization": f"token {token.token}",
+                    "Authorization": f"Bearer {token.token}",
                     "Accept": "application/vnd.github+json",
                 },
             )
@@ -127,7 +127,7 @@ def about(request):
 
 
 # ---------------- STAR REPO ENDPOINT ----------------
-@csrf_protect
+@csrf_exempt
 @login_required
 @require_POST
 def star_repo(request):
@@ -150,7 +150,7 @@ def star_repo(request):
         # Perform Star/Unstar Action
         url = f"https://api.github.com/user/starred/{repo_full_name}"
         headers = {
-            "Authorization": f"token {token.token}",
+            "Authorization": f"Bearer {token.token}",
             "Accept": "application/vnd.github+json",
         }
 
@@ -193,7 +193,7 @@ def get_starred_repos(user):
                 response = requests.get(
                     "https://api.github.com/user/starred?per_page=100",
                     headers={
-                        "Authorization": f"token {token.token}",
+                        "Authorization": f"Bearer {token.token}",
                         "Accept": "application/vnd.github+json",
                     },
                 )
@@ -274,7 +274,7 @@ def search(request):
                 star_response = requests.get(
                     "https://api.github.com/user/starred?per_page=100",
                     headers={
-                        "Authorization": f"token {token.token}",
+                        "Authorization": f"Bearer {token.token}",
                         "Accept": "application/vnd.github+json",
                     },
                 )
@@ -381,7 +381,10 @@ def bookmark_list(request):
         provider='github').first()
     if github_account:
         token = github_account.socialtoken_set.first().token
-        headers = {"Authorization": f"token {token}"}
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github+json",
+        }
         response = requests.get(
             "https://api.github.com/user/starred",
             headers=headers)
