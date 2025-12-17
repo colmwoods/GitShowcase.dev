@@ -4,7 +4,10 @@ from allauth.socialaccount.signals import social_account_added
 
 @receiver(social_account_added)
 def set_username_from_github(request, sociallogin, **kwargs):
-    """Set the user's username to their GitHub username upon social account addition."""
+    """
+    Set the user's username to their GitHub username
+    when a social account is added.
+    """
     user = sociallogin.user
     account = sociallogin.account
 

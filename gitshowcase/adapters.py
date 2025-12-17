@@ -4,8 +4,8 @@ from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 class GitHubUsernameAdapter(DefaultSocialAccountAdapter):
     def populate_user(self, request, sociallogin, data):
         """
-        This runs BEFORE the user is saved.
-        We set username here so colm4 is NEVER created.
+        Runs BEFORE the user is saved.
+        Prevents colm1 / colm4 usernames.
         """
         user = super().populate_user(request, sociallogin, data)
 
