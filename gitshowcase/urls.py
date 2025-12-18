@@ -22,11 +22,6 @@ from . import views
 # URL Patterns For GitShowcase Application
 urlpatterns = [
     path(
-        "accounts/github/login/callback/",
-        views.oauth_callback_guard,
-        name="github_callback_guard",
-    ),
-    path(
         'admin/',
         admin.site.urls),
     path(
