@@ -602,6 +602,16 @@ The live deployed application is on **Heroku**:
 
 ---
 
+## Security Configuration Notes
+
+### X-Frame-Options
+
+`X_FRAME_OPTIONS` is set to `ALLOWALL` to allow the application to be embedded within external tools used for responsive mockups and demonstrations (such as AmiResponsive).
+
+This configuration choice is intentional for presentation purposes and does not expose sensitive user data within the scope of this educational project.
+
+---
+
 ## Heroku Deployment
 
 Heroku was used to deploy GitShowcase.dev as a cloud-hosted Django application.
