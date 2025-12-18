@@ -50,7 +50,7 @@ when only repo_url is given.
 class CommentAdmin(admin.ModelAdmin):
     list_display = ("user", "repo_link", "body", "created_at")
     search_fields = ("repo_url", "user__username", "body")
-    fields = ("user", "repo_url", "body")  # Only show these in Add/Edit form
+    fields = ("user", "repo_name", "repo_url", "body")
 
     def repo_link(self, obj):
         return f'<a href="{obj.repo_url}" target="_blank">{obj.repo_url}</a>'
