@@ -282,7 +282,7 @@ footer {
 }
 
 /* 🖥️ Large screens – FORCE 4 */
-@media (min-width: 1200px) {
+@media (min-width: 1243px) {
     .repo-container {
         grid-template-columns: repeat(4, 1fr);
     }
