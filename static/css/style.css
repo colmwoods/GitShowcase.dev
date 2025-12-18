@@ -266,34 +266,25 @@ footer {
 
 .repo-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     width: 100%;
     max-width: 1600px;
-    /* wider to fit 4 cleanly */
     margin: 0 auto;
     justify-items: center;
-    align-items: start;
 }
 
-/* 🖥️ Desktop (≥1200px) — force 4 columns evenly spaced */
-@media (min-width: 1200px) {
-    .repo-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-/* 💻 Tablet (≤991px) — 2 per row */
-@media (max-width: 991px) {
-    .repo-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* 📱 Mobile (≤576px) — 1 per row */
+/* 📱 Mobile */
 @media (max-width: 576px) {
     .repo-container {
         grid-template-columns: 1fr;
+    }
+}
+
+/* 🖥️ Large screens – FORCE 4 */
+@media (min-width: 1200px) {
+    .repo-container {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
