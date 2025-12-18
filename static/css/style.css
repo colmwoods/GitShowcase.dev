@@ -694,21 +694,10 @@ section#alerts {
     margin-bottom: 1.5rem;
 }
 
+/* -------------------- FOOTER LINK STYLES -------------------- */
 footer a,
 footer a:hover,
 footer a:focus,
 footer a:active {
     text-decoration: none;
-}
-
-footer i {
-    font-size: 1.65rem;
-    line-height: 1
-}
-
-.fa,
-.fa-solid,
-.fa-regular,
-.fa-brands {
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
 }
