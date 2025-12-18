@@ -316,6 +316,9 @@ GitShowcase.dev user stories are divided into developer (site user), visitors, a
 
 ## Future Features
 
+- **Repository Pagination**  
+  Add pagination or lazy loading to allow users with more than 100 repositories to browse additional repositories beyond the initial limit.
+
 - **Private Repository Support**  
   Allow authenticated users to opt-in to include private repositories in their showcase.
 
@@ -539,6 +542,12 @@ Full User Stories, Acceptance Criteria, and Agile planning can be found in
 - Following users  
 - Notifications  
 - AI integrations  
+
+---
+
+### Repository Display Limit
+
+To ensure performance and responsiveness, GitShowcase displays up to 100 repositories per user. Repositories are ordered by most recently updated, ensuring that the latest active projects are shown first. This approach avoids excessive GitHub API calls and keeps the interface fast and usable for accounts with a large number of repositories.
 
 ---
 
