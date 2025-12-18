@@ -511,3 +511,6 @@ def success(request):
     Render success page after contact form submission.
     """
     return render(request, 'form/success.html')
+
+def oauth_callback_guard(request):
+    return redirect("/accounts/3rdparty/login/cancelled/")
