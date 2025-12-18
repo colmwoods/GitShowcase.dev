@@ -619,7 +619,7 @@ footer {
     transform: scale(1.05);
 }
 
-section#alerts {
+div#alerts {
     margin-top: 5em;
 }
 
