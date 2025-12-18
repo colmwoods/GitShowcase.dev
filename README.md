@@ -291,6 +291,9 @@ GitShowcase.dev user stories are divided into developer (site user), visitors, a
 ### 404 Page
 - Custom 404 page matching the GitShowcase.dev branding.
 
+### Repository Display Limit
+To ensure performance and responsiveness, GitShowcase displays up to 100 repositories per user. Repositories are ordered by most recently updated, ensuring that the latest active projects are shown first. This approach avoids excessive GitHub API calls and keeps the interface fast and usable for accounts with a large number of repositories.
+
 ---
 
 ## Features Table with Screenshots
@@ -542,12 +545,6 @@ Full User Stories, Acceptance Criteria, and Agile planning can be found in
 - Following users  
 - Notifications  
 - AI integrations  
-
----
-
-### Repository Display Limit
-
-To ensure performance and responsiveness, GitShowcase displays up to 100 repositories per user. Repositories are ordered by most recently updated, ensuring that the latest active projects are shown first. This approach avoids excessive GitHub API calls and keeps the interface fast and usable for accounts with a large number of repositories.
 
 ---
 
