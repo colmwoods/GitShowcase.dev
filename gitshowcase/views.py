@@ -512,5 +512,9 @@ def success(request):
     """
     return render(request, 'form/success.html')
 
+
 def oauth_callback_guard(request):
+    """
+    Guard for OAuth callback cancellations.
+    """
     return redirect("/accounts/3rdparty/login/cancelled/")
