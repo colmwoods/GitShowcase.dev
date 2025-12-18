@@ -158,6 +158,7 @@ To ensure consistent behaviour across key device categories, three standard scre
 | Contact Success | ![screenshot](documentation/responsiveness/mobile-success.jpg) | ![screenshot](documentation/responsiveness/tablet-success.jpg) | ![screenshot](documentation/responsiveness/desktop-success.jpg) | Confirmation message stays centred and readable on all devices |
 | Login | ![screenshot](documentation/responsiveness/mobile-login.jpg) | ![screenshot](documentation/responsiveness/tablet-login.jpg) | ![screenshot](documentation/responsiveness/desktop-login.jpg) | GitHub login button displays centrally and remains touch-friendly |
 | 404 | ![screenshot](documentation/responsiveness/mobile-404.jpg) | ![screenshot](documentation/responsiveness/tablet-404.jpg) | ![screenshot](documentation/responsiveness/desktop-404.jpg) | Error message and navigation button remain fully responsive |
+| Login Failed | ![screenshot](documentation/responsiveness/mobile-login-fail.jpg) | ![screenshot](documentation/responsiveness/tablet-login-fail.jpg) | ![screenshot](documentation/responsiveness/desktop-login-fail.jpg) | If the user cancels GitHub OAuth authentication, they are redirected to a login failed page with a clear error message and navigation option. |
 
 ---
 
@@ -177,6 +178,7 @@ Screenshots were taken on all five browsers to demonstrate compatibility and con
 | Contact Success | ![screenshot](documentation/browsers/chrome-success.jpg) | ![screenshot](documentation/browsers/firefox-success.jpg) | ![screenshot](documentation/browsers/safari-success.jpg) | ![screenshot](documentation/browsers/opera-success.jpg) | ![screenshot](documentation/browsers/edge-success.jpg) | Confirmation message displays correctly on all browsers |
 | Login | ![screenshot](documentation/browsers/chrome-login.jpg) | ![screenshot](documentation/browsers/firefox-login.jpg) | ![screenshot](documentation/browsers/safari-login.jpg) | ![screenshot](documentation/browsers/opera-login.jpg) | ![screenshot](documentation/browsers/edge-login.jpg) | GitHub OAuth login button displays properly across all browsers |
 | 404 | ![screenshot](documentation/browsers/chrome-404.jpg) | ![screenshot](documentation/browsers/firefox-404.jpg) | ![screenshot](documentation/browsers/safari-404.jpg) | ![screenshot](documentation/browsers/opera-404.jpg) | ![screenshot](documentation/browsers/edge-404.jpg) | Custom error page remains fully compatible |
+| Login Failed | ![screenshot](documentation/browsers/chrome-login-fail.jpg) | ![screenshot](documentation/browsers/firefox-login-fail.jpg) | ![screenshot](documentation/browsers/safari-login-fail.jpg) | ![screenshot](documentation/browsers/opera-login-fail.jpg) | ![screenshot](documentation/browsers/edge-login-fail.jpg) | Github OAuth fail page remains fully compatible |
 
 
 All tested browsers displayed the site properly with identical behaviour across all interactive elements.
@@ -201,6 +203,7 @@ I am running these lighthouse tests in incognito mode as chrome extentions and m
 | Contact Success | ![screenshot](documentation/lighthouse/mobile-success.jpg) | ![screenshot](documentation/lighthouse/desktop-success.jpg) |
 | Login | ![screenshot](documentation/lighthouse/mobile-login.jpg) | ![screenshot](documentation/lighthouse/desktop-login.jpg) |
 | 404 | ![screenshot](documentation/lighthouse/mobile-404.jpg) | ![screenshot](documentation/lighthouse/desktop-404.jpg) |
+| Login Failed | ![screenshot](documentation/lighthouse/mobile-login-fail.jpg) | ![screenshot](documentation/lighthouse/desktop-login-fail.jpg) |
 
 All audited pages returned results within expected ranges, with no critical accessibility or best-practice issues detected. Minor performance warnings relate primarily to external GitHub API calls and third-party content, which are outside the project's control.
 

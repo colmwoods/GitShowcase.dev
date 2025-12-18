@@ -1,5 +1,6 @@
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 
+
 class GitHubUsernameAdapter(DefaultSocialAccountAdapter):
     def populate_user(self, request, sociallogin, data):
         """
@@ -18,5 +19,3 @@ class GitHubUsernameAdapter(DefaultSocialAccountAdapter):
                 user.first_name = github_name.split()[0]
 
         return user
-
-
