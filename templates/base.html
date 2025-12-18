@@ -93,12 +93,26 @@
     <!-- ✅ Footer -->
     <footer class="footer bg-white text-center py-4 border-top mt-auto w-100">
         <div class="container-fluid">
+            <div class="mb-2">
+                <a href="https://www.linkedin.com/in/colm-woods" target="_blank" rel="noopener"
+                    class="text-muted mx-2 fs-5">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+
+                <a href="https://github.com/colmwoods" target="_blank" rel="noopener" class="text-muted mx-2 fs-5">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+
+            <!-- Copyright -->
             <p class="mb-0 text-muted small">
-                &copy; {{ current_year|default:2025 }} <strong>GitShowcase.dev</strong> —
+                &copy; {{ current_year|default:2025 }}
+                <strong>GitShowcase.dev</strong> —
                 Built by <strong>Colm Woods</strong>
             </p>
         </div>
     </footer>
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
