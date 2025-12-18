@@ -91,7 +91,7 @@ AUTHENTICATION_BACKENDS = [
 
 # Middleware Configuration
 MIDDLEWARE = [
-    "gitshowcase.middleware.WwwRedirectMiddleware",
+    "gitshowcase.middleware.CanonicalDomainRedirectMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -106,7 +106,7 @@ MIDDLEWARE = [
 # HTTPs Behind A Proxy (e.g. On Heroku)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
-SECURE_SSL_REDIRECT = False
+SECURE_SSL_REDIRECT = True
 
 
 ROOT_URLCONF = 'gitshowcase.urls'
